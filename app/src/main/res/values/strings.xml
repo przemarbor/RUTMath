@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Math learning</string>
+    <string name="score">%s score: %d\n%s score: %d</string>
+    <string name="ok">OK</string>
+    <string name="game_ended">Game ended</string>
+    <string name="max_battle_number_hint">Enter max number for battle mode</string>
+    <string name="save">Save</string>
+    <string name="max_number_reached">Value can not be bigger than: %1$d</string>
+    <string name="min_number_reached">Value can not be smaller than: %1$d</string>
+    <string name="bonus">Sequention bonus +%d</string>
+    <string name="enter_nicknames">Enter players nicknames</string>
+    <string name="player1_nickname">Player1 (top) nickname:</string>
+    <string name="player2_nickname">Player2 (bottom) nickname:</string>
+    <string name="start_battle">Start battle</string>
+    <string name="play_in_battle_mode_for_scores">Scores list is empty.\nPlay in battle mode to see best players results!</string>
+    <string name="player1">Player1</string>
+    <string name="player2">Player2</string>
+    <string name="nick_empty">Nick can not be empty!</string>
+    <string name="scoreboard_format">%d. %s</string>
+    <string name="scoreboard">Score Board:</string>
+
+</resources>

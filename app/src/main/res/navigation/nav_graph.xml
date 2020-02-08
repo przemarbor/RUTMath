@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menuFragment">
+
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.hexbit.additionandsubtraction.ui.fragment.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_exercise_list"
+            app:destination="@id/exerciseListFragment"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_menuFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_scoreboardFragment"
+            app:destination="@id/scoreboardFragment"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_menuFragment_to_playersNamesFragment"
+            app:destination="@id/playersNamesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseListFragment"
+        android:name="com.hexbit.additionandsubtraction.ui.fragment.exercise.list.ExerciseListFragment"
+        android:label="fragment_exercise_list"
+        tools:layout="@layout/fragment_exercise_list" >
+        <action
+            android:id="@+id/action_exercise_list_to_normalGameFragment"
+            app:destination="@id/normalGameFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="rate"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="exerciseType"
+            app:argType="com.hexbit.additionandsubtraction.data.model.ExerciseType"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_exerciseListFragment_pop_including_menuFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/menuFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/normalGameFragment"
+        android:name="com.hexbit.additionandsubtraction.ui.fragment.game.normal.NormalGameFragment"
+        android:label="fragment_normal_game"
+        tools:layout="@layout/fragment_normal_game" >
+        <argument
+            android:name="exerciseType"
+            app:argType="com.hexbit.additionandsubtraction.data.model.ExerciseType" />
+        <action
+            android:id="@+id/action_normalGameFragment_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment"
+            app:popUpTo="@+id/exerciseListFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_normalGameFragment_pop"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/exerciseListFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/battleGameFragment"
+        android:name="com.hexbit.additionandsubtraction.ui.fragment.game.battle.BattleGameFragment"
+        android:label="BattleGameFragment" >
+        <action
+            android:id="@+id/action_battleGameFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/menuFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="player1nick"
+            app:argType="string" />
+        <argument
+            android:name="player2nick"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.hexbit.additionandsubtraction.ui.fragment.settings.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scoreboardFragment"
+        android:name="com.hexbit.additionandsubtraction.ui.fragment.scoreboard.ScoreboardFragment"
+        android:label="ScoreboardFragment" >
+        <action
+            android:id="@+id/action_scoreboardFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:popUpTo="@+id/menuFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/playersNamesFragment"
+        android:name="com.hexbit.additionandsubtraction.ui.fragment.game.battle.PlayersNamesFragment"
+        android:label="PlayersNamesFragment" >
+        <action
+            android:id="@+id/action_playersNamesFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:popUpTo="@+id/menuFragment" />
+        <action
+            android:id="@+id/action_playersNamesFragment_to_battleGameFragment"
+            app:destination="@id/battleGameFragment" />
+    </fragment>
+</navigation>
