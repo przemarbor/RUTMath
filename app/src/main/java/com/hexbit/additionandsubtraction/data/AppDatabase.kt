@@ -14,7 +14,7 @@ import com.hexbit.additionandsubtraction.data.model.*
 /**
  * Main abstraction for database. It contains whole Room database implementation.
  *
- * Główna klasa bazy danych z implementacją jako singleton.
+ * # Główna klasa bazy danych z implementacją jako singleton.
  */
 @Database(entities = [ExerciseType::class, Settings::class, Score::class, Player::class], version = 4)
 @TypeConverters(OperationConverter::class)

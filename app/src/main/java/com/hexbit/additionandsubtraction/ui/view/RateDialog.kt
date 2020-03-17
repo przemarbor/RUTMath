@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.rate_dialog.*
 /**
  * Dialog with stars after finish NormalGame
  *
- * Pop-up wyświetlający ilość zdobytych gwiazdek w zadaniu.
+ * # Pop-up wyświetlający ilość zdobytych gwiazdek w zadaniu.
  */
 class RateDialog(context: Context, private val rate: Int) : Dialog(context) {
 

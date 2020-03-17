@@ -20,7 +20,7 @@ class ExerciseListViewModel(private val database: AppDatabase) : DisposableViewM
     /**
      * Load exercises from database.
      *
-     * Metoda pobierająca listę z bazy danych i przekazująca ją do widoku..
+     * # Metoda pobierająca listę z bazy danych i przekazująca ją do widoku..
      */
     fun loadExercises(nick: String) {
         manageDisposable {
@@ -81,7 +81,7 @@ class ExerciseListViewModel(private val database: AppDatabase) : DisposableViewM
      * It updates exercise type in database (for example when user finished game and we should update
      * exercise with new rate number)
      *
-     * Metoda odświeżająca obiekt w bazie danych.
+     * # Metoda odświeżająca obiekt w bazie danych.
      */
     fun updateExerciseType(exerciseType: ExerciseType, nick: String) {
         manageDisposable {

@@ -14,7 +14,7 @@ import java.io.Serializable
  * Rate - number of stars reached in this type of exercises.
  * Id - unique identification number in database.
  *
- * Typ zadania z adnotacjami pozwalającymi na zapis w lokalnej bazie danych.
+ * # Typ zadania z adnotacjami pozwalającymi na zapis w lokalnej bazie danych.
  */
 @Entity(tableName = "ExerciseType")
 data class ExerciseType(

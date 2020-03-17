@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Add spacing for GridLayoutManager of RecyclerView
  *
- * Dekorator dla RecyclerView pozwalający na dodanie odstępów między widokami z układem siatki.
+ * # Dekorator dla RecyclerView pozwalający na dodanie odstępów między widokami z układem siatki.
  *
  * @param spanCount - columns count
  * @param spacing - space between views in DPI
