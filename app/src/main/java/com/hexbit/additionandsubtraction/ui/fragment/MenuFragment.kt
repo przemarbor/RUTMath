@@ -18,10 +18,7 @@ class MenuFragment : BaseFragment() {
     private fun initButtons() {
         normalModeButton.setOnClickListener {
             findNavController().navigate(
-                MenuFragmentDirections.actionMenuFragmentToExerciseList(
-                    -1,
-                    null
-                )
+                MenuFragmentDirections.actionMenuFragmentToChoosePlayerFragment()
             )
         }
         battleModeButton.setOnClickListener {

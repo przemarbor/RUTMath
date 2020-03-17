@@ -10,11 +10,7 @@
         android:id="@+id/menuFragment"
         android:name="com.hexbit.additionandsubtraction.ui.fragment.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" >
-        <action
-            android:id="@+id/action_menuFragment_to_exercise_list"
-            app:destination="@id/exerciseListFragment"
-            app:launchSingleTop="true" />
+        tools:layout="@layout/fragment_menu">
         <action
             android:id="@+id/action_menuFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
@@ -25,12 +21,15 @@
         <action
             android:id="@+id/action_menuFragment_to_playersNamesFragment"
             app:destination="@id/playersNamesFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_choosePlayerFragment"
+            app:destination="@id/choosePlayerFragment" />
     </fragment>
     <fragment
         android:id="@+id/exerciseListFragment"
         android:name="com.hexbit.additionandsubtraction.ui.fragment.exercise.list.ExerciseListFragment"
         android:label="fragment_exercise_list"
-        tools:layout="@layout/fragment_exercise_list" >
+        tools:layout="@layout/fragment_exercise_list">
         <action
             android:id="@+id/action_exercise_list_to_normalGameFragment"
             app:destination="@id/normalGameFragment"
@@ -38,12 +37,16 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="rate"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:defaultValue="-1"
+            app:argType="integer" />
         <argument
             android:name="exerciseType"
             app:argType="com.hexbit.additionandsubtraction.data.model.ExerciseType"
             app:nullable="true" />
+        <argument
+            android:name="player"
+            app:argType="com.hexbit.additionandsubtraction.data.model.Player"
+            app:nullable="false" />
         <action
             android:id="@+id/action_exerciseListFragment_pop_including_menuFragment"
             app:launchSingleTop="false"
@@ -54,10 +57,15 @@
         android:id="@+id/normalGameFragment"
         android:name="com.hexbit.additionandsubtraction.ui.fragment.game.normal.NormalGameFragment"
         android:label="fragment_normal_game"
-        tools:layout="@layout/fragment_normal_game" >
+        tools:layout="@layout/fragment_normal_game">
         <argument
             android:name="exerciseType"
             app:argType="com.hexbit.additionandsubtraction.data.model.ExerciseType" />
+        <argument
+            android:name="player"
+            app:argType="com.hexbit.additionandsubtraction.data.model.Player"
+            app:nullable="false" />
+
         <action
             android:id="@+id/action_normalGameFragment_to_exerciseListFragment"
             app:destination="@id/exerciseListFragment"
@@ -72,7 +80,7 @@
     <fragment
         android:id="@+id/battleGameFragment"
         android:name="com.hexbit.additionandsubtraction.ui.fragment.game.battle.BattleGameFragment"
-        android:label="BattleGameFragment" >
+        android:label="BattleGameFragment">
         <action
             android:id="@+id/action_battleGameFragment_to_menuFragment"
             app:destination="@id/menuFragment"
@@ -89,7 +97,7 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.hexbit.additionandsubtraction.ui.fragment.settings.SettingsFragment"
-        android:label="SettingsFragment" >
+        android:label="SettingsFragment">
         <action
             android:id="@+id/action_settingsFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
@@ -97,7 +105,7 @@
     <fragment
         android:id="@+id/scoreboardFragment"
         android:name="com.hexbit.additionandsubtraction.ui.fragment.scoreboard.ScoreboardFragment"
-        android:label="ScoreboardFragment" >
+        android:label="ScoreboardFragment">
         <action
             android:id="@+id/action_scoreboardFragment_to_menuFragment"
             app:destination="@id/menuFragment"
@@ -107,7 +115,7 @@
     <fragment
         android:id="@+id/playersNamesFragment"
         android:name="com.hexbit.additionandsubtraction.ui.fragment.game.battle.PlayersNamesFragment"
-        android:label="PlayersNamesFragment" >
+        android:label="PlayersNamesFragment">
         <action
             android:id="@+id/action_playersNamesFragment_to_menuFragment"
             app:destination="@id/menuFragment"
@@ -115,5 +123,13 @@
         <action
             android:id="@+id/action_playersNamesFragment_to_battleGameFragment"
             app:destination="@id/battleGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/choosePlayerFragment"
+        android:name="com.hexbit.additionandsubtraction.ui.fragment.choosePlayer.ChoosePlayerFragment"
+        android:label="ChoosePlayerFragment">
+        <action
+            android:id="@+id/action_choosePlayerFragment_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment" />
     </fragment>
 </navigation>

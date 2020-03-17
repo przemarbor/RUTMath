@@ -8,17 +8,15 @@ import androidx.room.TypeConverters
 import com.hexbit.additionandsubtraction.data.dao.ExerciseTypeDao
 import com.hexbit.additionandsubtraction.data.dao.ScoreDao
 import com.hexbit.additionandsubtraction.data.dao.SettingsDao
-import com.hexbit.additionandsubtraction.data.model.ExerciseType
-import com.hexbit.additionandsubtraction.data.model.OperationConverter
-import com.hexbit.additionandsubtraction.data.model.Score
-import com.hexbit.additionandsubtraction.data.model.Settings
+import com.hexbit.additionandsubtraction.data.dao.UserDao
+import com.hexbit.additionandsubtraction.data.model.*
 
 /**
  * Main abstraction for database. It contains whole Room database implementation.
  *
  * Główna klasa bazy danych z implementacją jako singleton.
  */
-@Database(entities = [ExerciseType::class, Settings::class, Score::class], version = 3)
+@Database(entities = [ExerciseType::class, Settings::class, Score::class, Player::class], version = 4)
 @TypeConverters(OperationConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
@@ -45,4 +43,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun settingsDao(): SettingsDao
 
     abstract fun scoreDao(): ScoreDao
+
+    abstract fun userDao(): UserDao
 }

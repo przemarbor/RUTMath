@@ -115,7 +115,12 @@ class BattleFragmentViewModel(private val database: AppDatabase) : DisposableVie
         result.add(correctAnswer)
         while (result.size < 4) {
             val number =
-                Random.nextInt(IntRange(1, 2 * if (correctAnswer == 0) 10 else (correctAnswer + 1))) // random number from <1;20> || <1;minimum 4>
+                Random.nextInt(
+                    IntRange(
+                        1,
+                        2 * if (correctAnswer == 0) 10 else (correctAnswer + 1)
+                    )
+                ) // random number from <1;20> || <1;minimum 4>
             if (!result.contains(number)) {
                 result.add(number)
             }

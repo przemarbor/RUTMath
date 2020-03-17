@@ -38,7 +38,8 @@ class NormalGameFragment : BaseFragment() {
             findNavController().navigate(
                 NormalGameFragmentDirections.actionNormalGameFragmentToExerciseListFragment(
                     0,
-                    null
+                    null,
+                    args.player
                 )
             )
         }
@@ -82,7 +83,8 @@ class NormalGameFragment : BaseFragment() {
             findNavController().navigate(
                 NormalGameFragmentDirections.actionNormalGameFragmentToExerciseListFragment(
                     rate,
-                    args.exerciseType
+                    args.exerciseType,
+                    args.player
                 )
             )
         })

@@ -33,22 +33,30 @@ class ExerciseListFragment : BaseFragment() {
 
         args.exerciseType?.let {
             if (args.rate > 0) {
-                viewModel.updateExerciseType(it.copy(rate = args.rate))
+                viewModel.updateExerciseType(it.copy(rate = args.rate), args.player.nick)
                 RateDialog(context!!, args.rate).show()
             }
         }
+        player_name.text = args.player.nick
     }
 
     private fun initViewModel() {
         viewModel.getExerciseTypes().observe(viewLifecycleOwner, Observer {
             initRecyclerView(it)
         })
+        viewModel.loadExercises(args.player.nick)
     }
 
     private fun initRecyclerView(list: List<ExerciseType>) {
         recyclerView.apply {
             layoutManager = GridLayoutManager(context, COLUMNS_COUNT)
-            addItemDecoration(GridSpacingItemDecoration(COLUMNS_COUNT, 20, true)) // add space between each tiles
+            addItemDecoration(
+                GridSpacingItemDecoration(
+                    COLUMNS_COUNT,
+                    20,
+                    true
+                )
+            ) // add space between each tiles
             adapter = ExerciseAdapter(ArrayList(list), ::exerciseClickCallback)
         }
     }
@@ -60,7 +68,10 @@ class ExerciseListFragment : BaseFragment() {
      */
     private fun exerciseClickCallback(exerciseType: ExerciseType) {
         val direction =
-            ExerciseListFragmentDirections.actionExerciseListToNormalGameFragment(exerciseType)
+            ExerciseListFragmentDirections.actionExerciseListToNormalGameFragment(
+                exerciseType,
+                args.player
+            )
         findNavController().navigate(direction)
     }
 }

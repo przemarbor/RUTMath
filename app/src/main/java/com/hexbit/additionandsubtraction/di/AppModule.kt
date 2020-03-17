@@ -4,6 +4,7 @@ import androidx.room.Room
 import com.hexbit.additionandsubtraction.data.AppDatabase
 import com.hexbit.additionandsubtraction.ui.fragment.exercise.list.ExerciseListViewModel
 import com.hexbit.additionandsubtraction.ui.fragment.game.battle.BattleFragmentViewModel
+import com.hexbit.additionandsubtraction.ui.fragment.choosePlayer.ChoosePlayerViewModel
 import com.hexbit.additionandsubtraction.ui.fragment.game.normal.NormalGameViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.ext.koin.viewModel
@@ -22,4 +23,9 @@ val appModule = module {
     viewModel { ExerciseListViewModel(get()) }
     viewModel { NormalGameViewModel() }
     viewModel { BattleFragmentViewModel(get()) }
+    viewModel {
+        ChoosePlayerViewModel(
+            get()
+        )
+    }
 }

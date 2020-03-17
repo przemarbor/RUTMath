@@ -7,8 +7,8 @@ import io.reactivex.Single
 
 @Dao
 interface ExerciseTypeDao {
-    @Query("SELECT * FROM ExerciseType")
-    fun getAll(): Single<List<ExerciseType>>
+    @Query("SELECT * FROM ExerciseType WHERE userNick LIKE :nick")
+    fun getAll(nick: String): Single<List<ExerciseType>>
 
     @Query("SELECT * FROM ExerciseType WHERE id LIKE :id")
     fun findById(id: String): Single<ExerciseType>

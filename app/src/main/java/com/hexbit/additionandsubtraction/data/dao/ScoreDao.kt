@@ -16,6 +16,9 @@ interface ScoreDao {
     @Insert
     fun insertAll(scores: List<Score>): Completable
 
+    @Insert
+    fun insert(score: Score): Completable
+
     @Delete
     fun delete(score: Score): Completable
 

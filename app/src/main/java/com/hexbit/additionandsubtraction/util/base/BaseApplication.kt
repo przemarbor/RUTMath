@@ -56,49 +56,5 @@ class BaseApplication : Application() {
                 }
             }
             .subscribe()
-
-        val exercises = database.exerciseTypeDao().getAll()
-        exercises
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .flatMapCompletable { list ->
-                if (list.isEmpty()) {
-                    initializeExerciseListInDatabase()
-                } else {
-                    Completable.complete()
-                }
-            }.subscribe()
-    }
-
-    private fun initializeExerciseListInDatabase(): Completable {
-        val firstRange = 5..20 step 5
-        val secondRange = 30..100 step 10
-        val range = firstRange.plus(secondRange)
-        val exercises = arrayListOf<ExerciseType>()
-
-        range.forEach {
-            exercises.add(
-                ExerciseType(
-                    Operation.PLUS,
-                    it
-                )
-            )
-            exercises.add(
-                ExerciseType(
-                    Operation.MINUS,
-                    it
-                )
-            )
-            exercises.add(
-                ExerciseType(
-                    Operation.PLUS_MINUS,
-                    it
-                )
-            )
-        }
-        return database.exerciseTypeDao()
-            .insertAll(exercises)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
     }
 }
