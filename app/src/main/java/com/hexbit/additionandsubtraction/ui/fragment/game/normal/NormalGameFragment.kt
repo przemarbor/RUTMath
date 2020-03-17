@@ -93,8 +93,10 @@ class NormalGameFragment : BaseFragment() {
                 NormalGameViewModel.AnswerEvent.VALID -> {
                     updateUiOnCorrectAnswer()
                     Handler().postDelayed({
-                        progressBar.progress = progressBar.progress + 1
-                        viewModel.setNextActiveEquation()
+                        if(isVisible) {
+                            progressBar.progress = progressBar.progress + 1
+                            viewModel.setNextActiveEquation()
+                        }
                     }, 1000)
                 }
                 NormalGameViewModel.AnswerEvent.INVALID -> {
