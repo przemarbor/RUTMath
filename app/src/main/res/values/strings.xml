@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Math learning</string>
+    <string name="app_name">RUTMath</string>
+    <string name="university_name">Rzeszów University of Technology</string>
     <string name="score">%s score: %d\n%s score: %d</string>
     <string name="ok">OK</string>
     <string name="game_ended">Game ended</string>
