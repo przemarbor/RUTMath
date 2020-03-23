@@ -58,16 +58,16 @@ class NormalGameViewModel : DisposableViewModel() {
      * (args.maxNumber = 5).
      * Because we have only 10 possibly operations [like 5-4, 5-3,5-2,5-1,4-3,4-2,4-1,3-2,3-1,2-1]
      * so it is Sigma(sum of) of args.maxNumber.
-     *
-     * # Losuje równania dla gry i zwraca w postaci listy.
-     * # Zapewnia niepowtarzalność elementów w liście.
-     * # Może zablokować program przez StackOverflowException w momencie gdy zmienna
-     * # EXERCISES_COUNT jest mniejsza od sumy (args.Number) w przypadku gdy operacja dla jakiej
-     * # losowane są liczby jest = Operator.MINUS. Dzieje się tak dlatego, że
-     * # matematycznie nie jest możliwe stworzenie danej liczby (EXERCISES_COUNT) równań i pętla
-     * # nie zostanie ukończona przez co program się zawiesi.
-     *
      */
+     //# Losuje równania dla gry i zwraca w postaci listy.
+     //# Zapewnia niepowtarzalność elementów w liście.
+     //# Może zablokować program przez StackOverflowException w momencie gdy zmienna
+     //# EXERCISES_COUNT jest mniejsza od sumy (args.Number) w przypadku gdy operacja dla jakiej
+     //# losowane są liczby jest = Operator.MINUS. Dzieje się tak dlatego, że
+     //# matematycznie nie jest możliwe stworzenie danej liczby (EXERCISES_COUNT) równań i pętla
+     //# nie zostanie ukończona przez co program się zawiesi.
+    
+     
     private fun drawEquations(): List<Equation> {
         val results = arrayListOf<Equation>()
         while (results.size < EXERCISES_COUNT) {
@@ -121,12 +121,12 @@ class NormalGameViewModel : DisposableViewModel() {
      * - none of input number is equal to 0 (for example: it never draw equation 0+1 or 5-0 etc.)
      * - correctAnswer is always smaller than maxNumber of exerciseType
      * - correctAnswer is equal or greater than 0
-     *
-     * # Sprawdza czy podane równanie spełnia warunki:
-     * # - żadna ze zmiennych w równaniu nie jest równa 0
-     * # - correctAnswer jest mniejsza od maxNumber danego typu zadania
-     * # - correctAnswer jest równa lub większa od 0
      */
+     //# Sprawdza czy podane równanie spełnia warunki:
+     //# - żadna ze zmiennych w równaniu nie jest równa 0
+     //# - correctAnswer jest mniejsza od maxNumber danego typu zadania
+     //# - correctAnswer jest równa lub większa od 0
+     
     private fun equationIsValid(equationToAdd: Equation): Boolean {
         if (equationToAdd.componentA == 0 || equationToAdd.componentB == 0) {
             return false
