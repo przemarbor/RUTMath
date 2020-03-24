@@ -20,4 +20,4 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.hexbit.additionandsubtraction.data.model.**
+-keep class com.hexbit.rutmath.data.model.**

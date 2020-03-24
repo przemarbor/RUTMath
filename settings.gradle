@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='Addition and subtraction'
+rootProject.name='RutMath'

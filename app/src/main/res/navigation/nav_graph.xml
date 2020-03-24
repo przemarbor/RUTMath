@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.hexbit.additionandsubtraction.ui.fragment.MenuFragment"
+        android:name="com.hexbit.rutmath.ui.fragment.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/exerciseListFragment"
-        android:name="com.hexbit.additionandsubtraction.ui.fragment.exercise.list.ExerciseListFragment"
+        android:name="com.hexbit.rutmath.ui.fragment.exercise.list.ExerciseListFragment"
         android:label="fragment_exercise_list"
         tools:layout="@layout/fragment_exercise_list">
         <action
@@ -41,11 +41,11 @@
             app:argType="integer" />
         <argument
             android:name="exerciseType"
-            app:argType="com.hexbit.additionandsubtraction.data.model.ExerciseType"
+            app:argType="com.hexbit.rutmath.data.model.ExerciseType"
             app:nullable="true" />
         <argument
             android:name="player"
-            app:argType="com.hexbit.additionandsubtraction.data.model.Player"
+            app:argType="com.hexbit.rutmath.data.model.Player"
             app:nullable="false" />
         <action
             android:id="@+id/action_exerciseListFragment_pop_including_menuFragment"
@@ -55,15 +55,15 @@
     </fragment>
     <fragment
         android:id="@+id/normalGameFragment"
-        android:name="com.hexbit.additionandsubtraction.ui.fragment.game.normal.NormalGameFragment"
+        android:name="com.hexbit.rutmath.ui.fragment.game.normal.NormalGameFragment"
         android:label="fragment_normal_game"
         tools:layout="@layout/fragment_normal_game">
         <argument
             android:name="exerciseType"
-            app:argType="com.hexbit.additionandsubtraction.data.model.ExerciseType" />
+            app:argType="com.hexbit.rutmath.data.model.ExerciseType" />
         <argument
             android:name="player"
-            app:argType="com.hexbit.additionandsubtraction.data.model.Player"
+            app:argType="com.hexbit.rutmath.data.model.Player"
             app:nullable="false" />
 
         <action
@@ -79,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/battleGameFragment"
-        android:name="com.hexbit.additionandsubtraction.ui.fragment.game.battle.BattleGameFragment"
+        android:name="com.hexbit.rutmath.ui.fragment.game.battle.BattleGameFragment"
         android:label="BattleGameFragment">
         <action
             android:id="@+id/action_battleGameFragment_to_menuFragment"
@@ -96,7 +96,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.hexbit.additionandsubtraction.ui.fragment.settings.SettingsFragment"
+        android:name="com.hexbit.rutmath.ui.fragment.settings.SettingsFragment"
         android:label="SettingsFragment">
         <action
             android:id="@+id/action_settingsFragment_to_menuFragment"
@@ -104,7 +104,7 @@
     </fragment>
     <fragment
         android:id="@+id/scoreboardFragment"
-        android:name="com.hexbit.additionandsubtraction.ui.fragment.scoreboard.ScoreboardFragment"
+        android:name="com.hexbit.rutmath.ui.fragment.scoreboard.ScoreboardFragment"
         android:label="ScoreboardFragment">
         <action
             android:id="@+id/action_scoreboardFragment_to_menuFragment"
@@ -114,7 +114,7 @@
     </fragment>
     <fragment
         android:id="@+id/playersNamesFragment"
-        android:name="com.hexbit.additionandsubtraction.ui.fragment.game.battle.PlayersNamesFragment"
+        android:name="com.hexbit.rutmath.ui.fragment.game.battle.PlayersNamesFragment"
         android:label="PlayersNamesFragment">
         <action
             android:id="@+id/action_playersNamesFragment_to_menuFragment"
@@ -126,7 +126,7 @@
     </fragment>
     <fragment
         android:id="@+id/choosePlayerFragment"
-        android:name="com.hexbit.additionandsubtraction.ui.fragment.choosePlayer.ChoosePlayerFragment"
+        android:name="com.hexbit.rutmath.ui.fragment.choosePlayer.ChoosePlayerFragment"
         android:label="ChoosePlayerFragment">
         <action
             android:id="@+id/action_choosePlayerFragment_to_exerciseListFragment"
