@@ -48,12 +48,12 @@ class BattleFragmentViewModel(private val database: AppDatabase) : DisposableVie
         onNextEquationActiveEvent.value = activeEquation
     }
 
-    /**
-     * Draw equations for game and returns it.
-     *
-     * Losuje równanie dla gry i je zwraca.
-     * Zapewnia niepowtarzalność zadań z przeszłości.
-     */
+    
+     // Draw equations for game and returns it.
+     
+     //# Losuje równanie dla gry i je zwraca.
+     //# Zapewnia niepowtarzalność zadań z przeszłości.
+     
     private fun drawEquation(): Equation {
         println("draw equation...")
         val valueA = Random.nextInt(0, maxNumber + 1)
@@ -86,17 +86,17 @@ class BattleFragmentViewModel(private val database: AppDatabase) : DisposableVie
         return drawEquation()
     }
 
-    /**
-     * It checks that given equation:
-     * - none of input number is equal to 0 (for example: it never draw equation 0+1 or 5-0 etc.)
-     * - correctAnswer is always smaller than maxNumber possible number
-     * - correctAnswer is equal or greater than 0
-     *
-     * Sprawdza czy podane równanie spełnia warunki:
-     * - żadna ze zmiennych w równaniu nie jest równa 0
-     * - correctAnswer jest mniejsza od maxNumber danego typu zadania
-     * - correctAnswer jest równa lub większa od 0
-     */
+    
+     // It checks that given equation:
+     // - none of input number is equal to 0 (for example: it never draw equation 0+1 or 5-0 etc.)
+     // - correctAnswer is always smaller than maxNumber possible number
+     // - correctAnswer is equal or greater than 0
+     
+     //# Sprawdza czy podane równanie spełnia warunki:
+     //# - żadna ze zmiennych w równaniu nie jest równa 0
+     //# - correctAnswer jest mniejsza od maxNumber danego typu zadania
+     //# - correctAnswer jest równa lub większa od 0
+     
     private fun equationIsValid(equationToAdd: Equation): Boolean {
         if (equationToAdd.componentA == 0 || equationToAdd.componentB == 0) {
             return false

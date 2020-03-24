@@ -58,16 +58,15 @@ class NormalGameViewModel : DisposableViewModel() {
      * (args.maxNumber = 5).
      * Because we have only 10 possibly operations [like 5-4, 5-3,5-2,5-1,4-3,4-2,4-1,3-2,3-1,2-1]
      * so it is Sigma(sum of) of args.maxNumber.
-     *
-     * //# Losuje równania dla gry i zwraca w postaci listy.
-     * //# Zapewnia niepowtarzalność elementów w liście.
-     * //# Może zablokować program przez StackOverflowException w momencie gdy zmienna
-     * //# EXERCISES_COUNT jest mniejsza od sumy (args.Number) w przypadku gdy operacja dla jakiej
-     * //# losowane są liczby jest = Operator.MINUS. Dzieje się tak dlatego, że
-     * //# matematycznie nie jest możliwe stworzenie danej liczby (EXERCISES_COUNT) równań i pętla
-     * //# nie zostanie ukończona przez co program się zawiesi.
-     *
      */
+    //# Losuje równania dla gry i zwraca w postaci listy.
+    //# Zapewnia niepowtarzalność elementów w liście.
+    //# Może zablokować program przez StackOverflowException w momencie gdy zmienna
+    //# EXERCISES_COUNT jest mniejsza od sumy (args.Number) w przypadku gdy operacja dla jakiej
+    //# losowane są liczby jest = Operator.MINUS. Dzieje się tak dlatego, że
+    //# matematycznie nie jest możliwe stworzenie danej liczby (EXERCISES_COUNT) równań i pętla
+    //# nie zostanie ukończona przez co program się zawiesi.
+
     private fun drawEquations(): List<Equation> {
         val results = arrayListOf<Equation>()
         while (results.size < EXERCISES_COUNT) {
@@ -121,12 +120,12 @@ class NormalGameViewModel : DisposableViewModel() {
      * - none of input number is equal to 0 (for example: it never draw equation 0+1 or 5-0 etc.)
      * - correctAnswer is always smaller than maxNumber of exerciseType
      * - correctAnswer is equal or greater than 0
-     *
-     * //# Sprawdza czy podane równanie spełnia warunki:
-     * //# - żadna ze zmiennych w równaniu nie jest równa 0
-     * //# - correctAnswer jest mniejsza od maxNumber danego typu zadania
-     * //# - correctAnswer jest równa lub większa od 0
      */
+     //# Sprawdza czy podane równanie spełnia warunki:
+     //# - żadna ze zmiennych w równaniu nie jest równa 0
+     //# - correctAnswer jest mniejsza od maxNumber danego typu zadania
+     //# - correctAnswer jest równa lub większa od 0
+
     private fun equationIsValid(equationToAdd: Equation): Boolean {
         if (equationToAdd.componentA == 0 || equationToAdd.componentB == 0) {
             return false
@@ -142,10 +141,10 @@ class NormalGameViewModel : DisposableViewModel() {
 
     /**
      * Change active equation to next. If user outplayed all of equations it trigger end game event.
-     *
-     * //# Zmienia aktywne zadanie na następne. Jeżeli wszystkie zadania zostały ograne wówczas
-     * //# wywołuje event końca gry.
      */
+    //# Zmienia aktywne zadanie na następne. Jeżeli wszystkie zadania zostały ograne wówczas
+    //# wywołuje event końca gry.
+
     fun setNextActiveEquation() {
         if (currentEquationIndex + 1 < equations.size) {
             currentEquationIndex++
@@ -164,10 +163,8 @@ class NormalGameViewModel : DisposableViewModel() {
      * 50-69% correct answers   - rate 3
      * 70%-89% correct answers  - rate 4
      * 90%-100% correct answers - rate 5
-     *
-     * //# Zwraca liczbę w zakresie <0, 5> jako wynik rozgrywki gracza.
-     *
      */
+     //# Zwraca liczbę w zakresie <0, 5> jako wynik rozgrywki gracza.
     private fun calculateGameRate(): Int {
         val correctAnswers = equations.map { it.second }.filter { it }.count()
         val percent =
@@ -177,9 +174,9 @@ class NormalGameViewModel : DisposableViewModel() {
 
     /**
      * Validate if user deliver proper answer to current equation.
-     *
-     * //# Sprawdza czy podana odpowiedź jest poprawna
      */
+     //# Sprawdza czy podana odpowiedź jest poprawna
+
     fun validateAnswer(answer: Int) {
         if (equations[currentEquationIndex].first.correctAnswer == answer) {
             answerEvent.value = AnswerEvent.VALID
@@ -191,10 +188,10 @@ class NormalGameViewModel : DisposableViewModel() {
     /**
      * If user deliver invalid answer current equation should be mark as failed.
      * That will affect on game rate.
-     *
-     * //# Jeżeli odpowiedź jest niepoprawna to ta metoda zaznacza aktywne zadanie jako niewykonane,
-     * //# wpłynie to potem na ocenę uzyskaną przez gracza.
      */
+     //# Jeżeli odpowiedź jest niepoprawna to ta metoda zaznacza aktywne zadanie jako niewykonane,
+     //# wpłynie to potem na ocenę uzyskaną przez gracza.
+
     fun markActiveEquationAsFailed() {
         equations[currentEquationIndex] = equations[currentEquationIndex].copy(second = false)
     }

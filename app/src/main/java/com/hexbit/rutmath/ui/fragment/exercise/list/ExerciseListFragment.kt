@@ -63,9 +63,8 @@ class ExerciseListFragment : BaseFragment() {
 
     /**
      * Triggered when tile with some exerciseType is clicked.
-     *
-     * //# Metoda uruchamiana w momencie kliknięcia na dane zadanie z listy.
      */
+     //# Metoda uruchamiana w momencie kliknięcia na dane zadanie z listy.
     private fun exerciseClickCallback(exerciseType: ExerciseType) {
         val direction =
             ExerciseListFragmentDirections.actionExerciseListToNormalGameFragment(
