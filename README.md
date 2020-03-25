@@ -3,7 +3,7 @@ Rzeszów University of Technology Math - is a open source (GPL) application to h
 
 # Download
 You can download this application from f-droid:</br>
--<a href="#">link</a>
+-<a href="#">Download</a>
 
 # Requirements
 To use this app you will need only mobile device using Android Version >= 5.0
