@@ -10,7 +10,10 @@ import androidx.room.TypeConverter
 enum class Operation {
     PLUS,
     MINUS,
-    PLUS_MINUS
+    PLUS_MINUS,
+    MULTIPLY,
+    DIVIDE,
+    MULTIPLY_DIVIDE
 }
 
 /**

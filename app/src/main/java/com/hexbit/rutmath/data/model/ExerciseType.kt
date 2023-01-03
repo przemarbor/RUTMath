@@ -24,6 +24,7 @@ data class ExerciseType(
     @ColumnInfo(name = "rate")
     var rate: Int = 0,
     val userNick: String,
+    var unlocked: Boolean,
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 ) : Serializable

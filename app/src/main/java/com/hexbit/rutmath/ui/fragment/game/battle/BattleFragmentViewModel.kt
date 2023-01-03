@@ -9,6 +9,8 @@ import com.hexbit.rutmath.data.model.Score
 import com.hexbit.rutmath.util.base.DisposableViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlin.math.roundToInt
+import kotlin.math.sqrt
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -55,60 +57,69 @@ class BattleFragmentViewModel(private val database: AppDatabase) : DisposableVie
      //# Zapewnia niepowtarzalność zadań z przeszłości.
      
     private fun drawEquation(): Equation {
-        println("draw equation...")
-        val valueA = Random.nextInt(0, maxNumber + 1)
-        val valueB = Random.nextInt(0, maxNumber + 1)
+        var a = 0
+        var b = 0
         var correctAnswer = 0
         var operation = Operation.PLUS_MINUS
-
-        when (Random.nextBoolean()) {
-            true -> {
-                correctAnswer = valueA + valueB
+        val possibleValues = mutableListOf<Int>()
+        when (Random.nextInt(1, 5)) {
+            1 -> {
+                a = Random.nextInt(1, maxNumber + 1)
+                for (num in 1..maxNumber + 1){
+                    if (a + num < maxNumber+1)
+                        possibleValues.add(num)
+                }
+                if (possibleValues.any())
+                    b = possibleValues.random()
+                correctAnswer = a + b
                 operation = Operation.PLUS
             }
-            false -> {
-                correctAnswer = valueA - valueB
+            2 -> {
+                a = Random.nextInt(1, maxNumber + 1)
+                for (num in 1..maxNumber + 1){
+                    if (a - num > 0)
+                        possibleValues.add(num)
+                }
+                if (possibleValues.any())
+                    b = possibleValues.random()
+                correctAnswer = a - b
                 operation = Operation.MINUS
+            }
+            3 -> {
+                a = Random.nextInt(1, sqrt((maxNumber).toDouble()).roundToInt()+1)
+                for (num in 1..maxNumber + 1){
+                    if (a * num <= maxNumber+1)
+                        possibleValues.add(num)
+                }
+                if (possibleValues.any())
+                    b = possibleValues.random()
+                correctAnswer = a * b
+                operation = Operation.MULTIPLY
+            }
+            4 -> {
+                b = Random.nextInt(1, sqrt((maxNumber).toDouble()).roundToInt()+1)
+                for (num in 1..maxNumber+1){
+                    if (num % b == 0)
+                        possibleValues.add(num)
+                }
+                if (possibleValues.any())
+                    a = possibleValues.random()
+                correctAnswer = a / b
+                operation = Operation.DIVIDE
             }
         }
 
         val equationToAdd = Equation(
-            valueA,
-            valueB,
+            a,
+            b,
             operation,
             correctAnswer
         )
 
-        if (equationIsValid(equationToAdd)) {
-            drawAnswers(equationToAdd.correctAnswer)
-            return equationToAdd
-        }
-        return drawEquation()
+        drawAnswers(equationToAdd.correctAnswer)
+        return equationToAdd
     }
 
-    
-     // It checks that given equation:
-     // - none of input number is equal to 0 (for example: it never draw equation 0+1 or 5-0 etc.)
-     // - correctAnswer is always smaller than maxNumber possible number
-     // - correctAnswer is equal or greater than 0
-     
-     //# Sprawdza czy podane równanie spełnia warunki:
-     //# - żadna ze zmiennych w równaniu nie jest równa 0
-     //# - correctAnswer jest mniejsza od maxNumber danego typu zadania
-     //# - correctAnswer jest równa lub większa od 0
-     
-    private fun equationIsValid(equationToAdd: Equation): Boolean {
-        if (equationToAdd.componentA == 0 || equationToAdd.componentB == 0) {
-            return false
-        }
-        if (equationToAdd.correctAnswer > maxNumber) {
-            return false
-        }
-        if (equationToAdd.correctAnswer < 0) {
-            return false
-        }
-        return true
-    }
 
     private fun drawAnswers(correctAnswer: Int) {
         val result = arrayListOf<Int>()

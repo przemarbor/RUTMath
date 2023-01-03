@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import com.hexbit.rutmath.data.model.Equation
 import com.hexbit.rutmath.data.model.Operation
 import com.hexbit.rutmath.util.base.DisposableViewModel
+import kotlin.math.roundToInt
+import kotlin.math.sqrt
 import kotlin.random.Random
 
 class NormalGameViewModel : DisposableViewModel() {
 
     companion object {
-        const val EXERCISES_COUNT = 4 // number of exercises in game
+        const val EXERCISES_COUNT = 10 // number of exercises in game
     }
 
     /**
@@ -70,74 +72,127 @@ class NormalGameViewModel : DisposableViewModel() {
     private fun drawEquations(): List<Equation> {
         val results = arrayListOf<Equation>()
         while (results.size < EXERCISES_COUNT) {
-            val valueA = Random.nextInt(0, args.exerciseType.maxNumber + 1)
-            val valueB = Random.nextInt(0, args.exerciseType.maxNumber + 1)
+            var a = 0
+            var b = 0
             var correctAnswer = 0
             var operation = Operation.PLUS
+            val possibleValues = mutableListOf<Int>()
             when (args.exerciseType.operation) {
                 Operation.PLUS -> {
-                    correctAnswer = valueA + valueB
+                    a = Random.nextInt(1, args.exerciseType.maxNumber + 1)
+                    for (num in 1..args.exerciseType.maxNumber + 1){
+                        if (a + num < args.exerciseType.maxNumber+1)
+                            possibleValues.add(num)
+                    }
+                    if (possibleValues.any())
+                        b = possibleValues.random()
+                    correctAnswer = a + b
                     operation = Operation.PLUS
                 }
                 Operation.MINUS -> {
-                    correctAnswer = valueA - valueB
+                    a = Random.nextInt(1, args.exerciseType.maxNumber + 1)
+                    for (num in 1..args.exerciseType.maxNumber + 1){
+                        if (a - num > 0)
+                            possibleValues.add(num)
+                    }
+                    if (possibleValues.any())
+                        b = possibleValues.random()
+                    correctAnswer = a - b
                     operation = Operation.MINUS
                 }
                 Operation.PLUS_MINUS -> {
                     when (Random.nextBoolean()) {
                         true -> {
-                            correctAnswer = valueA + valueB
+                            a = Random.nextInt(1, args.exerciseType.maxNumber + 1)
+                            for (num in 1..args.exerciseType.maxNumber + 1){
+                                if (a + num < args.exerciseType.maxNumber+1)
+                                    possibleValues.add(num)
+                            }
+                            if (possibleValues.any())
+                                b = possibleValues.random()
+                            correctAnswer = a + b
                             operation = Operation.PLUS
                         }
                         false -> {
-                            correctAnswer = valueA - valueB
+                            a = Random.nextInt(1, args.exerciseType.maxNumber + 1)
+                            for (num in 1..args.exerciseType.maxNumber + 1){
+                                if (a - num > 0)
+                                    possibleValues.add(num)
+                            }
+                            if (possibleValues.any())
+                                b = possibleValues.random()
+                            correctAnswer = a - b
                             operation = Operation.MINUS
+                        }
+                    }
+                }
+                Operation.MULTIPLY -> {
+                    a = Random.nextInt(1, sqrt((args.exerciseType.maxNumber).toDouble()).roundToInt()+1)
+                    for (num in 1..args.exerciseType.maxNumber + 1){
+                        if (a * num <= args.exerciseType.maxNumber+1)
+                            possibleValues.add(num)
+                    }
+                    if (possibleValues.any())
+                        b = possibleValues.random()
+                    correctAnswer = a * b
+                    operation = Operation.MULTIPLY
+                }
+                Operation.DIVIDE -> {
+                    b = Random.nextInt(1, sqrt((args.exerciseType.maxNumber).toDouble()).roundToInt()+1)
+                    for (num in 1..args.exerciseType.maxNumber+1){
+                        if (num % b == 0)
+                            possibleValues.add(num)
+                    }
+                    if (possibleValues.any())
+                        a = possibleValues.random()
+                    correctAnswer = a / b
+                    operation = Operation.DIVIDE
+                }
+                Operation.MULTIPLY_DIVIDE -> {
+                    when (Random.nextBoolean()) {
+                        true -> {
+                            a = Random.nextInt(1, sqrt((args.exerciseType.maxNumber).toDouble()).roundToInt()+1)
+                            for (num in 1..args.exerciseType.maxNumber + 1){
+                                if (a * num <= args.exerciseType.maxNumber+1)
+                                    possibleValues.add(num)
+                            }
+                            if (possibleValues.any())
+                                b = possibleValues.random()
+                            correctAnswer = a * b
+                            operation = Operation.MULTIPLY
+                        }
+                        false -> {
+                            b = Random.nextInt(1, sqrt((args.exerciseType.maxNumber).toDouble()).roundToInt()+1)
+                            for (num in 1..args.exerciseType.maxNumber+1){
+                                if (num % b == 0)
+                                    possibleValues.add(num)
+                            }
+                            if (possibleValues.any())
+                                a = possibleValues.random()
+                            correctAnswer = a / b
+                            operation = Operation.DIVIDE
                         }
                     }
                 }
             }
 
             val equationToAdd = Equation(
-                valueA,
-                valueB,
+                a,
+                b,
                 operation,
                 correctAnswer
             )
 
-            if (equationIsValid(equationToAdd)) {
-                results.contains(equationToAdd).let {
-                    if (!it) {
-                        results.add(equationToAdd)
-                    }
+            results.contains(equationToAdd).let {
+                if (!it) {
+                    results.add(equationToAdd)
                 }
             }
+
         }
         return results
     }
 
-    /**
-     * It checks that given equation:
-     * - none of input number is equal to 0 (for example: it never draw equation 0+1 or 5-0 etc.)
-     * - correctAnswer is always smaller than maxNumber of exerciseType
-     * - correctAnswer is equal or greater than 0
-     */
-     //# Sprawdza czy podane równanie spełnia warunki:
-     //# - żadna ze zmiennych w równaniu nie jest równa 0
-     //# - correctAnswer jest mniejsza od maxNumber danego typu zadania
-     //# - correctAnswer jest równa lub większa od 0
-
-    private fun equationIsValid(equationToAdd: Equation): Boolean {
-        if (equationToAdd.componentA == 0 || equationToAdd.componentB == 0) {
-            return false
-        }
-        if (equationToAdd.correctAnswer > args.exerciseType.maxNumber) {
-            return false
-        }
-        if (equationToAdd.correctAnswer < 0) {
-            return false
-        }
-        return true
-    }
 
     /**
      * Change active equation to next. If user outplayed all of equations it trigger end game event.

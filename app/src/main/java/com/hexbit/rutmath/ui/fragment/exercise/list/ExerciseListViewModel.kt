@@ -14,13 +14,11 @@ import io.reactivex.schedulers.Schedulers
 class ExerciseListViewModel(private val database: AppDatabase) : DisposableViewModel() {
 
     private val exerciseTypes = MutableLiveData<List<ExerciseType>>()
-
     fun getExerciseTypes(): LiveData<List<ExerciseType>> = exerciseTypes
 
     /**
-     * Load exercises from database.
+     * Load exercises from database and pass it to view.
      *
-     * #// Metoda pobierająca listę z bazy danych i przekazująca ją do widoku..
      */
     fun loadExercises(nick: String) {
         manageDisposable {
@@ -38,20 +36,55 @@ class ExerciseListViewModel(private val database: AppDatabase) : DisposableViewM
                 .subscribe { list -> exerciseTypes.postValue(list) }
         }
     }
-
+    /**
+     *  Initialize exercises in Database for the New Player
+     */
     private fun initializeExerciseListInDatabase(nick: String): Completable {
-        val firstRange = 5..20 step 5
-        val secondRange = 30..100 step 10
-        val range = firstRange.plus(secondRange)
         val exercises = arrayListOf<ExerciseType>()
+        val rangePlusMinusLocked = (10..20 step 5) + (30..100 step 10)
+        val rangeMultDivLocked = 20..100 step 10
 
-        range.forEach {
+        /**
+         *  Add unlocked PLUS/MINUS exercises
+         */
+        exercises.add(
+            ExerciseType(
+                Operation.PLUS,
+                5,
+                -1,
+                nick,
+                true
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.MINUS,
+                5,
+                -1,
+                nick,
+                true
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.PLUS_MINUS,
+                5,
+                -1,
+                nick,
+                true
+            )
+        )
+        /**
+         *  Add locked PLUS/MINUS exercises
+         */
+        rangePlusMinusLocked.forEach {
             exercises.add(
                 ExerciseType(
                     Operation.PLUS,
                     it,
                     -1,
-                    nick
+                    nick,
+                    false
                 )
             )
             exercises.add(
@@ -59,7 +92,8 @@ class ExerciseListViewModel(private val database: AppDatabase) : DisposableViewM
                     Operation.MINUS,
                     it,
                     -1,
-                    nick
+                    nick,
+                    false
                 )
             )
             exercises.add(
@@ -67,7 +101,70 @@ class ExerciseListViewModel(private val database: AppDatabase) : DisposableViewM
                     Operation.PLUS_MINUS,
                     it,
                     -1,
-                    nick
+                    nick,
+                    false
+                )
+            )
+        }
+        /**
+         *  Add unlocked MULTIPLY/DIVIDE exercises
+         */
+        exercises.add(
+            ExerciseType(
+                Operation.MULTIPLY,
+                10,
+                -1,
+                nick,
+                true
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.DIVIDE,
+                10,
+                -1,
+                nick,
+                true
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.MULTIPLY_DIVIDE,
+                10,
+                -1,
+                nick,
+                true
+            )
+        )
+        /**
+         *  Add locked MULTIPLY/DIVIDE exercises
+         */
+        rangeMultDivLocked.forEach {
+            exercises.add(
+                ExerciseType(
+                    Operation.MULTIPLY,
+                    it,
+                    -1,
+                    nick,
+                    false
+                )
+            )
+            exercises.add(
+                ExerciseType(
+                    Operation.DIVIDE,
+                    it,
+                    -1,
+                    nick,
+                    false
+                )
+            )
+            exercises.add(
+                ExerciseType(
+                    Operation.MULTIPLY_DIVIDE,
+                    it,
+                    -1,
+                    nick,
+                    false
                 )
             )
         }
@@ -80,8 +177,6 @@ class ExerciseListViewModel(private val database: AppDatabase) : DisposableViewM
     /**
      * It updates exercise type in database (for example when user finished game and we should update
      * exercise with new rate number)
-     *
-     * #// Metoda odświeżająca obiekt w bazie danych.
      */
     fun updateExerciseType(exerciseType: ExerciseType, nick: String) {
         manageDisposable {
@@ -94,6 +189,22 @@ class ExerciseListViewModel(private val database: AppDatabase) : DisposableViewM
                 .subscribe { newList ->
                     exerciseTypes.postValue(newList)
                 }
+        }
+    }
+    /**
+     *  Unlocks next exercise (example use: the player has completed an exercise therefore the next exercise is unlocked)
+     *  updateExerciseType function required!
+     */
+    fun unlockExerciseType(id: Int, nick: String) {
+        manageDisposable {
+            database.exerciseTypeDao().findById(id.toString())
+                .flatMap { ExerciseType ->
+                    println(ExerciseType)
+                        Single.just(ExerciseType)
+                }
+                .subscribeOn(Schedulers.io())
+                .subscribe ({ ExerciseType -> updateExerciseType(ExerciseType.copy(unlocked = true), nick) },
+                { e -> println("Cannot find ExerciseType to unlock") })
         }
     }
 }

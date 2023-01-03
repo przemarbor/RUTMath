@@ -52,6 +52,9 @@ class BattleGameFragment : BaseFragment() {
                             Operation.PLUS -> "+"
                             Operation.MINUS -> "-"
                             Operation.PLUS_MINUS -> throw Exception("Invalid operation!")
+                            Operation.MULTIPLY -> "×"
+                            Operation.DIVIDE -> "÷"
+                            Operation.MULTIPLY_DIVIDE -> throw Exception("Invalid operation!")
                         }
                     )
                     .plus(" ")

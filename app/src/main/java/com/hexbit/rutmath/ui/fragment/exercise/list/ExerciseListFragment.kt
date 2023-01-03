@@ -30,10 +30,10 @@ class ExerciseListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewModel()
-
         args.exerciseType?.let {
             if (args.rate > 0) {
                 viewModel.updateExerciseType(it.copy(rate = args.rate), args.player.nick)
+                viewModel.unlockExerciseType(it.id+3, args.player.nick)
                 RateDialog(context!!, args.rate).show()
             }
         }
