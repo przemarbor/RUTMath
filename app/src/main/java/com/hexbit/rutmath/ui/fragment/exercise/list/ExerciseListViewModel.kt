@@ -198,13 +198,13 @@ class ExerciseListViewModel(private val database: AppDatabase) : DisposableViewM
     fun unlockExerciseType(id: Int, nick: String) {
         manageDisposable {
             database.exerciseTypeDao().findById(id.toString())
-                .flatMap { ExerciseType ->
-                    println(ExerciseType)
-                        Single.just(ExerciseType)
+                .flatMap { exerciseType ->
+                    println(exerciseType)
+                        Single.just(exerciseType)
                 }
                 .subscribeOn(Schedulers.io())
-                .subscribe ({ ExerciseType -> updateExerciseType(ExerciseType.copy(unlocked = true), nick) },
-                { e -> println("Cannot find ExerciseType to unlock") })
+                .subscribe ({ exerciseType -> updateExerciseType(exerciseType.copy(unlocked = true), nick) },
+                { println("Cannot find ExerciseType to unlock") })
         }
     }
 }

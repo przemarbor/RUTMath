@@ -221,7 +221,7 @@ class NormalGameViewModel : DisposableViewModel() {
      */
      //# Zwraca liczbę w zakresie <0, 5> jako wynik rozgrywki gracza.
     private fun calculateGameRate(): Int {
-        val correctAnswers = equations.map { it.second }.filter { it }.count()
+        val correctAnswers = equations.map { it.second }.count { it }
         val percent =
             ((correctAnswers.toFloat() / (equations.size).toFloat()) * 100).toInt()
         return percent / 20

@@ -196,6 +196,7 @@ class NormalGameFragment : BaseFragment() {
                 }
             }
             Operation.PLUS_MINUS -> throw Exception("Invalid operation!")
+            Operation.MULTIPLY_DIVIDE -> throw Exception("Invalid operation!")
         }
     }
 
