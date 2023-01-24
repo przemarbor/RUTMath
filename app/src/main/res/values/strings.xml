@@ -19,9 +19,9 @@
     <string name="player2">Player2</string>
     <string name="nick_empty">Nick can not be empty!</string>
     <string name="scoreboard_format">%d. %s</string>
-    <string name="scoreboard">Score Board:</string>
-    <string name="add_user">Add new user</string>
+    <string name="scoreboard">Scoreboard:</string>
     <string name="choose_player_instruction">Choose a player from the list\nor create new one with plus button</string>
+    <string name="choose_mode_instruction">Select an exercise from the list:</string>
     <string name="input_nickname">Enter nickname of new player:</string>
     <string name="nickname_exists">Nickname exists!</string>
     <string name="empty_list">Empty list</string>

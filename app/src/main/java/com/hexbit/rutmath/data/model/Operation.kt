@@ -13,7 +13,13 @@ enum class Operation {
     PLUS_MINUS,
     MULTIPLY,
     DIVIDE,
-    MULTIPLY_DIVIDE
+    MULTIPLY_DIVIDE,
+    DIVISIBILITY,
+    UNITS_TIME,
+    UNITS_LENGTH,
+    UNITS_WEIGHT,
+    UNITS_SURFACE,
+    UNITS_ALL
 }
 
 /**

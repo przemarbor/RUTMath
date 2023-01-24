@@ -2,6 +2,7 @@ package com.hexbit.rutmath.ui.fragment.game.battle
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
@@ -51,10 +52,9 @@ class BattleGameFragment : BaseFragment() {
                         when (it.operation) {
                             Operation.PLUS -> "+"
                             Operation.MINUS -> "-"
-                            Operation.PLUS_MINUS -> throw Exception("Invalid operation!")
                             Operation.MULTIPLY -> "×"
                             Operation.DIVIDE -> "÷"
-                            Operation.MULTIPLY_DIVIDE -> throw Exception("Invalid operation!")
+                            else -> throw Exception("Invalid operation!")
                         }
                     )
                     .plus(" ")
@@ -80,7 +80,7 @@ class BattleGameFragment : BaseFragment() {
                         onGameEnded()
                         return
                     }
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         viewModel.loadNextEquation()
                     }, 500)
                     return
@@ -99,7 +99,7 @@ class BattleGameFragment : BaseFragment() {
                         onGameEnded()
                         return
                     }
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         viewModel.loadNextEquation()
                     }, 500)
                     return
@@ -146,7 +146,7 @@ class BattleGameFragment : BaseFragment() {
 
     private fun loadNextEquationIfNeeded() {
         if (!player1Panel.canAnswer && !player2Panel.canAnswer) {
-            Handler().postDelayed({
+            Handler(Looper.getMainLooper()).postDelayed({
                 viewModel.loadNextEquation()
             }, 500)
         }

@@ -14,9 +14,8 @@ import com.hexbit.rutmath.data.model.*
 /**
  * Main abstraction for database. It contains whole Room database implementation.
  */
- //# Główna klasa bazy danych z implementacją jako singleton.
 
-@Database(entities = [ExerciseType::class, Settings::class, Score::class, Player::class], version = 4)
+@Database(entities = [ExerciseType::class, Settings::class, Score::class, Player::class], version = 4, exportSchema = false)
 @TypeConverters(OperationConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 

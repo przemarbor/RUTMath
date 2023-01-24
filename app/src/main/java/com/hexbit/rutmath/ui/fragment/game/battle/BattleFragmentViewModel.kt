@@ -52,10 +52,6 @@ class BattleFragmentViewModel(private val database: AppDatabase) : DisposableVie
 
     
      // Draw equations for game and returns it.
-     
-     //# Losuje równanie dla gry i je zwraca.
-     //# Zapewnia niepowtarzalność zadań z przeszłości.
-     
     private fun drawEquation(): Equation {
         var a = 0
         var b = 0
@@ -86,7 +82,7 @@ class BattleFragmentViewModel(private val database: AppDatabase) : DisposableVie
                 operation = Operation.MINUS
             }
             3 -> {
-                a = Random.nextInt(1, sqrt((maxNumber).toDouble()).roundToInt()+1)
+                a = Random.nextInt(2, sqrt((maxNumber).toDouble()).roundToInt()+1)
                 for (num in 1..maxNumber + 1){
                     if (a * num <= maxNumber+1)
                         possibleValues.add(num)
@@ -97,7 +93,7 @@ class BattleFragmentViewModel(private val database: AppDatabase) : DisposableVie
                 operation = Operation.MULTIPLY
             }
             4 -> {
-                b = Random.nextInt(1, sqrt((maxNumber).toDouble()).roundToInt()+1)
+                b = Random.nextInt(2, sqrt((maxNumber).toDouble()).roundToInt()+1)
                 for (num in 1..maxNumber+1){
                     if (num % b == 0)
                         possibleValues.add(num)

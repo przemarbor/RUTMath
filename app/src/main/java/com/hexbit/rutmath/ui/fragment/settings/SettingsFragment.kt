@@ -16,7 +16,7 @@ import org.koin.android.ext.android.inject
 class SettingsFragment : BaseFragment() {
 
     companion object {
-        private const val MAX_NUMBER = 100
+        private const val MAX_NUMBER = 200
         private const val MIN_NUMBER = 5
     }
 
