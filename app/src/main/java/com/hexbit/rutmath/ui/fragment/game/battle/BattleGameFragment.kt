@@ -116,7 +116,7 @@ class BattleGameFragment : BaseFragment() {
 
     private fun onGameEnded() {
         val alert: AlertDialog.Builder = AlertDialog.Builder(context!!)
-        alert.setTitle(getString(R.string.game_ended))
+        alert.setTitle(getString(R.string.battle_game_ended))
         alert.setMessage(
             getString(
                 R.string.score,

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ok">OK</string>
+    <string name="cancel">Anuluj</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="error">Błąd</string>
+    <string name="save">Zapisz</string>
+    <string name="empty">Pusto</string>
+    <string name="scoreboard">Tablica wyników:</string>
+    <string name="player1">Gracz1</string>
+    <string name="player2">Gracz2</string>
+    <string name="score">%s wynik: %d\n%s wynik: %d</string>
+    <string name="scoreboard_format">%d. %s</string>
+    <string name="nick_empty">Nazwa nie może być pusta!</string>
+    <string name="fragment_settings_select_language">Wybierz język</string>
+    <string name="fragment_settings_max_number">Maks. liczba dla pojedynku</string>
+    <string name="fragment_menu_university">Politechnika Rzeszów</string>
+    <string name="battle_view_bonus">Bonus za sekwencję +%d</string>
+    <string name="fragment_modes_instruction">Wybierz ćwiczenie z listy:</string>
+    <string name="fragment_modes_add_sub">Dodawanie i odejmowanie</string>
+    <string name="fragment_modes_mul_div">Mnożenie i dzielenie</string>
+    <string name="fragment_modes_divisibility">Podzielność</string>
+    <string name="fragment_modes_units">Zamiana jednostek</string>
+    <string name="fragment_modes_table">Tabliczka mnożenia</string>
+    <string name="fragment_choose_player_instruction">Wybierz gracza z listy\nlub stwórz nowego za pomocą plusa</string>
+    <string name="fragment_player_names_instruction">Podaj nazwy graczy</string>
+    <string name="fragment_player_names_nickname_1">Nazwa Gracza1 (góra):</string>
+    <string name="fragment_player_names_nickname_2">Nazwa Gracza2 (dół):</string>
+    <string name="fragment_player_names_start">Rozpocznij</string>
+    <string name="fragment_scoreboard_empty">Tablica wyników jest pusta.\nGraj w trybie bitwy by zobaczyć najlepsze wyniki!</string>
+    <string name="units_help_hint">Podpowiedź</string>
+    <string name="settings_fragment_max_number">Wartość nie może być większa niż: %1$d</string>
+    <string name="settings_fragment_min_number">Wartość nie może być mniejsza niż: %1$d</string>
+    <string name="battle_game_ended">Gra zakończona</string>
+    <string name="choose_player_input">Podaj nazwę nowego gracza:</string>
+    <string name="choose_player_nick_exist">Nazwa już istnieje!</string>
+    <string name="divisibility_difficulty_1">Łatwy</string>
+    <string name="divisibility_difficulty_2">Średni</string>
+    <string name="divisibility_difficulty_3">Trudny</string>
+    <string name="divisibility_difficulty_4">Bardzo Trudny</string>
+    <string name="divisibility_question_p1">Czy</string>
+    <string name="divisibility_question_p2">jest podzielne przez</string>
+    <string name="units_time">Czas</string>
+    <string name="units_length">Długość</string>
+    <string name="units_weight">Waga</string>
+    <string name="units_surface">Powierzchnia</string>
+    <string name="units_all">Wszystkie</string>
+    <string name="time_units">d,godz,min,sek</string>
+
+</resources>

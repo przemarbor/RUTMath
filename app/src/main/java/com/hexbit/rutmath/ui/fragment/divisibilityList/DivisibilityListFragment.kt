@@ -37,6 +37,7 @@ class DivisibilityListFragment : BaseFragment() {
                 )
             )
         }
+
         initViewModel()
         args.exerciseType?.let {
             if (args.rate > 0) {

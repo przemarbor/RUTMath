@@ -90,7 +90,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/university_name"
+        android:text="@string/fragment_menu_university"
         android:textAllCaps="false"
         android:textColor="#F69A3D"
         android:textSize="16sp"

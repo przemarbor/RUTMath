@@ -73,16 +73,16 @@ class ChoosePlayerFragment : BaseFragment() {
     }
 
     private fun showNicknameExistsDialog() {
-        showSimpleDialog(getString(R.string.error), getString(R.string.nickname_exists))
+        showSimpleDialog(getString(R.string.error), getString(R.string.choose_player_nick_exist))
     }
 
     private fun showNicknameIsEmptyDialog() {
-        showSimpleDialog(getString(R.string.error), getString(R.string.nickname_empty))
+        showSimpleDialog(getString(R.string.error), getString(R.string.nick_empty))
     }
 
     private fun showAddPlayerDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(context!!)
-        builder.setTitle(getString(R.string.input_nickname))
+        builder.setTitle(getString(R.string.choose_player_input))
         val input = EditText(context!!)
         builder.setView(input)
         builder.setPositiveButton(

@@ -97,7 +97,7 @@
         android:id="@+id/bonus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/bonus"
+        android:text="@string/battle_view_bonus"
         android:textAllCaps="true"
         android:textColor="@color/green"
         android:textStyle="bold"

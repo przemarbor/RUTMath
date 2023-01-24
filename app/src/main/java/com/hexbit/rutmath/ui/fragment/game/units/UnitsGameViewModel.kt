@@ -15,14 +15,15 @@ class UnitsGameViewModel : DisposableViewModel() {
 
     companion object {
         const val EXERCISES_COUNT = 20 // number of exercises in game
-        val UNITS_TIME = listOf("d","h","min","sec")
-        val RATIO_TIME = listOf(24,60,60)
-        val UNITS_LENGTH = listOf("km","m","dm","cm","mm")
-        val RATIO_LENGTH = listOf(1000,10,10,10)
-        val UNITS_WEIGHT = listOf("t","kg","dag","g")
-        val RATIO_WEIGHT = listOf(1000,10,10)
-        val UNITS_SURFACE = listOf("km^2","ha","a","m^2","dm^2","cm^2","mm^2")
-        val RATIO_SURFACE = listOf(100,100,100,100,100,100)
+        // Time Units names are later being loaded from Strings
+        var UNITS_TIME = listOf("d","h","min","sec")
+        var RATIO_TIME = listOf(24,60,60)
+        var UNITS_LENGTH = listOf("km","m","dm","cm","mm")
+        var RATIO_LENGTH = listOf(1000,10,10,10)
+        var UNITS_WEIGHT = listOf("t","kg","dag","g")
+        var RATIO_WEIGHT = listOf(1000,10,10)
+        var UNITS_SURFACE = listOf("km^2","ha","a","m^2","dm^2","cm^2","mm^2")
+        var RATIO_SURFACE = listOf(100,100,100,100,100,100)
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.hexbit.rutmath.ui.fragment.game.divisibility
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -18,15 +19,18 @@ import java.lang.Exception
 
 class DivisibilityGameFragment : BaseFragment() {
 
-    companion object {
-        private val QUESTION = listOf("Is","divisible by")
-    }
-
     override val layout: Int = R.layout.fragment_divisibility_game
-
     private val args: DivisibilityGameFragmentArgs by navArgs()
-
     private val viewModel: DivisibilityGameViewModel by inject()
+    private var question = listOf<String>()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        question = listOf(
+            resources.getString(R.string.divisibility_question_p1),
+            resources.getString(R.string.divisibility_question_p2)
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,11 +57,11 @@ class DivisibilityGameFragment : BaseFragment() {
         viewModel.getActiveEquation().observe(viewLifecycleOwner, Observer {
             resetColors()
             equationText.text = it.let {
-                QUESTION[0]
+                question[0]
                     .plus(" ")
                     .plus(it.componentA.toString())
                     .plus(" ")
-                    .plus(QUESTION[1])
+                    .plus(question[1])
                     .plus(" ")
                     .plus(it.componentB.toString())
                     .plus("?")

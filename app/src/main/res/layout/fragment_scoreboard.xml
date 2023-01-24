@@ -13,7 +13,7 @@
         android:layout_marginEnd="16dp"
         android:gravity="center"
         android:maxEms="14"
-        android:text="@string/play_in_battle_mode_for_scores"
+        android:text="@string/fragment_scoreboard_empty"
         android:textAllCaps="true"
         android:textColor="@color/accent"
         android:textSize="18sp"

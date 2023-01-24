@@ -7,25 +7,27 @@ import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.ExerciseType
 import kotlinx.android.synthetic.main.divisibility_exercise_item.view.*
 
+
 class DivisibilityViewHolder(
     private val view: View,
+
     private val clickCallback: (exerciseType: ExerciseType) -> Unit
 ) :
     RecyclerView.ViewHolder(view) {
 
-    companion object {
-        const val EASY_VALUE = "Easy"
-        const val NORMAL_VALUE = "Normal"
-        const val HARD_VALUE = "Hard"
-        const val VERY_HARD_VALUE = "Very Hard"
-    }
+    private val difficultyList = listOf(
+        view.resources.getString(R.string.divisibility_difficulty_1),
+        view.resources.getString(R.string.divisibility_difficulty_2),
+        view.resources.getString(R.string.divisibility_difficulty_3),
+        view.resources.getString(R.string.divisibility_difficulty_4)
+    )
 
     fun bind(exerciseType: ExerciseType) {
         view.title.text = when (exerciseType.maxNumber) {
-            1,2,3 -> EASY_VALUE
-            4,5,6 -> NORMAL_VALUE
-            9,8,7 -> HARD_VALUE
-            10 -> VERY_HARD_VALUE
+            1,2,3 -> difficultyList[0]
+            4,5,6 -> difficultyList[1]
+            9,8,7 -> difficultyList[2]
+            10 -> difficultyList[3]
             else -> null
         }.plus(" ").plus(((exerciseType.maxNumber-1) % 3)+1)
         if (exerciseType.maxNumber == 10)

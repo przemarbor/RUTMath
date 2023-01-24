@@ -98,7 +98,7 @@ class PlayerBattlePanel @JvmOverloads constructor(
     }
 
     private fun showBonus(bonusValue: Int) {
-        bonus.text = context.getString(R.string.bonus, bonusValue)
+        bonus.text = context.getString(R.string.battle_view_bonus, bonusValue)
         bonus.visible()
         Handler(Looper.getMainLooper()).postDelayed({
             bonus.invisible()

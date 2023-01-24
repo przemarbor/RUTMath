@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/accent"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:shadowColor="@color/accent_text_dark"
@@ -72,7 +72,7 @@
             android:shadowColor="@color/green"
             android:shadowRadius="8"
             android:background="@drawable/bg_in_button_yes"
-            android:text="Yes" />
+            android:text="@string/yes" />
 
         <Button
             android:id="@+id/noButton"
@@ -87,7 +87,7 @@
             android:shadowColor="@color/red"
             android:shadowRadius="8"
             android:background="@drawable/bg_in_button_no"
-            android:text="No" />
+            android:text="@string/no" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

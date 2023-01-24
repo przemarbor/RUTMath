@@ -54,6 +54,12 @@ class UnitsGameFragment : BaseFragment() {
     }
 
     private fun initViewModel() {
+        //Load units names from Strings to UnitsGameViewModel
+        val timeUnits = getString(R.string.time_units).split(",").toList()
+        if (timeUnits.size >= UnitsGameViewModel.UNITS_TIME.size)
+            UnitsGameViewModel.UNITS_TIME = timeUnits.subList(0,UnitsGameViewModel.UNITS_TIME.size)
+
+
         viewModel.getActiveEquation().observe(viewLifecycleOwner, Observer {
             resetColors()
             equation_p1.text = it.componentA.toString()
@@ -169,5 +175,6 @@ class UnitsGameFragment : BaseFragment() {
         equation_p1.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
         equation_p2.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
     }
+
 
 }

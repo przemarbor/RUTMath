@@ -14,13 +14,11 @@ class UnitsViewHolder(
 ) :
     RecyclerView.ViewHolder(view) {
 
-    companion object {
-        const val TIME = "Time"
-        const val LENGTH = "Length"
-        const val WEIGHT = "Weight"
-        const val SURFACE = "Surface Area"
-        const val ALL = "All"
-    }
+    private val TIME = view.resources.getString(R.string.units_time)
+    private val LENGTH = view.resources.getString(R.string.units_length)
+    private val WEIGHT = view.resources.getString(R.string.units_weight)
+    private val SURFACE = view.resources.getString(R.string.units_surface)
+    private val ALL = view.resources.getString(R.string.units_all)
 
     fun bind(exerciseType: ExerciseType) {
         view.title.text = when (exerciseType.operation) {
