@@ -7,6 +7,12 @@
     android:background="@drawable/bg_gradient"
     tools:context=".ui.fragment.game.normal.NormalGameFragment">
 
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/bg_image" />
 
     <ProgressBar
         android:id="@+id/progressBar"

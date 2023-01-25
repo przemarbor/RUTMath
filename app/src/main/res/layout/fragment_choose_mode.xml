@@ -7,6 +7,13 @@
     android:background="@drawable/bg_gradient"
     tools:context=".ui.fragment.MenuFragment">
 
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/bg_image" />
+
     <LinearLayout
         android:id="@+id/addSubLayout"
         android:layout_width="300dp"

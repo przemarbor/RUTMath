@@ -60,13 +60,14 @@ class DivisibilityListFragment : BaseFragment() {
     private fun initRecyclerView(list: List<ExerciseType>) {
         recyclerView.apply {
             layoutManager = GridLayoutManager(context, COLUMNS_COUNT)
-            addItemDecoration(
-                GridSpacingItemDecoration(
-                    COLUMNS_COUNT,
-                    20,
-                    true
-                )
-            ) // add space between each tiles
+            if (itemDecorationCount == 0)
+                addItemDecoration(
+                    GridSpacingItemDecoration(
+                        COLUMNS_COUNT,
+                        20,
+                        true
+                    )
+                ) // add space between each tiles
             adapter = DivisibilityListAdapter(ArrayList(list), ::exerciseClickCallback)
 
         }
