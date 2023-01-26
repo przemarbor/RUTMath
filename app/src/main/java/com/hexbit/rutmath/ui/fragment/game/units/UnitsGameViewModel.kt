@@ -9,6 +9,7 @@ import java.lang.Exception
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
+import kotlin.math.round
 import kotlin.random.Random
 
 class UnitsGameViewModel : DisposableViewModel() {
@@ -61,7 +62,6 @@ class UnitsGameViewModel : DisposableViewModel() {
 
     /**
      * Draw equations for game and returns list.
-     *
      */
     private fun drawEquations(): List<EquationUnits> {
         val results = arrayListOf<EquationUnits>()
@@ -71,6 +71,7 @@ class UnitsGameViewModel : DisposableViewModel() {
             var correctAnswer:Int
             var answerUnitId:Int
             var operation:Operation
+            val difficulty = args.exerciseType.difficulty
 
             if (args.exerciseType.operation == Operation.UNITS_ALL) {
                 val list = listOf(
@@ -97,7 +98,7 @@ class UnitsGameViewModel : DisposableViewModel() {
                     var scale = 60.0
                     if ((answerUnitId == 0) or (aUnitId == 0))
                         scale = 24.0
-                    a = Random.nextInt(1, args.exerciseType.maxNumber * 5 + 1)
+                    a = Random.nextInt(1, difficulty * 5 + 1)
                     if (diff < 0)
                         a *= (scale).pow(-diff).toInt()
                     correctAnswer = (a * (scale).pow(diff)).toInt()
@@ -113,7 +114,7 @@ class UnitsGameViewModel : DisposableViewModel() {
                     var scale = 10.0
                     if ((answerUnitId == 0) or (aUnitId == 0))
                         scale = 1000.0
-                    a = Random.nextInt(1, args.exerciseType.maxNumber * args.exerciseType.maxNumber * 10 + 1)
+                    a = Random.nextInt(1, difficulty * difficulty * 10 + 1)
                     if (diff < 0)
                         a *= (scale).pow(-diff).toInt()
                     correctAnswer = (a * (scale).pow(diff)).toInt()
@@ -129,7 +130,7 @@ class UnitsGameViewModel : DisposableViewModel() {
                     var scale = 10.0
                     if ((answerUnitId == 0) or (aUnitId == 0))
                         scale = 1000.0
-                    a = Random.nextInt(1, args.exerciseType.maxNumber * args.exerciseType.maxNumber * 10 + 1)
+                    a = Random.nextInt(1, difficulty * difficulty * 10 + 1)
                     if (diff < 0)
                         a *= (scale).pow(-diff).toInt()
                     correctAnswer = (a * (scale).pow(diff)).toInt()
@@ -143,7 +144,7 @@ class UnitsGameViewModel : DisposableViewModel() {
 
                     val diff = answerUnitId - aUnitId
                     val scale = 100.0
-                    a = Random.nextInt(1, args.exerciseType.maxNumber * args.exerciseType.maxNumber * 10 + 1)
+                    a = Random.nextInt(1, difficulty * difficulty * 10 + 1)
                     if (diff < 0)
                         a *= (scale).pow(-diff).toInt()
                     correctAnswer = (a * (scale).pow(diff)).toInt()
@@ -193,9 +194,8 @@ class UnitsGameViewModel : DisposableViewModel() {
 
     private fun calculateGameRate(): Int {
         val correctAnswers = equations.map { it.second }.count { it }
-        val percent =
-            ((correctAnswers.toFloat() / (equations.size).toFloat()) * 100).toInt()
-        return percent / 20
+        val percent = (correctAnswers.toFloat() / (equations.size).toFloat()) * 100
+        return round(percent / 20).toInt()
     }
 
     /**

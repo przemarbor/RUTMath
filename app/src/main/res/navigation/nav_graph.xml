@@ -46,15 +46,10 @@
             app:argType="com.hexbit.rutmath.data.model.Player"
             app:nullable="false" />
         <action
-            android:id="@+id/action_addSubListFragment_pop_including_menuFragment"
-            app:launchSingleTop="false"
-            app:popUpTo="@id/menuFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_addSubListFragment_to_chooseModeFragment"
             app:destination="@id/chooseModeFragment"
-            app:popUpTo="@id/chooseModeFragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@+id/chooseModeFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/normalGameFragment"
@@ -80,6 +75,7 @@
             app:popUpToInclusive="true" />
 
     </fragment>
+
     <fragment
         android:id="@+id/battleGameFragment"
         android:name="com.hexbit.rutmath.ui.fragment.game.battle.BattleGameFragment"
@@ -98,6 +94,7 @@
             android:name="player2nick"
             app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.hexbit.rutmath.ui.fragment.settings.SettingsFragment"
@@ -105,18 +102,16 @@
         tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settingsFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
+            app:destination="@id/menuFragment"
+            app:popUpTo="@+id/menuFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
+
     <fragment
         android:id="@+id/scoreboardFragment"
         android:name="com.hexbit.rutmath.ui.fragment.scoreboard.ScoreboardFragment"
         android:label="ScoreboardFragment"
         tools:layout="@layout/fragment_scoreboard">
-        <action
-            android:id="@+id/action_scoreboardFragment_to_menuFragment"
-            app:destination="@id/menuFragment"
-            app:popUpTo="@+id/menuFragment"
-            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/playersNamesFragment"
@@ -124,13 +119,10 @@
         android:label="PlayersNamesFragment"
         tools:layout="@layout/fragment_players_names">
         <action
-            android:id="@+id/action_playersNamesFragment_to_menuFragment"
-            app:destination="@id/menuFragment"
-            app:popUpTo="@+id/menuFragment" />
-        <action
             android:id="@+id/action_playersNamesFragment_to_battleGameFragment"
             app:destination="@id/battleGameFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/choosePlayerFragment"
         android:name="com.hexbit.rutmath.ui.fragment.choosePlayer.ChoosePlayerFragment"
@@ -144,6 +136,7 @@
             app:popUpTo="@id/choosePlayerFragment"
             app:popUpToInclusive="true" />
     </fragment>
+
     <fragment
         android:id="@+id/chooseModeFragment"
         android:name="com.hexbit.rutmath.ui.fragment.chooseMode.ChooseModeFragment"
@@ -171,10 +164,6 @@
             android:id="@+id/action_chooseModeFragment_to_tableGameFragment"
             app:destination="@id/tableGameFragment" />
         <action
-            android:id="@+id/action_chooseModeFragment_to_choosePlayerFragment"
-            app:destination="@id/choosePlayerFragment"
-            app:popUpTo="@id/menuFragment" />
-        <action
             android:id="@+id/action_chooseModeFragment_pop"
             app:popUpTo="@id/chooseModeFragment"
             app:popUpToInclusive="true" />
@@ -199,9 +188,14 @@
             android:id="@+id/action_mulDivListFragment_to_normalGameFragment"
             app:destination="@id/normalGameFragment" />
         <action
+            android:id="@+id/action_mulDivListFragment_pop_including_chooseModeFragment"
+            app:popUpTo="@id/chooseModeFragment"
+            app:popUpToInclusive="true" />
+        <action
             android:id="@+id/action_mulDivListFragment_to_chooseModeFragment"
             app:destination="@id/chooseModeFragment"
-            app:popUpTo="@id/chooseModeFragment" />
+            app:popUpTo="@+id/chooseModeFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/tableGameFragment"
@@ -214,7 +208,8 @@
         <action
             android:id="@+id/action_tableGameFragment_to_chooseModeFragment"
             app:destination="@id/chooseModeFragment"
-            app:popUpTo="@+id/chooseModeFragment" />
+            app:popUpTo="@+id/chooseModeFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/divisibilityListFragment"
@@ -238,7 +233,8 @@
         <action
             android:id="@+id/action_divisibilityListFragment_to_chooseModeFragment"
             app:destination="@id/chooseModeFragment"
-            app:popUpTo="@id/chooseModeFragment" />
+            app:popUpTo="@+id/chooseModeFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/divisibilityGameFragment"
@@ -278,9 +274,14 @@
             android:id="@+id/action_unitsListFragment_to_unitsGameFragment"
             app:destination="@id/unitsGameFragment" />
         <action
+            android:id="@+id/action_unitsListFragment_pop_including_chooseModeFragment"
+            app:popUpTo="@id/chooseModeFragment"
+            app:popUpToInclusive="true" />
+        <action
             android:id="@+id/action_unitsListFragment_to_chooseModeFragment"
             app:destination="@id/chooseModeFragment"
-            app:popUpTo="@id/chooseModeFragment" />
+            app:popUpTo="@+id/chooseModeFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/unitsGameFragment"

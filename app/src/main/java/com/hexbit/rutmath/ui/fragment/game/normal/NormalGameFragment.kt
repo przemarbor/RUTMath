@@ -86,7 +86,7 @@ class NormalGameFragment : BaseFragment() {
                     .plus(" = ")
             }
             input.text = DEFAULT_INPUT_VALUE
-            if (args.exerciseType.maxNumber <= 10 && args.exerciseType.operation != Operation.MULTIPLY && args.exerciseType.operation != Operation.DIVIDE && args.exerciseType.operation != Operation.MULTIPLY_DIVIDE) {
+            if (args.exerciseType.difficulty <= 10 && args.exerciseType.operation != Operation.MULTIPLY && args.exerciseType.operation != Operation.DIVIDE && args.exerciseType.operation != Operation.MULTIPLY_DIVIDE) {
                 graphicRepresentationContainer.visible()
                 drawGraphicRepresentation(it)
             } else {

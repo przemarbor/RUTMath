@@ -17,8 +17,8 @@ interface ExerciseTypeDao {
     @Query("SELECT * FROM ExerciseType WHERE id LIKE :id")
     fun findById(id: String): Single<ExerciseType>
 
-    @Query("SELECT * FROM ExerciseType WHERE userNick LIKE :nick AND operation LIKE :operation AND maxNumber > :prevMaxNumber ORDER BY maxNumber LIMIT 1")
-    fun findExerciseType(nick: String, operation:Operation, prevMaxNumber: Int): Single<ExerciseType>
+    @Query("SELECT * FROM ExerciseType WHERE userNick LIKE :nick AND operation LIKE :operation AND difficulty > :prevDifficulty ORDER BY difficulty LIMIT 1")
+    fun findExerciseType(nick: String, operation:Operation, prevDifficulty: Int): Single<ExerciseType>
 
     @Insert
     fun insertAll(exerciseTypes: List<ExerciseType>): Completable

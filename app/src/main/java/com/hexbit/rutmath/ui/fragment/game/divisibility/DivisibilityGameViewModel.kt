@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.hexbit.rutmath.data.model.Equation
 import com.hexbit.rutmath.data.model.Operation
 import com.hexbit.rutmath.util.base.DisposableViewModel
+import kotlin.math.round
 import kotlin.random.Random
 
 class DivisibilityGameViewModel : DisposableViewModel() {
@@ -21,7 +22,6 @@ class DivisibilityGameViewModel : DisposableViewModel() {
         VALID,
         INVALID
     }
-
     private val equations: ArrayList<Pair<Equation, Boolean>> = arrayListOf()
 
     private val activeEquation = MutableLiveData<Equation>()
@@ -48,9 +48,7 @@ class DivisibilityGameViewModel : DisposableViewModel() {
 
     /**
      * Draw equations for game and returns list.
-     *
      */
-
     private fun drawEquations(): List<Equation> {
         val results = arrayListOf<Equation>()
         while (results.size < EXERCISES_COUNT) {
@@ -58,16 +56,17 @@ class DivisibilityGameViewModel : DisposableViewModel() {
             var b = 0
             var correctAnswer = 0
             var operation = Operation.DIVISIBILITY
+            val difficulty = args.exerciseType.difficulty
             var isDivisible = true
             var counter = 0
             if(Random.nextInt(0,2) == 0)
                 isDivisible = false
             do {
                 counter += 1
-                when (args.exerciseType.maxNumber) {
+                when (difficulty) {
                     1,2,3 -> {
                         if(Random.nextInt(1,3) == 1){
-                            a = (Random.nextInt(1,11+(args.exerciseType.maxNumber-1)*5))
+                            a = (Random.nextInt(1,11+(difficulty-1)*5))
                             val dividersList = listOf(3,4)
                             val randomIndex = Random.nextInt(dividersList.size)
                             b = dividersList[randomIndex]
@@ -77,7 +76,7 @@ class DivisibilityGameViewModel : DisposableViewModel() {
                                 correctAnswer = 0
                         }
                         else{
-                            a = (Random.nextInt(1,21+(args.exerciseType.maxNumber-1)*10))
+                            a = (Random.nextInt(1,21+(difficulty-1)*10))
                             val dividersList = listOf(2,5)
                             val randomIndex = Random.nextInt(dividersList.size)
                             b = dividersList[randomIndex]
@@ -89,7 +88,7 @@ class DivisibilityGameViewModel : DisposableViewModel() {
                     }
                     4,5,6 -> {
                         if(Random.nextInt(1,4) > 1){
-                            a = (Random.nextInt(1,21+(args.exerciseType.maxNumber-4)*10))
+                            a = (Random.nextInt(1,21+(difficulty-4)*10))
                             val dividersList = listOf(3,4,6,7,8,9)
                             val randomIndex = Random.nextInt(dividersList.size)
                             b = dividersList[randomIndex]
@@ -99,7 +98,7 @@ class DivisibilityGameViewModel : DisposableViewModel() {
                                 correctAnswer = 0
                         }
                         else{
-                            a = (Random.nextInt(1,41+(args.exerciseType.maxNumber-4)*30))
+                            a = (Random.nextInt(1,41+(difficulty-4)*30))
                             val dividersList = listOf(2,5,10)
                             val randomIndex = Random.nextInt(dividersList.size)
                             b = dividersList[randomIndex]
@@ -111,7 +110,7 @@ class DivisibilityGameViewModel : DisposableViewModel() {
                     }
                     7,8,9 ->
                         if(Random.nextInt(1,6) > 1){
-                            a = (Random.nextInt(11+(args.exerciseType.maxNumber-7)*10,61+(args.exerciseType.maxNumber-7)*30))
+                            a = (Random.nextInt(11+(difficulty-7)*10,61+(difficulty-7)*30))
                             val dividersList = listOf(3,4,6,7,8,9)
                             val randomIndex = Random.nextInt(dividersList.size)
                             b = dividersList[randomIndex]
@@ -121,7 +120,7 @@ class DivisibilityGameViewModel : DisposableViewModel() {
                                 correctAnswer = 0
                         }
                         else{
-                            a = (Random.nextInt(31+(args.exerciseType.maxNumber-7)*20,151))
+                            a = (Random.nextInt(31+(difficulty-7)*20,151))
                             val dividersList = listOf(2,5,10)
                             val randomIndex = Random.nextInt(dividersList.size)
                             b = dividersList[randomIndex]
@@ -186,9 +185,8 @@ class DivisibilityGameViewModel : DisposableViewModel() {
 
     private fun calculateGameRate(): Int {
         val correctAnswers = equations.map { it.second }.count { it }
-        val percent =
-            ((correctAnswers.toFloat() / (equations.size).toFloat()) * 100).toInt()
-        return percent / 20
+        val percent = (correctAnswers.toFloat() / (equations.size).toFloat()) * 100
+        return round(percent / 20).toInt()
     }
 
     /**

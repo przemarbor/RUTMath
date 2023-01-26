@@ -6,6 +6,7 @@ import com.hexbit.rutmath.data.model.Equation
 import com.hexbit.rutmath.data.model.Operation
 import com.hexbit.rutmath.ui.fragment.game.normal.NormalGameViewModel
 import com.hexbit.rutmath.util.base.DisposableViewModel
+import kotlin.math.round
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 import kotlin.random.Random
@@ -52,7 +53,6 @@ class TableGameViewModel : DisposableViewModel() {
 
     /**
      * Draw equations for game and returns list.
-     *
      */
 
     private fun drawEquations(): List<Equation> {
@@ -100,7 +100,8 @@ class TableGameViewModel : DisposableViewModel() {
 
     private fun calculateGameRate(): Int {
         val correctAnswers = equations.map { it.second }.count { it }
-        return ((correctAnswers.toFloat() / (equations.size).toFloat()) * 100).toInt()
+        val percent = (correctAnswers.toFloat() / (equations.size).toFloat()) * 100
+        return round(percent).toInt()
     }
 
     /**

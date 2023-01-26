@@ -10,7 +10,8 @@
     <string name="scoreboard">Tablica wyników:</string>
     <string name="player1">Gracz1</string>
     <string name="player2">Gracz2</string>
-    <string name="score">%s wynik: %d\n%s wynik: %d</string>
+    <string name="score">Wynik:</string>
+    <string name="duel_score">%s wynik: %d\n%s wynik: %d</string>
     <string name="scoreboard_format">%d. %s</string>
     <string name="nick_empty">Nazwa nie może być pusta!</string>
     <string name="fragment_settings_select_language">Wybierz język</string>

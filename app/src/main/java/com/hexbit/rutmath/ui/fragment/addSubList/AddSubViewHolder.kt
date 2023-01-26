@@ -26,11 +26,9 @@ class AddSubViewHolder(
             Operation.MINUS -> MINUS_VALUE
             Operation.PLUS_MINUS -> PLUS_MINUS_VALUE
             else -> null
-        }.plus(" ").plus(exerciseType.maxNumber)
+        }.plus(" ").plus(exerciseType.difficulty)
 
-        /**
-         *  Set a listener on unlocked exercise tile and change its color
-         */
+        // Set a listener on unlocked exercise tile and change its color
         if (exerciseType.unlocked) {
             view.setOnClickListener {
                 clickCallback.invoke(exerciseType)

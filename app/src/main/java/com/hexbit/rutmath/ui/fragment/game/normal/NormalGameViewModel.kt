@@ -6,6 +6,7 @@ import com.hexbit.rutmath.data.model.Equation
 import com.hexbit.rutmath.data.model.Operation
 import com.hexbit.rutmath.util.base.DisposableViewModel
 import java.lang.Exception
+import kotlin.math.round
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 import kotlin.random.Random
@@ -13,7 +14,7 @@ import kotlin.random.Random
 class NormalGameViewModel : DisposableViewModel() {
 
     companion object {
-        const val EXERCISES_COUNT = 1 // number of exercises in game
+        const val EXERCISES_COUNT = 20 // number of exercises in game
     }
 
     /**
@@ -51,16 +52,6 @@ class NormalGameViewModel : DisposableViewModel() {
 
     /**
      * Draw equations for game and returns list.
-     *
-     * It is ensure that all of equations do not repeat themselves.
-     * It can throw StackOverflowException when EXERCISES_COUNT < Sigma(args.maxNumber) in
-     * case when args.operation = Operation.MINUS.
-     *
-     * In other words: it is mathematically impossible
-     * to create more equations with minus(-) operator for numbers (for example) in range 0-5
-     * (args.maxNumber = 5).
-     * Because we have only 10 possibly operations [like 5-4, 5-3,5-2,5-1,4-3,4-2,4-1,3-2,3-1,2-1]
-     * so it is Sigma(sum of) of args.maxNumber.
      */
 
     private fun drawEquations(): List<Equation> {
@@ -71,6 +62,7 @@ class NormalGameViewModel : DisposableViewModel() {
             var correctAnswer:Int
             val possibleValues = mutableListOf<Int>()
             var operation:Operation
+            val difficulty = args.exerciseType.difficulty
 
             if (args.exerciseType.operation == Operation.PLUS_MINUS)
                 operation = if (Random.nextInt(2) == 0)
@@ -85,11 +77,12 @@ class NormalGameViewModel : DisposableViewModel() {
             else
                 operation = args.exerciseType.operation
 
+
             when (operation) {
                 Operation.PLUS -> {
-                    a = Random.nextInt(1, args.exerciseType.maxNumber + 1)
-                    for (num in 1..args.exerciseType.maxNumber + 1){
-                        if (a + num < args.exerciseType.maxNumber+1)
+                    a = Random.nextInt(1+(difficulty* 0.1).toInt(), difficulty + 1)
+                    for (num in (1+(difficulty * 0.1).toInt())..(difficulty + 1)){
+                        if (a + num < difficulty+1)
                             possibleValues.add(num)
                     }
                     if (possibleValues.any())
@@ -97,8 +90,8 @@ class NormalGameViewModel : DisposableViewModel() {
                     correctAnswer = a + b
                 }
                 Operation.MINUS -> {
-                    a = Random.nextInt(1, args.exerciseType.maxNumber + 1)
-                    for (num in 1..args.exerciseType.maxNumber + 1){
+                    a = Random.nextInt(1+(difficulty* 0.1).toInt(), difficulty + 1)
+                    for (num in 1..difficulty + 1){
                         if (a - num > 0)
                             possibleValues.add(num)
                     }
@@ -107,9 +100,9 @@ class NormalGameViewModel : DisposableViewModel() {
                     correctAnswer = a - b
                 }
                 Operation.MULTIPLY -> {
-                    a = Random.nextInt(2, sqrt((args.exerciseType.maxNumber).toDouble()).roundToInt()+1)
-                    for (num in 1..args.exerciseType.maxNumber + 1){
-                        if (a * num <= args.exerciseType.maxNumber+1)
+                    a = Random.nextInt(1+(difficulty* 0.05).toInt(), sqrt((difficulty).toDouble()).roundToInt()+1)
+                    for (num in 1..(difficulty + 1)){
+                        if (a * num <= difficulty+1)
                             possibleValues.add(num)
                     }
                     if (possibleValues.any())
@@ -117,8 +110,8 @@ class NormalGameViewModel : DisposableViewModel() {
                     correctAnswer = a * b
                 }
                 Operation.DIVIDE -> {
-                    b = Random.nextInt(2, sqrt((args.exerciseType.maxNumber).toDouble()).roundToInt()+1)
-                    for (num in 1..args.exerciseType.maxNumber+1){
+                    b = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
+                    for (num in (1+(difficulty* 0.2).toInt())..(difficulty+1)){
                         if (num % b == 0)
                             possibleValues.add(num)
                     }
@@ -137,7 +130,7 @@ class NormalGameViewModel : DisposableViewModel() {
             )
 
             results.contains(equationToAdd).let {
-                if (!it or (args.exerciseType.maxNumber < ((EXERCISES_COUNT/2)+1))) {
+                if (!it or (difficulty < ((EXERCISES_COUNT/2)+1))) {
                     results.add(equationToAdd)
                 }
             }
@@ -172,9 +165,8 @@ class NormalGameViewModel : DisposableViewModel() {
 
     private fun calculateGameRate(): Int {
         val correctAnswers = equations.map { it.second }.count { it }
-        val percent =
-            ((correctAnswers.toFloat() / (equations.size).toFloat()) * 100).toInt()
-        return percent / 20
+        val percent = (correctAnswers.toFloat() / (equations.size).toFloat()) * 100
+        return round(percent / 20).toInt()
     }
 
     /**

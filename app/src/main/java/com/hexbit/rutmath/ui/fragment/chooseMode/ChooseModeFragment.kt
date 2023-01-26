@@ -18,15 +18,10 @@ class ChooseModeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().onBackPressedDispatcher.addCallback(this) {
-            findNavController().navigate(
-                ChooseModeFragmentDirections.actionChooseModeFragmentToChoosePlayerFragment()
-            )
-        }
         args.res.let {
-            if (args.res >= 0){
-                TableRateDialog(context!!, args.res).show() }}
-
+            if (args.res > 0){
+                TableRateDialog(context!!, args.res).show()
+            }}
         initButtons()
     }
 

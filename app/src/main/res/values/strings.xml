@@ -10,7 +10,8 @@
     <string name="scoreboard">Scoreboard:</string>
     <string name="player1">Player1</string>
     <string name="player2">Player2</string>
-    <string name="score">%s score: %d\n%s score: %d</string>
+    <string name="score">Score:</string>
+    <string name="duel_score">%s score: %d\n%s score: %d</string>
     <string name="scoreboard_format">%d. %s</string>
     <string name="nick_empty">Nickname can not be empty!</string>
     <string name="fragment_settings_select_language">Select language</string>

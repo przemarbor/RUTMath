@@ -27,7 +27,7 @@ class TableRateDialog(context: Context, private val resultPercentage: Int) : Dia
         for (index in 0 until resultPercentage/20) {
             stars[index].visible()
         }
-        scorePercentageText.text = "Score: $resultPercentage%"
+        scoreText.text = " $resultPercentage%"
         okButton.setOnClickListener {
             dismiss()
         }

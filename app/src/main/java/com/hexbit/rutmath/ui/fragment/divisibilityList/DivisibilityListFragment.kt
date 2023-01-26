@@ -29,6 +29,9 @@ class DivisibilityListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // On back button pressed => navigate to chooseModeFragment
+        // Required to pass a new argument "res" (otherwise rate dialog will pop up in chooseModeFragment)
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             findNavController().navigate(
                 DivisibilityListFragmentDirections.actionDivisibilityListFragmentToChooseModeFragment(
@@ -37,12 +40,12 @@ class DivisibilityListFragment : BaseFragment() {
                 )
             )
         }
-
         initViewModel()
         args.exerciseType?.let {
             if (args.rate > 0) {
                 viewModel.updateExerciseType(it.copy(rate = args.rate), args.player.nick)
-                viewModel.unlockExerciseType(args.player.nick, args.exerciseType!!.operation, args.exerciseType!!.maxNumber)
+                if (args.rate >= 4)
+                    viewModel.unlockExerciseType(args.player.nick, args.exerciseType!!.operation, args.exerciseType!!.difficulty)
                 NormalRateDialog(context!!, args.rate).show()
             }
         }
@@ -69,7 +72,6 @@ class DivisibilityListFragment : BaseFragment() {
                     )
                 ) // add space between each tiles
             adapter = DivisibilityListAdapter(ArrayList(list), ::exerciseClickCallback)
-
         }
     }
 

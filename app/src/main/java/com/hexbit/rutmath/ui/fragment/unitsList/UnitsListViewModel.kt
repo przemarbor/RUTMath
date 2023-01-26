@@ -10,7 +10,6 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlin.math.absoluteValue
 
 class UnitsListViewModel(private val database: AppDatabase) : DisposableViewModel() {
 
@@ -105,13 +104,12 @@ class UnitsListViewModel(private val database: AppDatabase) : DisposableViewMode
      *
      *  @param nick Player's Nickname.
      *  @param operation Type of ExerciseType's Operation to unlock.
-     *  @param prevMaxNumber The maxNumber of the previous ExerciseType
-
+     *  @param prevDifficulty The difficulty of the previous ExerciseType
      */
 
-    fun unlockExerciseType(nick: String, operation: Operation, prevMaxNumber: Int) {
+    fun unlockExerciseType(nick: String, operation: Operation, prevDifficulty: Int) {
         manageDisposable {
-            database.exerciseTypeDao().findExerciseType(nick, operation, prevMaxNumber)
+            database.exerciseTypeDao().findExerciseType(nick, operation, prevDifficulty)
                 .flatMap { exerciseType ->
                     Single.just(exerciseType)
                 }

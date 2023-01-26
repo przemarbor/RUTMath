@@ -119,7 +119,7 @@ class BattleGameFragment : BaseFragment() {
         alert.setTitle(getString(R.string.battle_game_ended))
         alert.setMessage(
             getString(
-                R.string.score,
+                R.string.duel_score,
                 args.player1nick,
                 player1Panel.getResult(),
                 args.player2nick,

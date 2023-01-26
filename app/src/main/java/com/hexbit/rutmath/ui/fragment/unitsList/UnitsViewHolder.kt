@@ -28,8 +28,8 @@ class UnitsViewHolder(
             Operation.UNITS_SURFACE -> SURFACE
             Operation.UNITS_ALL -> ALL
             else -> null
-        }.plus(" ").plus(((exerciseType.maxNumber-1) % 3)+1)
-        if (exerciseType.maxNumber == 10)
+        }.plus(" ").plus(((exerciseType.difficulty-1) % 3)+1)
+        if (exerciseType.difficulty == 10)
             view.title.text = view.title.text.dropLast(2)
 
         /**

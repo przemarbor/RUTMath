@@ -101,13 +101,12 @@ class DivisibilityListViewModel(private val database: AppDatabase) : DisposableV
      *
      *  @param nick Player's Nickname.
      *  @param operation Type of ExerciseType's Operation to unlock.
-     *  @param prevMaxNumber The maxNumber of the previous ExerciseType
-
+     *  @param prevDifficulty The difficulty of the previous ExerciseType
      */
 
-    fun unlockExerciseType(nick: String, operation: Operation, prevMaxNumber: Int) {
+    fun unlockExerciseType(nick: String, operation: Operation, prevDifficulty: Int) {
         manageDisposable {
-            database.exerciseTypeDao().findExerciseType(nick, operation, prevMaxNumber)
+            database.exerciseTypeDao().findExerciseType(nick, operation, prevDifficulty)
                 .flatMap { exerciseType ->
                     Single.just(exerciseType)
                 }

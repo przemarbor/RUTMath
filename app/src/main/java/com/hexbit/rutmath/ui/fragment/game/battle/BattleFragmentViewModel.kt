@@ -50,19 +50,22 @@ class BattleFragmentViewModel(private val database: AppDatabase) : DisposableVie
         onNextEquationActiveEvent.value = activeEquation
     }
 
-    
-     // Draw equations for game and returns it.
+
+    /**
+     * Draw equations for game and returns list.
+     */
     private fun drawEquation(): Equation {
         var a = 0
         var b = 0
         var correctAnswer = 0
         var operation = Operation.PLUS_MINUS
         val possibleValues = mutableListOf<Int>()
+        val difficulty = maxNumber
         when (Random.nextInt(1, 5)) {
             1 -> {
-                a = Random.nextInt(1, maxNumber + 1)
-                for (num in 1..maxNumber + 1){
-                    if (a + num < maxNumber+1)
+                a = Random.nextInt(1, difficulty + 1)
+                for (num in 1..difficulty + 1){
+                    if (a + num < difficulty+1)
                         possibleValues.add(num)
                 }
                 if (possibleValues.any())
@@ -71,8 +74,8 @@ class BattleFragmentViewModel(private val database: AppDatabase) : DisposableVie
                 operation = Operation.PLUS
             }
             2 -> {
-                a = Random.nextInt(1, maxNumber + 1)
-                for (num in 1..maxNumber + 1){
+                a = Random.nextInt(1, difficulty + 1)
+                for (num in 1..difficulty + 1){
                     if (a - num > 0)
                         possibleValues.add(num)
                 }
@@ -82,9 +85,9 @@ class BattleFragmentViewModel(private val database: AppDatabase) : DisposableVie
                 operation = Operation.MINUS
             }
             3 -> {
-                a = Random.nextInt(2, sqrt((maxNumber).toDouble()).roundToInt()+1)
-                for (num in 1..maxNumber + 1){
-                    if (a * num <= maxNumber+1)
+                a = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
+                for (num in 1..difficulty + 1){
+                    if (a * num <= difficulty+1)
                         possibleValues.add(num)
                 }
                 if (possibleValues.any())
@@ -93,8 +96,8 @@ class BattleFragmentViewModel(private val database: AppDatabase) : DisposableVie
                 operation = Operation.MULTIPLY
             }
             4 -> {
-                b = Random.nextInt(2, sqrt((maxNumber).toDouble()).roundToInt()+1)
-                for (num in 1..maxNumber+1){
+                b = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
+                for (num in 1..difficulty+1){
                     if (num % b == 0)
                         possibleValues.add(num)
                 }

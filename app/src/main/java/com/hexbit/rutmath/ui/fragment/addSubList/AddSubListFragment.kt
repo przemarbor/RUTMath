@@ -30,6 +30,9 @@ class AddSubListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // On back button pressed => navigate to chooseModeFragment
+        // Required to pass a new argument "res" (otherwise rate dialog will pop up in chooseModeFragment)
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             findNavController().navigate(
                 AddSubListFragmentDirections.actionAddSubListFragmentToChooseModeFragment(
@@ -40,14 +43,18 @@ class AddSubListFragment : BaseFragment() {
         }
         initViewModel()
         args.exerciseType?.let {
-            if (args.rate >= 3) {
+            if (args.rate > 0) {
                 viewModel.updateExerciseType(it.copy(rate = args.rate), args.player.nick)
-                viewModel.unlockExerciseType(args.player.nick, args.exerciseType!!.operation, args.exerciseType!!.maxNumber)
-                if (args.exerciseType!!.operation == Operation.PLUS_MINUS)
+                if (args.rate >= 3)
                 {
-                    viewModel.unlockExerciseType(args.player.nick, Operation.PLUS, args.exerciseType!!.maxNumber)
-                    viewModel.unlockExerciseType(args.player.nick, Operation.MINUS, args.exerciseType!!.maxNumber)
+                    viewModel.unlockExerciseType(args.player.nick, args.exerciseType!!.operation, args.exerciseType!!.difficulty)
+                    if (args.exerciseType!!.operation == Operation.PLUS_MINUS)
+                    {
+                        viewModel.unlockExerciseType(args.player.nick, Operation.PLUS, args.exerciseType!!.difficulty)
+                        viewModel.unlockExerciseType(args.player.nick, Operation.MINUS, args.exerciseType!!.difficulty)
+                    }
                 }
+
                 NormalRateDialog(context!!, args.rate).show()
             }
         }

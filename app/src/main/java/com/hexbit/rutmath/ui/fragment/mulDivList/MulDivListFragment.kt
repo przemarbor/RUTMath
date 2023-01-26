@@ -30,6 +30,9 @@ class MulDivListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // On back button pressed => navigate to chooseModeFragment
+        // Required to pass a new argument "res" (otherwise rate dialog will pop up in chooseModeFragment)
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             findNavController().navigate(
                 MulDivListFragmentDirections.actionMulDivListFragmentToChooseModeFragment(
@@ -40,13 +43,15 @@ class MulDivListFragment : BaseFragment() {
         }
         initViewModel()
         args.exerciseType?.let {
-            if (args.rate >= 3) {
+            if (args.rate > 0) {
                 viewModel.updateExerciseType(it.copy(rate = args.rate), args.player.nick)
-                viewModel.unlockExerciseType(args.player.nick, args.exerciseType!!.operation, args.exerciseType!!.maxNumber)
-                if (args.exerciseType!!.operation == Operation.MULTIPLY_DIVIDE)
-                {
-                    viewModel.unlockExerciseType(args.player.nick, Operation.MULTIPLY, args.exerciseType!!.maxNumber)
-                    viewModel.unlockExerciseType(args.player.nick, Operation.DIVIDE, args.exerciseType!!.maxNumber)
+                if (args.rate >= 3) {
+                    viewModel.unlockExerciseType(args.player.nick, args.exerciseType!!.operation, args.exerciseType!!.difficulty)
+                    if (args.exerciseType!!.operation == Operation.MULTIPLY_DIVIDE)
+                    {
+                        viewModel.unlockExerciseType(args.player.nick, Operation.MULTIPLY, args.exerciseType!!.difficulty)
+                        viewModel.unlockExerciseType(args.player.nick, Operation.DIVIDE, args.exerciseType!!.difficulty)
+                    }
                 }
                 NormalRateDialog(context!!, args.rate).show()
             }

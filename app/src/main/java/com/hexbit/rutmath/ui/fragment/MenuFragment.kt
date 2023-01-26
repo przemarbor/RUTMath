@@ -6,7 +6,6 @@ import androidx.navigation.fragment.findNavController
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.util.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_menu.*
-import java.util.*
 
 class MenuFragment : BaseFragment() {
     override val layout: Int = R.layout.fragment_menu

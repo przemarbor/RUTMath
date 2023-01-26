@@ -26,7 +26,7 @@ class MulDivViewHolder(
             Operation.DIVIDE -> DIVIDE_VALUE
             Operation.MULTIPLY_DIVIDE -> MULTIPLY_DIVIDE_VALUE
             else -> null
-        }.plus(" ").plus(exerciseType.maxNumber)
+        }.plus(" ").plus(exerciseType.difficulty)
 
         /**
          *  Set a listener on unlocked exercise tile and change its color

@@ -23,14 +23,14 @@ class DivisibilityViewHolder(
     )
 
     fun bind(exerciseType: ExerciseType) {
-        view.title.text = when (exerciseType.maxNumber) {
+        view.title.text = when (exerciseType.difficulty) {
             1,2,3 -> difficultyList[0]
             4,5,6 -> difficultyList[1]
             9,8,7 -> difficultyList[2]
             10 -> difficultyList[3]
             else -> null
-        }.plus(" ").plus(((exerciseType.maxNumber-1) % 3)+1)
-        if (exerciseType.maxNumber == 10)
+        }.plus(" ").plus(((exerciseType.difficulty-1) % 3)+1)
+        if (exerciseType.difficulty == 10)
             view.title.text = view.title.text.dropLast(2)
 
         /**
