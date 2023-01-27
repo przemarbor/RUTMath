@@ -80,7 +80,7 @@ class NormalGameViewModel : DisposableViewModel() {
 
             when (operation) {
                 Operation.PLUS -> {
-                    a = Random.nextInt(1+(difficulty* 0.1).toInt(), difficulty + 1)
+                    a = Random.nextInt(1+(difficulty* 0.1).toInt(), (difficulty*0.9).toInt())
                     for (num in (1+(difficulty * 0.1).toInt())..(difficulty + 1)){
                         if (a + num < difficulty+1)
                             possibleValues.add(num)
@@ -100,9 +100,9 @@ class NormalGameViewModel : DisposableViewModel() {
                     correctAnswer = a - b
                 }
                 Operation.MULTIPLY -> {
-                    a = Random.nextInt(1+(difficulty* 0.05).toInt(), sqrt((difficulty).toDouble()).roundToInt()+1)
+                    a = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
                     for (num in 1..(difficulty + 1)){
-                        if (a * num <= difficulty+1)
+                        if ((a * num <= difficulty+1) and ((a * num) >= (difficulty* 0.2)))
                             possibleValues.add(num)
                     }
                     if (possibleValues.any())
@@ -111,7 +111,7 @@ class NormalGameViewModel : DisposableViewModel() {
                 }
                 Operation.DIVIDE -> {
                     b = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
-                    for (num in (1+(difficulty* 0.2).toInt())..(difficulty+1)){
+                    for (num in ((difficulty* 0.2).toInt())..(difficulty+1)){
                         if (num % b == 0)
                             possibleValues.add(num)
                     }
