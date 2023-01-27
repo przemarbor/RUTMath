@@ -8,6 +8,11 @@ You can download this application from F-Droid:</br>
 # Requirements
 To use this app you will need only mobile device using Android Version >= 5.1
 
+# Language
+This app is available in the following languages:
+- English
+- Polish
+
 # License
 This software is licensed under the terms of the GNU General Public License version 3 (GPLv3).</br>
 Full text of the license is available online https://opensource.org/licenses/gpl-3.0.html
