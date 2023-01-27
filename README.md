@@ -2,11 +2,11 @@
 <b>R</b>zeszów <b>U</b>niversity of <b>T</b>echnology <b>M</b>ath - is a open source (GPL) application to help learning mathematics for early school children.
 
 # Download
-You can download this application from f-droid:</br>
+You can download this application from F-Droid:</br>
 -<a href="#">Download</a>
 
 # Requirements
-To use this app you will need only mobile device using Android Version >= 5.0
+To use this app you will need only mobile device using Android Version >= 5.1
 
 # License
 This software is licensed under the terms of the GNU General Public License version 3 (GPLv3).</br>
@@ -16,11 +16,14 @@ Full text of the license is available online https://opensource.org/licenses/gpl
 <table>
 <tr>
 <td>
-       <img width="275px" height="500px" src="https://s6.ifotos.pl/img/mainjpg_qashwws.jpg">
+       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/l7uk640ixgpxlrr/1.png?dl=0">
 </td>
 <td>
-       <img width="275px" height="500px" src="https://s6.ifotos.pl/img/battlemod_qashwwe.jpg">
+       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/j6lz1w2yux3z42a/2.png?dl=0">
 </td>
 <td>
-       <img width="275px" height="500px" src="https://s6.ifotos.pl/img/games2jpg_qashwwq.jpg">
+       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/vwzrdi941gz0m9f/3.png?dl=0">
+</td>
+<td>
+       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/3zsgs5qvmo9s44c/4.png?dl=0">
 </td>
