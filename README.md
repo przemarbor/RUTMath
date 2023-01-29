@@ -1,10 +1,6 @@
 # RUTMath
 <b>R</b>zeszów <b>U</b>niversity of <b>T</b>echnology <b>M</b>ath - is a open source (GPL) application to help learning mathematics for early school children.
 
-# Download
-You can download this application from F-Droid:</br>
--<a href="#">Download</a>
-
 # Requirements
 To use this app you will need only mobile device using Android Version >= 5.1
 
