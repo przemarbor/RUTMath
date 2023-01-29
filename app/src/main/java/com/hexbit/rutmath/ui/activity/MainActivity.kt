@@ -19,8 +19,12 @@ class MainActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .map { it ->
-                setLocale(it[0].language)
-                setContentView(R.layout.main_activity)
+                try{
+                    setLocale(it[0].language)
+                }
+                finally {
+                    setContentView(R.layout.main_activity)
+                }
             }
             .subscribe()
     }
