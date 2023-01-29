@@ -94,7 +94,7 @@ class SettingsFragment : BaseFragment() {
         super.onDestroy()
     }
 
-    public fun setLocale(language:String){
+    fun setLocale(language:String){
         val res = resources
         val dm = res.displayMetrics
         val conf = res.configuration

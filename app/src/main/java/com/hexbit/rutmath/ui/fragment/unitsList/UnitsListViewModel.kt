@@ -114,7 +114,7 @@ class UnitsListViewModel(private val database: AppDatabase) : DisposableViewMode
                     Single.just(exerciseType)
                 }
                 .subscribeOn(Schedulers.io())
-                .subscribe ({ exerciseType -> updateExerciseType(exerciseType.copy(unlocked = true), nick) },
+                .subscribe ({ exerciseType -> updateExerciseType(exerciseType.copy(isUnlocked = true), nick) },
                     { println("ERROR: Cannot find ExerciseType to unlock") })
         }
     }

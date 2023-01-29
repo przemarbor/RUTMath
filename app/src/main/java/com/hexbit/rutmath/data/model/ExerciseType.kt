@@ -16,7 +16,7 @@ import java.io.Serializable
  *          Operation.DIVISIBILITY can use difficulty range: (1-10).
  *      Check specific GameViewModel for specific difficulty range.
  * @param rate number of stars reached in this type of exercises.
- * @param unlocked whether exercise is unlocked and can be accessed by the user.
+ * @param isUnlocked whether exercise is unlocked and can be accessed by the user.
  * @param id unique identification number in database.
  */
 
@@ -29,7 +29,7 @@ data class ExerciseType(
     @ColumnInfo(name = "rate")
     var rate: Int = 0,
     val userNick: String,
-    var unlocked: Boolean,
+    var isUnlocked: Boolean,
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 ) : Serializable

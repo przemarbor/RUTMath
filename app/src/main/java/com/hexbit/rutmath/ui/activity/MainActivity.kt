@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         database.settingsDao().getAll()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .map { cos ->
-                setLocale(cos[0].language)
+            .map { it ->
+                setLocale(it[0].language)
                 setContentView(R.layout.main_activity)
             }
             .subscribe()

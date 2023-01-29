@@ -35,7 +35,7 @@ class UnitsViewHolder(
         /**
          *  Set a listener on unlocked exercise tile and change its color
          */
-        if (exerciseType.unlocked) {
+        if (exerciseType.isUnlocked) {
             view.setOnClickListener {
                 clickCallback.invoke(exerciseType)
             }
