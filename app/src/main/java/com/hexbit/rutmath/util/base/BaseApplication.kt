@@ -41,7 +41,8 @@ class BaseApplication : Application() {
                                 Settings(
                                     maxNumberInBattleMode = 100,
                                     lastNickname1 = getString(R.string.player1),
-                                    lastNickname2 = getString(R.string.player2)
+                                    lastNickname2 = getString(R.string.player2),
+                                    language = "en"
                                 )
                             )
                         )

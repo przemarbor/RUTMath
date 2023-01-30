@@ -12,3 +12,6 @@
 /captures
 .externalNativeBuild
 .cxx
+.idea/deploymentTargetDropDown.xml
+.idea/misc.xml
+.idea/runConfigurations.xml

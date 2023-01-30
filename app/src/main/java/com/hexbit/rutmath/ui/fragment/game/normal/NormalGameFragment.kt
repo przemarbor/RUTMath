@@ -3,6 +3,7 @@ package com.hexbit.rutmath.ui.fragment.game.normal
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
@@ -35,13 +36,25 @@ class NormalGameFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            findNavController().navigate(
-                NormalGameFragmentDirections.actionNormalGameFragmentToExerciseListFragment(
-                    0,
-                    null,
-                    args.player
-                )
-            )
+            when (args.exerciseType.operation){
+                Operation.PLUS, Operation.MINUS, Operation.PLUS_MINUS ->
+                    findNavController().navigate(
+                        NormalGameFragmentDirections.actionNormalGameFragmentToAddSubListFragment(
+                            0,
+                            null,
+                            args.player
+                        )
+                    )
+                Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE ->
+                    findNavController().navigate(
+                        NormalGameFragmentDirections.actionNormalGameFragmentToMulDivListFragment(
+                            0,
+                            null,
+                            args.player
+                        )
+                    )
+                else -> throw Exception("Navigating to invalid operation!")
+            }
         }
     }
 
@@ -63,7 +76,9 @@ class NormalGameFragment : BaseFragment() {
                         when (it.operation) {
                             Operation.PLUS -> "+"
                             Operation.MINUS -> "-"
-                            Operation.PLUS_MINUS -> throw Exception("Invalid operation!")
+                            Operation.MULTIPLY -> "×"
+                            Operation.DIVIDE -> "÷"
+                            else -> throw Exception("Invalid operation!")
                         }
                     )
                     .plus(" ")
@@ -71,7 +86,7 @@ class NormalGameFragment : BaseFragment() {
                     .plus(" = ")
             }
             input.text = DEFAULT_INPUT_VALUE
-            if (args.exerciseType.maxNumber <= 10) {
+            if (args.exerciseType.difficulty <= 10 && args.exerciseType.operation != Operation.MULTIPLY && args.exerciseType.operation != Operation.DIVIDE && args.exerciseType.operation != Operation.MULTIPLY_DIVIDE) {
                 graphicRepresentationContainer.visible()
                 drawGraphicRepresentation(it)
             } else {
@@ -80,19 +95,32 @@ class NormalGameFragment : BaseFragment() {
         })
 
         viewModel.getEndGameEvent().observe(viewLifecycleOwner, Observer { rate ->
-            findNavController().navigate(
-                NormalGameFragmentDirections.actionNormalGameFragmentToExerciseListFragment(
-                    rate,
-                    args.exerciseType,
-                    args.player
-                )
-            )
+            when (args.exerciseType.operation){
+                Operation.PLUS, Operation.MINUS, Operation.PLUS_MINUS ->
+                    findNavController().navigate(
+                        NormalGameFragmentDirections.actionNormalGameFragmentToAddSubListFragment(
+                            rate,
+                            args.exerciseType,
+                            args.player
+                        )
+                    )
+                Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE ->
+                    findNavController().navigate(
+                        NormalGameFragmentDirections.actionNormalGameFragmentToMulDivListFragment(
+                            rate,
+                            args.exerciseType,
+                            args.player
+                        )
+                    )
+                else -> throw Exception("Navigating to invalid operation!")
+            }
+
         })
         viewModel.getAnswerEvent().observe(viewLifecycleOwner, Observer {
             when (it) {
                 NormalGameViewModel.AnswerEvent.VALID -> {
                     updateUiOnCorrectAnswer()
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         if(isVisible) {
                             progressBar.progress = progressBar.progress + 1
                             viewModel.setNextActiveEquation()
@@ -103,6 +131,7 @@ class NormalGameFragment : BaseFragment() {
                     updateUiOnErrorAnswer()
                     viewModel.markActiveEquationAsFailed()
                 }
+                null -> throw Exception("Error: AnswerEvent is null")
             }
         })
         viewModel.init(args)
@@ -156,8 +185,8 @@ class NormalGameFragment : BaseFragment() {
     }
 
     private fun resetColors() {
-        input.setTextColor(ContextCompat.getColor(context!!, R.color.colorAccent))
-        equation.setTextColor(ContextCompat.getColor(context!!, R.color.colorAccent))
+        input.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
+        equation.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
     }
 
     private fun drawGraphicRepresentation(activeEquation: Equation) {
@@ -192,7 +221,7 @@ class NormalGameFragment : BaseFragment() {
                     shapes[i].gone()
                 }
             }
-            Operation.PLUS_MINUS -> throw Exception("Invalid operation!")
+            else -> return
         }
     }
 

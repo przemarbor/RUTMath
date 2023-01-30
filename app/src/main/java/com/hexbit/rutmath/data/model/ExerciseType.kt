@@ -6,24 +6,30 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 /**
- * Exercise type. It is also database model.
- * It contains operation (like PLUS/MINUS/PLUS_MINUS] type.
- * Max number that can exists in equations of that exercise. For example: when maxNumber equals to 10
- * then user will see only exercises with answer that is equals or less than 10.
- * Rate - number of stars reached in this type of exercises.
- * Id - unique identification number in database.
+ * ExerciseType is a database model.
+ * @param difficulty modifies difficulty of the Exercise. For example: when difficulty equals to 10
+ *      and operation equals to Operation.PLUS then user will see only exercises with answer
+ *      that is equal or less than 10.
+ *      Every operation has specific difficulty range.
+ *      For example:
+ *          Operation.PLUS can use difficulty range: (5-200).
+ *          Operation.DIVISIBILITY can use difficulty range: (1-10).
+ *      Check specific GameViewModel for specific difficulty range.
+ * @param rate number of stars reached in this type of exercises.
+ * @param isUnlocked whether exercise is unlocked and can be accessed by the user.
+ * @param id unique identification number in database.
  */
- //# Typ zadania z adnotacjami pozwalającymi na zapis w lokalnej bazie danych.
 
 @Entity(tableName = "ExerciseType")
 data class ExerciseType(
     @ColumnInfo(name = "operation")
     var operation: Operation,
-    @ColumnInfo(name = "maxNumber")
-    var maxNumber: Int,
+    @ColumnInfo(name = "difficulty")
+    var difficulty: Int,
     @ColumnInfo(name = "rate")
     var rate: Int = 0,
     val userNick: String,
+    var isUnlocked: Boolean,
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 ) : Serializable

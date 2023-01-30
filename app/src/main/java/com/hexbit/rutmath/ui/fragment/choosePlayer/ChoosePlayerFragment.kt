@@ -11,23 +11,22 @@ import com.hexbit.rutmath.R
 import com.hexbit.rutmath.util.base.BaseFragment
 import com.hexbit.rutmath.util.gone
 import com.hexbit.rutmath.util.visible
-import kotlinx.android.synthetic.main.choose_player_fragment.*
+import kotlinx.android.synthetic.main.fragment_choose_player.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ChoosePlayerFragment : BaseFragment() {
 
-    override val layout: Int = R.layout.choose_player_fragment
+    override val layout: Int = R.layout.fragment_choose_player
 
     private val viewModel: ChoosePlayerViewModel by viewModel()
 
     private val choosePlayerAdapter: ChoosePlayerAdapter by lazy {
         ChoosePlayerAdapter { player ->
             findNavController().navigate(
-                ChoosePlayerFragmentDirections.actionChoosePlayerFragmentToExerciseListFragment(
-                    rate = -1,
-                    exerciseType = null,
-                    player = player
+                ChoosePlayerFragmentDirections.actionChoosePlayerFragmentToChooseModeFragment(
+                    player = player,
+                    res = -1
                 )
             )
         }
@@ -74,16 +73,16 @@ class ChoosePlayerFragment : BaseFragment() {
     }
 
     private fun showNicknameExistsDialog() {
-        showSimpleDialog(getString(R.string.error), getString(R.string.nickname_exists))
+        showSimpleDialog(getString(R.string.error), getString(R.string.choose_player_nick_exist))
     }
 
     private fun showNicknameIsEmptyDialog() {
-        showSimpleDialog(getString(R.string.error), getString(R.string.nickname_empty))
+        showSimpleDialog(getString(R.string.error), getString(R.string.nick_empty))
     }
 
     private fun showAddPlayerDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(context!!)
-        builder.setTitle(getString(R.string.input_nickname))
+        builder.setTitle(getString(R.string.choose_player_input))
         val input = EditText(context!!)
         builder.setView(input)
         builder.setPositiveButton(

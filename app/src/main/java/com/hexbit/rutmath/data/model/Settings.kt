@@ -10,6 +10,8 @@ data class Settings(
     var id: Int = 0,
     @ColumnInfo(name = "maxNumberInBattleMode")
     var maxNumberInBattleMode: Int,
+    @ColumnInfo(name = "language")
+    var language: String,
     @ColumnInfo(name = "lastNickname1")
     var lastNickname1: String,
     @ColumnInfo(name = "lastNickname2")

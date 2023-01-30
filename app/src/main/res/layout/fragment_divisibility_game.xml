@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    tools:context=".ui.fragment.game.normal.NormalGameFragment">
+
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/bg_image" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/ProgressBarCustom"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:progress="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/equationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/accent"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:shadowColor="@color/accent_text_dark"
+        android:shadowRadius="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintVertical_bias="0.45999998" />
+    <TextView
+        android:id="@+id/equationNumbers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/accent"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:shadowColor="@color/accent_text_dark"
+        android:shadowRadius="1"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/controlLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/equationText"
+        app:layout_constraintVertical_bias="0.45999998" />
+
+    <LinearLayout
+        android:id="@+id/controlLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="80dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/yesButton"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="2dp"
+            android:layout_height="165dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="38sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/green"
+            android:shadowRadius="8"
+            android:background="@drawable/bg_in_button_yes"
+            android:text="@string/yes" />
+
+        <Button
+            android:id="@+id/noButton"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="7dp"
+            android:layout_height="165dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="38sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/red"
+            android:shadowRadius="8"
+            android:background="@drawable/bg_in_button_no"
+            android:text="@string/no" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
