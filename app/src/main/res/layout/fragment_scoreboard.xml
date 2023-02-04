@@ -3,7 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient">
+    android:background="@drawable/bg_gradient">
+
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/bg_image" />
 
     <TextView
         android:id="@+id/emptyListInstruction"
@@ -13,9 +20,9 @@
         android:layout_marginEnd="16dp"
         android:gravity="center"
         android:maxEms="14"
-        android:text="@string/play_in_battle_mode_for_scores"
+        android:text="@string/fragment_scoreboard_empty"
         android:textAllCaps="true"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/accent"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

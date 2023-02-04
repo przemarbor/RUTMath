@@ -4,8 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient"
+    android:background="@drawable/bg_gradient"
     tools:context=".ui.fragment.MenuFragment">
+
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/bg_image" />
 
     <ImageButton
         android:id="@+id/settingsButton"
@@ -14,7 +21,7 @@
         android:layout_height="62dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/circle_with_ripple"
+        android:background="@drawable/bg_in_tile_menu"
         android:src="@drawable/ic_settings_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,11 +31,11 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
-        android:id="@+id/normalModeButton"
+        android:id="@+id/modesButton"
         style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/circle_with_ripple"
+        android:background="@drawable/bg_in_tile_menu"
         android:src="@drawable/ic_dumbbell_solid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,31 +44,31 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/battleModeButton"
+        android:id="@+id/pvpButton"
         style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/circle_with_ripple"
+        android:background="@drawable/bg_in_tile_menu"
         android:src="@drawable/ic_gamepad_solid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/normalModeButton"
+        app:layout_constraintTop_toBottomOf="@+id/modesButton"
         app:layout_constraintVertical_bias="0.100000024" />
 
     <ImageButton
-        android:id="@+id/scoreboardButton"
+        android:id="@+id/leaderboardButton"
         style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/circle_with_ripple"
+        android:background="@drawable/bg_in_tile_menu"
         android:src="@drawable/ic_trophy_solid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/battleModeButton"
+        app:layout_constraintTop_toBottomOf="@+id/pvpButton"
         app:layout_constraintVertical_bias="0.19999999" />
 
     <ImageView
@@ -80,7 +87,7 @@
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textAllCaps="false"
-        android:textColor="#FFF69A3D"
+        android:textColor="@color/accent_text"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,10 +95,9 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/university_name"
+        android:text="@string/fragment_menu_university"
         android:textAllCaps="false"
         android:textColor="#F69A3D"
         android:textSize="16sp"

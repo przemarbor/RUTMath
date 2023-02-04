@@ -2,6 +2,7 @@ package com.hexbit.rutmath.ui.fragment.game.battle
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
@@ -51,7 +52,9 @@ class BattleGameFragment : BaseFragment() {
                         when (it.operation) {
                             Operation.PLUS -> "+"
                             Operation.MINUS -> "-"
-                            Operation.PLUS_MINUS -> throw Exception("Invalid operation!")
+                            Operation.MULTIPLY -> "×"
+                            Operation.DIVIDE -> "÷"
+                            else -> throw Exception("Invalid operation!")
                         }
                     )
                     .plus(" ")
@@ -77,7 +80,7 @@ class BattleGameFragment : BaseFragment() {
                         onGameEnded()
                         return
                     }
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         viewModel.loadNextEquation()
                     }, 500)
                     return
@@ -96,7 +99,7 @@ class BattleGameFragment : BaseFragment() {
                         onGameEnded()
                         return
                     }
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         viewModel.loadNextEquation()
                     }, 500)
                     return
@@ -113,10 +116,10 @@ class BattleGameFragment : BaseFragment() {
 
     private fun onGameEnded() {
         val alert: AlertDialog.Builder = AlertDialog.Builder(context!!)
-        alert.setTitle(getString(R.string.game_ended))
+        alert.setTitle(getString(R.string.battle_game_ended))
         alert.setMessage(
             getString(
-                R.string.score,
+                R.string.duel_score,
                 args.player1nick,
                 player1Panel.getResult(),
                 args.player2nick,
@@ -143,7 +146,7 @@ class BattleGameFragment : BaseFragment() {
 
     private fun loadNextEquationIfNeeded() {
         if (!player1Panel.canAnswer && !player2Panel.canAnswer) {
-            Handler().postDelayed({
+            Handler(Looper.getMainLooper()).postDelayed({
                 viewModel.loadNextEquation()
             }, 500)
         }

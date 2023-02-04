@@ -3,25 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="3dp"
-    android:background="#16000000"
-    android:elevation="2dp"
+    android:layout_margin="6dp"
+    android:background="@drawable/bg_in_transparent"
+    android:fadingEdge="horizontal"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/nick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"
-        android:textSize="16sp"
+        android:textColor="@color/accent_text_dark"
+        android:textSize="20sp"
         android:textStyle="bold"
         tools:text="TextView" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/nick"
-        android:background="@color/gray"
-        android:paddingTop="10dp" />
 </RelativeLayout>

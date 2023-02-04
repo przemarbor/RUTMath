@@ -3,6 +3,7 @@ package com.hexbit.rutmath.ui.view
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.Button
@@ -91,15 +92,15 @@ class PlayerBattlePanel @JvmOverloads constructor(
         answersButtons.forEachIndexed { index, button ->
             button.text = answers[index].toString()
             lastSelectedButton?.background =
-                ColorDrawable(ContextCompat.getColor(context, R.color.colorAccent))
+                ColorDrawable(ContextCompat.getColor(context, R.color.accent))
         }
         canAnswer = true
     }
 
     private fun showBonus(bonusValue: Int) {
-        bonus.text = context.getString(R.string.bonus, bonusValue)
+        bonus.text = context.getString(R.string.battle_view_bonus, bonusValue)
         bonus.visible()
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             bonus.invisible()
         }, BONUS_VISIBILITY_TIME_MS)
     }

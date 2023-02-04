@@ -16,12 +16,12 @@ class MenuFragment : BaseFragment() {
     }
 
     private fun initButtons() {
-        normalModeButton.setOnClickListener {
+        modesButton.setOnClickListener {
             findNavController().navigate(
                 MenuFragmentDirections.actionMenuFragmentToChoosePlayerFragment()
             )
         }
-        battleModeButton.setOnClickListener {
+        pvpButton.setOnClickListener {
             findNavController().navigate(
                 MenuFragmentDirections.actionMenuFragmentToPlayersNamesFragment()
             )
@@ -31,7 +31,7 @@ class MenuFragment : BaseFragment() {
                 MenuFragmentDirections.actionMenuFragmentToSettingsFragment()
             )
         }
-        scoreboardButton.setOnClickListener {
+        leaderboardButton.setOnClickListener {
             findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToScoreboardFragment())
         }
     }

@@ -7,14 +7,14 @@
     android:background="#16000000"
     android:elevation="2dp"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/nick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"
-        android:textSize="16sp"
+        android:textColor="@color/accent_text_dark"
+        android:textSize="17sp"
         android:textStyle="bold"
         tools:text="TextView" />
 
@@ -25,7 +25,7 @@
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@id/nick"
         android:gravity="end"
-        android:textColor="@color/colorAccent"
-        android:textSize="16sp"
+        android:textColor="@color/accent_text_dark"
+        android:textSize="17sp"
         tools:text="TextView" />
 </RelativeLayout>
