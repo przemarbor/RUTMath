@@ -23,12 +23,20 @@ android {
         versionCode 1
         versionName "0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.release
     }
     buildTypes {
+        //
+        // signingConfig:
+        // null - unsigned build // signingConfigs.release - signed release build
+        //
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            debuggable true
+            signingConfig signingConfigs.release
         }
     }
 
@@ -40,10 +48,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    lintOptions {
-        abortOnError false
-    }
-
 }
 
 dependencies {
