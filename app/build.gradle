@@ -8,19 +8,35 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 32
     buildToolsVersion "29.0.2"
+    signingConfigs {
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
     defaultConfig {
         applicationId "com.hexbit.rutmath"
         minSdkVersion 22
         targetSdkVersion 32
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.debug
     }
     buildTypes {
+        //
+        // signingConfig:
+        // null - unsigned build // signingConfigs.release - signed release build
+        //
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            debuggable true
+            signingConfig signingConfigs.release
         }
     }
 
@@ -32,7 +48,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
 }
 
 dependencies {
