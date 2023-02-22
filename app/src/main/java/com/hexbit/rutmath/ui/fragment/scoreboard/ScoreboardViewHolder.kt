@@ -1,17 +1,16 @@
 package com.hexbit.rutmath.ui.fragment.scoreboard
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.Score
-import kotlinx.android.synthetic.main.score_row.view.*
+import com.hexbit.rutmath.databinding.ScoreRowBinding
 
 class ScoreboardViewHolder(
-    private val view: View
-) : RecyclerView.ViewHolder(view) {
+    private val binding: ScoreRowBinding
+) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(position: Int, score: Score) {
-        view.nick.text = view.context.getString(R.string.scoreboard_format, position, score.nick)
-        view.score.text = score.score.toString()
+    fun bind(position: Int, score: Score) = with(binding) {
+        nick.text = root.context.getString(R.string.scoreboard_format, position, score.nick)
+        binding.score.text = score.score.toString()
     }
 }

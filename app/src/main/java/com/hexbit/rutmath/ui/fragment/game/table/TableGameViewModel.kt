@@ -14,7 +14,7 @@ import kotlin.random.Random
 class TableGameViewModel : DisposableViewModel() {
 
     companion object {
-        const val EXERCISES_COUNT = 30 // number of exercises in game
+        const val EXERCISES_COUNT = 20 // number of exercises in game
         const val MAX_NUMBER = 100 // max answer number
     }
 

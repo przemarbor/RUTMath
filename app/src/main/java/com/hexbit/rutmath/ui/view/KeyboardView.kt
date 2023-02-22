@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.hexbit.rutmath.R
-import kotlinx.android.synthetic.main.keyboard.view.*
+import com.hexbit.rutmath.databinding.KeyboardBinding
 
 class KeyboardView @JvmOverloads constructor(
     context: Context,
@@ -24,13 +24,17 @@ class KeyboardView @JvmOverloads constructor(
 
     private var inputListener: InputListener? = null
 
+    private var _binding: KeyboardBinding? = null
+    private val binding get() = _binding!!
+
     init {
+        _binding = KeyboardBinding.inflate(LayoutInflater.from(context), this, true)
         LayoutInflater.from(context)
             .inflate(R.layout.keyboard, this, true)
         initListeners()
     }
 
-    private fun initListeners() {
+    private fun initListeners() = with(binding){
         button0.setOnClickListener { inputListener?.onNumberClicked(0) }
         button1.setOnClickListener { inputListener?.onNumberClicked(1) }
         button2.setOnClickListener { inputListener?.onNumberClicked(2) }

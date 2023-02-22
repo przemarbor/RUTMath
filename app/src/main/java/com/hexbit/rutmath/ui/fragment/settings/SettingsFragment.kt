@@ -2,35 +2,43 @@ package com.hexbit.rutmath.ui.fragment.settings
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.AppDatabase
+import com.hexbit.rutmath.databinding.FragmentSettingsBinding
 import com.hexbit.rutmath.util.base.BaseFragment
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_settings.*
-import kotlinx.android.synthetic.main.fragment_settings.view.*
 import org.koin.android.ext.android.inject
 import java.util.*
 
-
-class SettingsFragment : BaseFragment() {
-
+class SettingsFragment() : BaseFragment() {
+    override val layout: Int = R.layout.fragment_menu
     companion object {
         private const val MAX_NUMBER = 200
         private const val MIN_NUMBER = 5
     }
-
-    override val layout: Int = R.layout.fragment_settings
-
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding get() = _binding!!
     private val database: AppDatabase by inject()
     private val disposables = CompositeDisposable()
     private var checkedLanguage = ""
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding){
         super.onViewCreated(view, savedInstanceState)
 
         disposables.add(
@@ -44,12 +52,12 @@ class SettingsFragment : BaseFragment() {
                 }
         )
 
-        rg_language.setOnCheckedChangeListener{ buttonView, isChecked ->
+        rgLanguage.setOnCheckedChangeListener{ _ , isChecked ->
             when(isChecked){
-                buttonView.rb_English.id -> {
+                rbEnglish.id -> {
                     setPreviewText("en")
                 }
-                buttonView.rb_Polish.id -> {
+                rbPolish.id -> {
                     setPreviewText("pl")
                 }
                 else -> error("error while checking")
@@ -92,6 +100,7 @@ class SettingsFragment : BaseFragment() {
     override fun onDestroy() {
         disposables.clear()
         super.onDestroy()
+        _binding = null
     }
 
     fun setLocale(language:String){
@@ -102,24 +111,24 @@ class SettingsFragment : BaseFragment() {
         resources.updateConfiguration(conf,dm)
     }
 
-    private fun setPreviewText(language:String){
+    private fun setPreviewText(language:String) = with(binding){
         checkedLanguage = language
 
         var conf = resources.configuration
         conf = Configuration(conf)
         conf.setLocale(Locale(language))
-        val localizedContext = context!!.createConfigurationContext(conf)
+        val localizedContext = requireContext().createConfigurationContext(conf)
         val resources = localizedContext.resources
         selectLanguageTitle.text = resources.getString(R.string.fragment_settings_select_language)
         maxBattleModeNumberTitle.text = resources.getString(R.string.fragment_settings_max_number)
         save.text = resources.getString(R.string.save)
     }
 
-    private fun changeLanguageChecked(language:String){
+    private fun changeLanguageChecked(language:String) = with(binding){
         when(language){
-            "en" -> rb_English.isChecked = true
-            "pl" -> rb_Polish.isChecked = true
-            else -> rb_English.isChecked = true
+            "en" -> rbEnglish.isChecked = true
+            "pl" -> rbPolish.isChecked = true
+            else -> rbEnglish.isChecked = true
         }
     }
 }

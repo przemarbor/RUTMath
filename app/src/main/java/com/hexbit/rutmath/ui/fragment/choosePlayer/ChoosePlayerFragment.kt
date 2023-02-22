@@ -2,23 +2,26 @@ package com.hexbit.rutmath.ui.fragment.choosePlayer
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hexbit.rutmath.R
+import com.hexbit.rutmath.databinding.FragmentChoosePlayerBinding
 import com.hexbit.rutmath.util.base.BaseFragment
 import com.hexbit.rutmath.util.gone
 import com.hexbit.rutmath.util.visible
-import kotlinx.android.synthetic.main.fragment_choose_player.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ChoosePlayerFragment : BaseFragment() {
 
     override val layout: Int = R.layout.fragment_choose_player
-
+    private var _binding: FragmentChoosePlayerBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: ChoosePlayerViewModel by viewModel()
 
     private val choosePlayerAdapter: ChoosePlayerAdapter by lazy {
@@ -32,13 +35,22 @@ class ChoosePlayerFragment : BaseFragment() {
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentChoosePlayerBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewModel()
         initView()
     }
 
-    private fun initView() {
+    private fun initView() = with(binding) {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = choosePlayerAdapter
@@ -48,8 +60,8 @@ class ChoosePlayerFragment : BaseFragment() {
         }
     }
 
-    private fun initViewModel() {
-        viewModel.getRefreshPlayersListEvent().observe(this, Observer {
+    private fun initViewModel() = with(binding) {
+        viewModel.getRefreshPlayersListEvent().observeForever(Observer {
             viewModel.getPlayersList().let { playersList ->
                 if (playersList.isEmpty()) {
                     emptyListInfo.visible()
@@ -60,7 +72,7 @@ class ChoosePlayerFragment : BaseFragment() {
             }
 
         })
-        viewModel.playerCreationEvent().observe(this, Observer { creationEvent ->
+        viewModel.playerCreationEvent().observeForever(Observer { creationEvent ->
             creationEvent?.let {
                 when (it) {
                     ChoosePlayerViewModel.PlayerCreationEvent.SUCCESS -> viewModel.loadPlayersList()
@@ -81,9 +93,9 @@ class ChoosePlayerFragment : BaseFragment() {
     }
 
     private fun showAddPlayerDialog() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context!!)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         builder.setTitle(getString(R.string.choose_player_input))
-        val input = EditText(context!!)
+        val input = EditText(requireContext())
         builder.setView(input)
         builder.setPositiveButton(
             getString(R.string.ok)
@@ -97,5 +109,10 @@ class ChoosePlayerFragment : BaseFragment() {
             dialog.dismiss()
         }
         builder.show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
