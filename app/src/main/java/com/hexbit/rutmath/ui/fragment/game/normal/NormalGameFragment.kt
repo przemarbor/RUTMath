@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -13,11 +15,11 @@ import androidx.navigation.fragment.navArgs
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.Equation
 import com.hexbit.rutmath.data.model.Operation
+import com.hexbit.rutmath.databinding.FragmentNormalGameBinding
 import com.hexbit.rutmath.ui.view.KeyboardView
 import com.hexbit.rutmath.util.base.BaseFragment
 import com.hexbit.rutmath.util.gone
 import com.hexbit.rutmath.util.visible
-import kotlinx.android.synthetic.main.fragment_normal_game.*
 import org.koin.android.ext.android.inject
 import java.lang.Exception
 
@@ -29,7 +31,10 @@ class NormalGameFragment : BaseFragment() {
 
     override val layout: Int = R.layout.fragment_normal_game
 
+    private var _binding: FragmentNormalGameBinding? = null
+    private val binding get() = _binding!!
     private val args: NormalGameFragmentArgs by navArgs()
+
 
     private val viewModel: NormalGameViewModel by inject()
 
@@ -40,17 +45,17 @@ class NormalGameFragment : BaseFragment() {
                 Operation.PLUS, Operation.MINUS, Operation.PLUS_MINUS ->
                     findNavController().navigate(
                         NormalGameFragmentDirections.actionNormalGameFragmentToAddSubListFragment(
-                            0,
-                            null,
-                            args.player
+                            rate=0,
+                            exerciseType = null,
+                            player=args.player
                         )
                     )
                 Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE ->
                     findNavController().navigate(
                         NormalGameFragmentDirections.actionNormalGameFragmentToMulDivListFragment(
-                            0,
-                            null,
-                            args.player
+                            rate=0,
+                            exerciseType = null,
+                            player=args.player
                         )
                     )
                 else -> throw Exception("Navigating to invalid operation!")
@@ -58,15 +63,23 @@ class NormalGameFragment : BaseFragment() {
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentNormalGameBinding.inflate(inflater, container, false)
+        return binding.root
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initKeyboardListener()
-        progressBar.max = NormalGameViewModel.EXERCISES_COUNT
-        progressBar.progress = 0
+        binding.progressBar.max = NormalGameViewModel.EXERCISES_COUNT
+        binding.progressBar.progress = 0
         initViewModel()
     }
 
-    private fun initViewModel() {
+    private fun initViewModel() = with(binding){
         viewModel.getActiveEquation().observe(viewLifecycleOwner, Observer {
             resetColors()
             equation.text = it.let {
@@ -99,17 +112,17 @@ class NormalGameFragment : BaseFragment() {
                 Operation.PLUS, Operation.MINUS, Operation.PLUS_MINUS ->
                     findNavController().navigate(
                         NormalGameFragmentDirections.actionNormalGameFragmentToAddSubListFragment(
-                            rate,
-                            args.exerciseType,
-                            args.player
+                            rate=rate,
+                            exerciseType=args.exerciseType,
+                            player=args.player
                         )
                     )
                 Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE ->
                     findNavController().navigate(
                         NormalGameFragmentDirections.actionNormalGameFragmentToMulDivListFragment(
-                            rate,
-                            args.exerciseType,
-                            args.player
+                            rate=rate,
+                            exerciseType=args.exerciseType,
+                            player=args.player
                         )
                     )
                 else -> throw Exception("Navigating to invalid operation!")
@@ -137,7 +150,7 @@ class NormalGameFragment : BaseFragment() {
         viewModel.init(args)
     }
 
-    private fun initKeyboardListener() {
+    private fun initKeyboardListener() = with(binding) {
         keyboardView.setListener(object : KeyboardView.InputListener {
             @SuppressLint("SetTextI18n")
             override fun onNumberClicked(value: Int) {
@@ -174,22 +187,22 @@ class NormalGameFragment : BaseFragment() {
     }
 
 
-    private fun updateUiOnErrorAnswer() {
-        input.setTextColor(ContextCompat.getColor(context!!, R.color.red))
-        equation.setTextColor(ContextCompat.getColor(context!!, R.color.red))
+    private fun updateUiOnErrorAnswer() = with(binding){
+        input.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+        equation.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
     }
 
-    private fun updateUiOnCorrectAnswer() {
-        input.setTextColor(ContextCompat.getColor(context!!, R.color.green))
-        equation.setTextColor(ContextCompat.getColor(context!!, R.color.green))
+    private fun updateUiOnCorrectAnswer() = with(binding) {
+        input.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        equation.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
     }
 
-    private fun resetColors() {
-        input.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
-        equation.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
+    private fun resetColors() = with(binding) {
+        input.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent))
+        equation.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent))
     }
 
-    private fun drawGraphicRepresentation(activeEquation: Equation) {
+    private fun drawGraphicRepresentation(activeEquation: Equation) = with(binding) {
         val shapes =
             arrayOf(shape1, shape2, shape3, shape4, shape5, shape6, shape7, shape8, shape9, shape10)
         when (activeEquation.operation) {
@@ -225,5 +238,9 @@ class NormalGameFragment : BaseFragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
 }

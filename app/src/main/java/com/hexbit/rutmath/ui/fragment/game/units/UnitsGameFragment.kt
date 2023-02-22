@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -12,10 +14,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.Operation
+import com.hexbit.rutmath.databinding.FragmentUnitsGameBinding
 import com.hexbit.rutmath.ui.view.KeyboardView
 import com.hexbit.rutmath.ui.view.UnitsHelpDialog
 import com.hexbit.rutmath.util.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_units_game.*
 import org.koin.android.ext.android.inject
 import java.lang.Exception
 
@@ -26,7 +28,8 @@ class UnitsGameFragment : BaseFragment() {
     }
 
     override val layout: Int = R.layout.fragment_units_game
-
+    private var _binding: FragmentUnitsGameBinding? = null
+    private val binding get() = _binding!!
     private val args: UnitsGameFragmentArgs by navArgs()
 
     private val viewModel: UnitsGameViewModel by inject()
@@ -36,24 +39,32 @@ class UnitsGameFragment : BaseFragment() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             findNavController().navigate(
                 UnitsGameFragmentDirections.actionUnitsGameFragmentToUnitsListFragment(
-                    0,
-                    null,
-                    args.player
+                    rate=0,
+                    exerciseType=null,
+                    player=args.player
                 )
             )
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentUnitsGameBinding.inflate(inflater, container, false)
+        return binding.root
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initKeyboardListener()
         initHelpListener()
-        progressBar.max = UnitsGameViewModel.EXERCISES_COUNT
-        progressBar.progress = 0
+        binding.progressBar.max = UnitsGameViewModel.EXERCISES_COUNT
+        binding.progressBar.progress = 0
         initViewModel()
     }
 
-    private fun initViewModel() {
+    private fun initViewModel() = with(binding){
         //Load units names from Strings to UnitsGameViewModel
         val timeUnits = getString(R.string.time_units).split(",").toList()
         if (timeUnits.size >= UnitsGameViewModel.UNITS_TIME.size)
@@ -62,7 +73,7 @@ class UnitsGameFragment : BaseFragment() {
 
         viewModel.getActiveEquation().observe(viewLifecycleOwner, Observer {
             resetColors()
-            equation_p1.text = it.componentA.toString()
+            equationP1.text = it.componentA.toString()
                 .plus(" ")
                 .plus(when (it.operation) {
                     Operation.UNITS_TIME -> UnitsGameViewModel.UNITS_TIME[it.componentAUnitId]
@@ -72,7 +83,7 @@ class UnitsGameFragment : BaseFragment() {
                     else -> throw Exception("Invalid operation!")
                 })
                 .plus(" = ")
-            equation_p2.text = when (it.operation) {
+            equationP2.text = when (it.operation) {
                 Operation.UNITS_TIME -> UnitsGameViewModel.UNITS_TIME[it.answerUnitId]
                 Operation.UNITS_LENGTH -> UnitsGameViewModel.UNITS_LENGTH[it.answerUnitId]
                 Operation.UNITS_WEIGHT -> UnitsGameViewModel.UNITS_WEIGHT[it.answerUnitId]
@@ -85,9 +96,9 @@ class UnitsGameFragment : BaseFragment() {
         viewModel.getEndGameEvent().observe(viewLifecycleOwner, Observer { rate ->
             findNavController().navigate(
                 UnitsGameFragmentDirections.actionUnitsGameFragmentToUnitsListFragment(
-                    rate,
-                    args.exerciseType,
-                    args.player
+                    rate=rate,
+                    exerciseType = args.exerciseType,
+                    player=args.player
                 )
             )
         })
@@ -112,7 +123,7 @@ class UnitsGameFragment : BaseFragment() {
         viewModel.init(args)
     }
 
-    private fun initKeyboardListener() {
+    private fun initKeyboardListener() = with(binding){
         keyboardView.setListener(object : KeyboardView.InputListener {
             @SuppressLint("SetTextI18n")
             override fun onNumberClicked(value: Int) {
@@ -148,33 +159,37 @@ class UnitsGameFragment : BaseFragment() {
         })
     }
 
-    private fun initHelpListener(){
+    private fun initHelpListener() = with(binding){
         helpButton.setOnClickListener{
             viewModel.getActiveEquation().value?.operation?.let { it1 ->
                 UnitsHelpDialog(
-                    context!!,
+                    requireContext(),
                     viewModel.createHelpText(it1)
                 ).show()
             }
         }
     }
-    private fun updateUiOnErrorAnswer() {
-        input.setTextColor(ContextCompat.getColor(context!!, R.color.red))
-        equation_p1.setTextColor(ContextCompat.getColor(context!!, R.color.red))
-        equation_p2.setTextColor(ContextCompat.getColor(context!!, R.color.red))
+    private fun updateUiOnErrorAnswer() = with(binding){
+        input.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+        equationP1.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+        equationP2.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
     }
 
-    private fun updateUiOnCorrectAnswer() {
-        input.setTextColor(ContextCompat.getColor(context!!, R.color.green))
-        equation_p1.setTextColor(ContextCompat.getColor(context!!, R.color.green))
-        equation_p2.setTextColor(ContextCompat.getColor(context!!, R.color.green))
+    private fun updateUiOnCorrectAnswer() = with(binding){
+        input.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        equationP1.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        equationP2.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
     }
 
-    private fun resetColors() {
-        input.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
-        equation_p1.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
-        equation_p2.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
+    private fun resetColors() = with(binding){
+        input.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent))
+        equationP1.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent))
+        equationP2.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent))
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
 }

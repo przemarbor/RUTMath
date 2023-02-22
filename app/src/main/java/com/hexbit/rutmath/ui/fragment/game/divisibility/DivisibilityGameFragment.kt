@@ -4,15 +4,17 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.hexbit.rutmath.R
+import com.hexbit.rutmath.databinding.FragmentDivisibilityGameBinding
 import com.hexbit.rutmath.util.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_divisibility_game.*
 import org.koin.android.ext.android.inject
 import java.lang.Exception
 
@@ -20,6 +22,8 @@ import java.lang.Exception
 class DivisibilityGameFragment : BaseFragment() {
 
     override val layout: Int = R.layout.fragment_divisibility_game
+    private var _binding: FragmentDivisibilityGameBinding? = null
+    private val binding get() = _binding!!
     private val args: DivisibilityGameFragmentArgs by navArgs()
     private val viewModel: DivisibilityGameViewModel by inject()
     private var question = listOf<String>()
@@ -37,23 +41,31 @@ class DivisibilityGameFragment : BaseFragment() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             findNavController().navigate(
                 DivisibilityGameFragmentDirections.actionDivisibilityGameFragmentToDivisibilityListFragment(
-                    0,
-                    null,
-                    args.player
+                    rate=0,
+                    exerciseType = null,
+                    player=args.player
                 )
             )
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentDivisibilityGameBinding.inflate(inflater, container, false)
+        return binding.root
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAnswerButtons()
-        progressBar.max = DivisibilityGameViewModel.EXERCISES_COUNT
-        progressBar.progress = 0
+        binding.progressBar.max = DivisibilityGameViewModel.EXERCISES_COUNT
+        binding.progressBar.progress = 0
         initViewModel()
     }
 
-    private fun initViewModel() {
+    private fun initViewModel() = with(binding){
         viewModel.getActiveEquation().observe(viewLifecycleOwner, Observer {
             resetColors()
             equationText.text = it.let {
@@ -76,9 +88,9 @@ class DivisibilityGameFragment : BaseFragment() {
         viewModel.getEndGameEvent().observe(viewLifecycleOwner, Observer { rate ->
             findNavController().navigate(
                 DivisibilityGameFragmentDirections.actionDivisibilityGameFragmentToDivisibilityListFragment(
-                    rate,
-                    args.exerciseType,
-                    args.player
+                    rate=rate,
+                    exerciseType=args.exerciseType,
+                    player=args.player
                 )
             )
         })
@@ -108,7 +120,7 @@ class DivisibilityGameFragment : BaseFragment() {
         viewModel.init(args)
     }
 
-    private fun initAnswerButtons() {
+    private fun initAnswerButtons() = with(binding){
         yesButton.setOnClickListener {
             try {
                 val userAnswer = 1
@@ -124,19 +136,23 @@ class DivisibilityGameFragment : BaseFragment() {
     }
 
 
-    private fun updateUiOnErrorAnswer() {
-        equationText.setTextColor(ContextCompat.getColor(context!!, R.color.red))
-        equationNumbers.setTextColor(ContextCompat.getColor(context!!, R.color.red))
+    private fun updateUiOnErrorAnswer() = with(binding){
+        equationText.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+        equationNumbers.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
     }
 
-    private fun updateUiOnCorrectAnswer() {
-        equationText.setTextColor(ContextCompat.getColor(context!!, R.color.green))
-        equationNumbers.setTextColor(ContextCompat.getColor(context!!, R.color.green))
+    private fun updateUiOnCorrectAnswer() = with(binding){
+        equationText.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        equationNumbers.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
     }
 
-    private fun resetColors() {
-        equationText.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
-        equationNumbers.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
+    private fun resetColors() = with(binding){
+        equationText.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent))
+        equationNumbers.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent))
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

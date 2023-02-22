@@ -1,26 +1,36 @@
 package com.hexbit.rutmath.ui.fragment.game.battle
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.AppDatabase
+import com.hexbit.rutmath.databinding.FragmentPlayersNamesBinding
 import com.hexbit.rutmath.util.base.BaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_players_names.*
 import org.koin.android.ext.android.inject
 
 class PlayersNamesFragment : BaseFragment() {
 
     override val layout = R.layout.fragment_players_names
-
+    private var _binding: FragmentPlayersNamesBinding? = null
+    private val binding get() = _binding!!
     private val database: AppDatabase by inject()
 
     private val disposables = CompositeDisposable()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentPlayersNamesBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding){
         super.onViewCreated(view, savedInstanceState)
         disposables.add(
             database.settingsDao().getAll()
@@ -77,5 +87,6 @@ class PlayersNamesFragment : BaseFragment() {
     override fun onDestroy() {
         disposables.clear()
         super.onDestroy()
+        _binding = null
     }
 }

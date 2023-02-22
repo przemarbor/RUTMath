@@ -1,7 +1,9 @@
 package com.hexbit.rutmath.ui.fragment.unitsList
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -9,10 +11,10 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.ExerciseType
+import com.hexbit.rutmath.databinding.FragmentExerciseListBinding
 import com.hexbit.rutmath.ui.view.GridSpacingItemDecoration
 import com.hexbit.rutmath.ui.view.NormalRateDialog
 import com.hexbit.rutmath.util.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_exercise_list.*
 import org.koin.android.ext.android.inject
 
 class UnitsListFragment : BaseFragment() {
@@ -24,9 +26,18 @@ class UnitsListFragment : BaseFragment() {
     }
 
     private val args: UnitsListFragmentArgs by navArgs()
-
+    private var _binding: FragmentExerciseListBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: UnitsListViewModel by inject()
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentExerciseListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -46,10 +57,10 @@ class UnitsListFragment : BaseFragment() {
                 viewModel.updateExerciseType(it.copy(rate = args.rate), args.player.nick)
                 if (args.rate >= 3)
                     viewModel.unlockExerciseType(args.player.nick, args.exerciseType!!.operation, args.exerciseType!!.difficulty)
-                NormalRateDialog(context!!, args.rate).show()
+                NormalRateDialog(requireContext(), args.rate).show()
             }
         }
-        player_name.text = args.player.nick
+        binding.playerName.text = args.player.nick
     }
 
     private fun initViewModel() {
@@ -59,7 +70,7 @@ class UnitsListFragment : BaseFragment() {
         viewModel.loadExercises(args.player.nick)
     }
 
-    private fun initRecyclerView(list: List<ExerciseType>) {
+    private fun initRecyclerView(list: List<ExerciseType>) = with(binding) {
         recyclerView.apply {
             layoutManager = GridLayoutManager(context, COLUMNS_COUNT)
             if (itemDecorationCount == 0)
@@ -85,5 +96,10 @@ class UnitsListFragment : BaseFragment() {
                 args.player
             )
         findNavController().navigate(direction)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

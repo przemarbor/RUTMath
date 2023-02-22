@@ -3,10 +3,10 @@ package com.hexbit.rutmath.ui.view
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Window
-import com.hexbit.rutmath.R
+import com.hexbit.rutmath.databinding.NormalRateDialogBinding
 import com.hexbit.rutmath.util.visible
-import kotlinx.android.synthetic.main.normal_rate_dialog.*
 
 /**
  * Dialog with stars after finishing NormalGame
@@ -20,14 +20,15 @@ class NormalRateDialog(context: Context, private val rate: Int) : Dialog(context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val binding = NormalRateDialogBinding.inflate(LayoutInflater.from(context))
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.normal_rate_dialog)
+        setContentView(binding.root)
 
-        val stars = arrayOf(star1, star2, star3, star4, star5)
+        val stars = arrayOf(binding.star1, binding.star2, binding.star3, binding.star4, binding.star5)
         for (index in 0 until rate) {
             stars[index].visible()
         }
-        okButton.setOnClickListener {
+        binding.okButton.setOnClickListener {
             dismiss()
         }
     }

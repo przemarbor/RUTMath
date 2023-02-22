@@ -27,7 +27,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     protected fun showSimpleDialog(title: String? = null, message: String? = null) {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context!!)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         title?.let {
             builder.setTitle(it)
         }

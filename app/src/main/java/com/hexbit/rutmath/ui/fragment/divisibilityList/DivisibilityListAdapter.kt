@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.ExerciseType
+import com.hexbit.rutmath.databinding.DivisibilityExerciseItemBinding
 
 /**
  * Adapter that contains divisibility exercise list.
@@ -18,8 +18,8 @@ class DivisibilityListAdapter(
 
     @SuppressLint("InflateParams")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DivisibilityViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.divisibility_exercise_item, null, false)
-        return DivisibilityViewHolder(view, clickCallback)
+        val binding = DivisibilityExerciseItemBinding.inflate(LayoutInflater.from(parent.context))
+        return DivisibilityViewHolder(binding, clickCallback)
     }
 
     override fun getItemCount(): Int = exercises.size
