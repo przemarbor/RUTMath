@@ -70,9 +70,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="8dp"
-            android:text="English   "
+            android:text="English "
             android:textSize="20sp"
-            android:layout_marginHorizontal="20dp"/>
+            android:layout_marginHorizontal="10dp"/>
 
         <RadioButton
             android:id="@+id/rb_Polish"
@@ -80,9 +80,19 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="8dp"
-            android:text="Polski   "
+            android:text="Polski "
             android:textSize="20sp"
-            android:layout_marginHorizontal="20dp"/>
+            android:layout_marginHorizontal="10dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_French"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="French "
+            android:textSize="20sp"
+            android:layout_marginHorizontal="10dp"/>
     </RadioGroup>
 
     <Button

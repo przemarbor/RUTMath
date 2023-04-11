@@ -60,6 +60,9 @@ class SettingsFragment() : BaseFragment() {
                 rbPolish.id -> {
                     setPreviewText("pl")
                 }
+                rbFrench.id -> {
+                    setPreviewText("fr")
+                }
                 else -> error("error while checking")
             }
         }
@@ -128,6 +131,7 @@ class SettingsFragment() : BaseFragment() {
         when(language){
             "en" -> rbEnglish.isChecked = true
             "pl" -> rbPolish.isChecked = true
+            "fr" -> rbFrench.isChecked = true
             else -> rbEnglish.isChecked = true
         }
     }

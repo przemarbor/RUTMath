@@ -14,6 +14,7 @@ To use this app you will need only mobile device using Android Version >= 5.1
 This app is available in the following languages:
 - English
 - Polish
+- French
 
 # License
 This software is licensed under the terms of the GNU General Public License version 3 (GPLv3).</br>
