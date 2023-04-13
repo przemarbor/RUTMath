@@ -56,9 +56,9 @@
 
     <RadioGroup
         android:id="@+id/rg_language"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,33 +66,31 @@
 
         <RadioButton
             android:id="@+id/rb_English"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:padding="8dp"
+            android:padding="10dp"
             android:text="English "
             android:textSize="20sp"
             android:layout_marginHorizontal="10dp"/>
 
         <RadioButton
-            android:id="@+id/rb_Polish"
-            android:layout_width="0dp"
+            android:id="@+id/rb_French"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:text="Polski "
+            android:padding="10dp"
+            android:text="Français "
             android:textSize="20sp"
             android:layout_marginHorizontal="10dp"/>
 
         <RadioButton
-            android:id="@+id/rb_French"
-            android:layout_width="0dp"
+            android:id="@+id/rb_Polish"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:text="French "
+            android:padding="10dp"
+            android:text="Polski "
             android:textSize="20sp"
             android:layout_marginHorizontal="10dp"/>
+
     </RadioGroup>
 
     <Button
