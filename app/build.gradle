@@ -11,7 +11,7 @@ android {
         applicationId "com.hexbit.rutmath"
         minSdkVersion 22
         targetSdkVersion 33
-        versionCode 2
+        versionCode 3
         versionName "0.1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.debug
