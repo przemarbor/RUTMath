@@ -15,6 +15,7 @@ This app is available in the following languages:
 - English
 - Polish
 - French
+- Portuguese
 
 # License
 This software is licensed under the terms of the GNU General Public License version 3 (GPLv3).</br>

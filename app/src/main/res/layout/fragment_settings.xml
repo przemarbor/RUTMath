@@ -91,6 +91,15 @@
             android:textSize="20sp"
             android:layout_marginHorizontal="10dp"/>
 
+        <RadioButton
+            android:id="@+id/rb_Portuguese"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:text="Portuguese "
+            android:textSize="20sp"
+            android:layout_marginHorizontal="10dp"/>
+
     </RadioGroup>
 
     <Button
