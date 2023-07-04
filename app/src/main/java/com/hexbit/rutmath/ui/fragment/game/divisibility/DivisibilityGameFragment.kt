@@ -32,7 +32,8 @@ class DivisibilityGameFragment : BaseFragment() {
         super.onAttach(context)
         question = listOf(
             resources.getString(R.string.divisibility_question_p1),
-            resources.getString(R.string.divisibility_question_p2)
+            resources.getString(R.string.divisibility_question_p2),
+            resources.getString(R.string.question_mark)
         )
     }
 
@@ -76,7 +77,7 @@ class DivisibilityGameFragment : BaseFragment() {
                     .plus(question[1])
                     .plus(" ")
                     .plus(it.componentB.toString())
-                    .plus("?")
+                    .plus(question[2])
             }
             equationNumbers.text = it.let {
                 it.componentA.toString()
