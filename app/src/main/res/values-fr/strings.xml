@@ -14,19 +14,19 @@
     <string name="scoreboard_format">%d. %s</string>
     <string name="nick_empty">Le nom ne peut pas être vide !</string>
     <string name="fragment_settings_select_language">Sélectionnez la langue</string>
-    <string name="fragment_settings_max_number">Nombre maxi pour le duel</string>
+    <string name="fragment_settings_max_number">Nombre maximal pour les duels</string>
     <string name="fragment_menu_university">Université de Technologie de Rzeszów</string>
-    <string name="battle_view_bonus">Bonus de séquence +%d</string>
+    <string name="battle_view_bonus">Bonus de séquence : +%d</string>
     <string name="fragment_modes_instruction">Choisissez un exercice dans la liste :</string>
     <string name="fragment_modes_add_sub">Additions et Soustractions</string>
     <string name="fragment_modes_mul_div">Multiplications et Divisions</string>
     <string name="fragment_modes_divisibility">Divisabilité</string>
     <string name="fragment_modes_units">Conversion d\'unités</string>
     <string name="fragment_modes_table">Tables de multiplications</string>
-    <string name="fragment_choose_player_instruction">Choose a player from the list\nor create new one with plus button</string>
-    <string name="fragment_player_names_instruction">Enter players nicknames</string>
-    <string name="fragment_player_names_nickname_1">Player1 (top) nickname:</string>
-    <string name="fragment_player_names_nickname_2">Player2 (bottom) nickname:</string>
+    <string name="fragment_choose_player_instruction">Choisissez une joueur dans la liste\nou ajoutez un joueur avec le bouton +</string>
+    <string name="fragment_player_names_instruction">Entrez le nom des joueurs</string>
+    <string name="fragment_player_names_nickname_1">Joueur1 (en haut) :</string>
+    <string name="fragment_player_names_nickname_2">Joueur2 (en bas) :</string>
     <string name="fragment_player_names_start">Démarrer</string>
     <string name="fragment_scoreboard_empty">La liste des scores est vide. Jouez en mode duel pour savoir qui est le meilleur joueur !</string>
     <string name="units_help_hint">Conseil</string>
@@ -47,5 +47,6 @@
     <string name="units_all">Tout</string>
     <string name="time_units">j,h,min,sec</string>
     <string name="units_length">Longueur</string>
+    <string name="question_mark"> ?</string>
 
 </resources>

@@ -23,7 +23,7 @@ class UnitsGameViewModel : DisposableViewModel() {
         var RATIO_LENGTH = listOf(1000,10,10,10)
         var UNITS_WEIGHT = listOf("t","kg","dag","g")
         var RATIO_WEIGHT = listOf(1000,10,10)
-        var UNITS_SURFACE = listOf("km^2","ha","a","m^2","dm^2","cm^2","mm^2")
+        var UNITS_SURFACE = listOf("km²","ha","a","m²","dm²","cm²","mm²")
         var RATIO_SURFACE = listOf(100,100,100,100,100,100)
     }
 
