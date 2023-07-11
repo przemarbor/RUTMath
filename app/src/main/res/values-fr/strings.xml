@@ -20,7 +20,7 @@
     <string name="fragment_modes_instruction">Choisissez un exercice dans la liste :</string>
     <string name="fragment_modes_add_sub">Additions et Soustractions</string>
     <string name="fragment_modes_mul_div">Multiplications et Divisions</string>
-    <string name="fragment_modes_divisibility">Divisabilité</string>
+    <string name="fragment_modes_divisibility">Divisibilité</string>
     <string name="fragment_modes_units">Conversion d\'unités</string>
     <string name="fragment_modes_table">Tables de multiplications</string>
     <string name="fragment_choose_player_instruction">Choisissez une joueur dans la liste\nou ajoutez un joueur avec le bouton +</string>

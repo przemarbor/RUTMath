@@ -1,5 +1,5 @@
 # RUTMath
-<b>R</b>zeszów <b>U</b>niversity of <b>T</b>echnology <b>M</b>ath - is an open source (GPL) application to help learning mathematics for early school children.
+<b>R</b>zeszów <b>U</b>niversity of <b>T</b>echnology <b>M</b>ath is an open source (GPL) application created in order to help preschool or early school children to learn mathematics.
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
      alt="Get it on F-Droid"
@@ -36,3 +36,15 @@ Full text of the license is available online https://opensource.org/licenses/gpl
 <td>
        <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/3zsgs5qvmo9s44c/4.png?dl=0">
 </td>
+
+# Acknowledgements
+Thank you for your contribution! (in the order of appearance) 
+
+Code development: 
+- [@krolik7](https://www.github.com/krolik7) (original developer)
+- [Arkadiusz Połeć](https://github.com/Nydeyas) (current maintainer)
+- [@przemarbor](https://github.com/przemarbor) (good spirit/éminence grise)
+
+Translations:
+- [Benoît Harrault](https://github.com/benoitharrault) (French)
+- [Ramon Rodrigues](https://github.com/ramonrwx) (Portuguese)
