@@ -21,6 +21,18 @@ This app is available in the following languages:
 This software is licensed under the terms of the GNU General Public License version 3 (GPLv3).</br>
 Full text of the license is available online https://opensource.org/licenses/gpl-3.0.html
 
+# Acknowledgements
+Thank you for your contribution! 
+
+Code development: 
+- [@krolik7](https://www.github.com/krolik7) (original developer)
+- [Arkadiusz Połeć](https://github.com/Nydeyas) (current maintainer)
+- [@przemarbor](https://github.com/przemarbor) (good spirit/éminence grise)
+
+Translations:
+- [Benoît Harrault](https://github.com/benoitharrault) (French)
+- [Ramon Rodrigues](https://github.com/ramonrwx) (Portuguese)
+
 # Screenshots
 <table>
 <tr>
@@ -37,14 +49,4 @@ Full text of the license is available online https://opensource.org/licenses/gpl
        <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/3zsgs5qvmo9s44c/4.png?dl=0">
 </td>
 
-# Acknowledgements
-Thank you for your contribution! (in the order of appearance) 
 
-Code development: 
-- [@krolik7](https://www.github.com/krolik7) (original developer)
-- [Arkadiusz Połeć](https://github.com/Nydeyas) (current maintainer)
-- [@przemarbor](https://github.com/przemarbor) (good spirit/éminence grise)
-
-Translations:
-- [Benoît Harrault](https://github.com/benoitharrault) (French)
-- [Ramon Rodrigues](https://github.com/ramonrwx) (Portuguese)
