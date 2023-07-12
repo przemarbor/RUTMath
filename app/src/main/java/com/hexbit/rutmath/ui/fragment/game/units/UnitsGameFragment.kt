@@ -127,7 +127,7 @@ class UnitsGameFragment : BaseFragment() {
         keyboardView.setListener(object : KeyboardView.InputListener {
             @SuppressLint("SetTextI18n")
             override fun onNumberClicked(value: Int) {
-                if (input.text.length > 4) {
+                if (input.text.length > 6) {
                     return
                 }
                 if (input.text.toString() == DEFAULT_INPUT_VALUE) {

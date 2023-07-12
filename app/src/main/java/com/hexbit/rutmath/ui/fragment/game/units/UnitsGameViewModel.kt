@@ -7,8 +7,8 @@ import com.hexbit.rutmath.data.model.Operation
 import com.hexbit.rutmath.util.base.DisposableViewModel
 import java.lang.Exception
 import kotlin.math.max
+import kotlin.math.abs
 import kotlin.math.min
-import kotlin.math.pow
 import kotlin.math.round
 import kotlin.random.Random
 
@@ -22,14 +22,14 @@ class UnitsGameViewModel : DisposableViewModel() {
         var UNITS_LENGTH = listOf("km","m","dm","cm","mm")
         var RATIO_LENGTH = listOf(1000,10,10,10)
         var UNITS_WEIGHT = listOf("t","kg","dag","g")
-        var RATIO_WEIGHT = listOf(1000,10,10)
+        var RATIO_WEIGHT = listOf(1000,100,10)
         var UNITS_SURFACE = listOf("km²","ha","a","m²","dm²","cm²","mm²")
         var RATIO_SURFACE = listOf(100,100,100,100,100,100)
     }
 
     /**
      * Result of user answer. It can be VALID or INVALID.
-     * It is valid only when user input correct value that is equals to activeEquaction.correctAnswer
+     * It is valid only when user input correct value that is equals to activeEquation.correctAnswer
      */
     enum class AnswerEvent {
         VALID,
@@ -67,11 +67,16 @@ class UnitsGameViewModel : DisposableViewModel() {
         val results = arrayListOf<EquationUnits>()
         while (results.size < UnitsGameViewModel.EXERCISES_COUNT) {
             var a:Int
-            var aUnitId:Int
-            var correctAnswer:Int
-            var answerUnitId:Int
+            var aId:Int
+            var answer:Int
+            var answerId:Int
+            var ratio = 1
+            var ratioId:Int
             var operation:Operation
-            val difficulty = args.exerciseType.difficulty
+            val shiftDifficulty = args.exerciseType.difficulty //(1..2)
+            val numberDifficulty:Int
+            val UNITS:List<String>
+            val RATIO:List<Int>
 
             if (args.exerciseType.operation == Operation.UNITS_ALL) {
                 val list = listOf(
@@ -88,76 +93,58 @@ class UnitsGameViewModel : DisposableViewModel() {
 
             when (operation) {
                 Operation.UNITS_TIME -> {
-                    aUnitId = Random.nextInt(UNITS_TIME.size)
-
-                    val list = ((max(0,aUnitId-1) .. (min(aUnitId+1,UNITS_TIME.size-1))) - aUnitId)
-                    val randomIndex = Random.nextInt(list.size);
-                    answerUnitId = list[randomIndex]
-
-                    val diff = answerUnitId - aUnitId
-                    var scale = 60.0
-                    if ((answerUnitId == 0) or (aUnitId == 0))
-                        scale = 24.0
-                    a = Random.nextInt(1, difficulty * 5 + 1)
-                    if (diff < 0)
-                        a *= (scale).pow(-diff).toInt()
-                    correctAnswer = (a * (scale).pow(diff)).toInt()
+                    UNITS = UNITS_TIME
+                    RATIO = RATIO_TIME
+                    numberDifficulty = 7
                 }
                 Operation.UNITS_LENGTH -> {
-                    aUnitId = Random.nextInt(UNITS_LENGTH.size)
-
-                    val list = ((max(0,aUnitId-1) .. (min(aUnitId+1,UNITS_LENGTH.size-1))) - aUnitId)
-                    val randomIndex = Random.nextInt(list.size);
-                    answerUnitId = list[randomIndex]
-
-                    val diff = answerUnitId - aUnitId
-                    var scale = 10.0
-                    if ((answerUnitId == 0) or (aUnitId == 0))
-                        scale = 1000.0
-                    a = Random.nextInt(1, difficulty * difficulty * 10 + 1)
-                    if (diff < 0)
-                        a *= (scale).pow(-diff).toInt()
-                    correctAnswer = (a * (scale).pow(diff)).toInt()
+                    UNITS = UNITS_LENGTH
+                    RATIO = RATIO_LENGTH
+                    numberDifficulty = 25 * shiftDifficulty
                 }
                 Operation.UNITS_WEIGHT -> {
-                    aUnitId = Random.nextInt(UNITS_WEIGHT.size)
-
-                    val list = ((max(0,aUnitId-1) .. (min(aUnitId+1,UNITS_WEIGHT.size-1))) - aUnitId)
-                    val randomIndex = Random.nextInt(list.size);
-                    answerUnitId = list[randomIndex]
-
-                    val diff = answerUnitId - aUnitId
-                    var scale = 10.0
-                    if ((answerUnitId == 0) or (aUnitId == 0))
-                        scale = 1000.0
-                    a = Random.nextInt(1, difficulty * difficulty * 10 + 1)
-                    if (diff < 0)
-                        a *= (scale).pow(-diff).toInt()
-                    correctAnswer = (a * (scale).pow(diff)).toInt()
+                    UNITS = UNITS_WEIGHT
+                    RATIO = RATIO_WEIGHT
+                    numberDifficulty = 20 * shiftDifficulty
                 }
                 Operation.UNITS_SURFACE -> {
-                    aUnitId = Random.nextInt(UNITS_SURFACE.size)
-
-                    val list = ((max(0,aUnitId-1) .. (min(aUnitId+1,UNITS_SURFACE.size-1))) - aUnitId)
-                    val randomIndex = Random.nextInt(list.size);
-                    answerUnitId = list[randomIndex]
-
-                    val diff = answerUnitId - aUnitId
-                    val scale = 100.0
-                    a = Random.nextInt(1, difficulty * difficulty * 10 + 1)
-                    if (diff < 0)
-                        a *= (scale).pow(-diff).toInt()
-                    correctAnswer = (a * (scale).pow(diff)).toInt()
+                    UNITS = UNITS_SURFACE
+                    RATIO = RATIO_SURFACE
+                    numberDifficulty = 15 * shiftDifficulty
                 }
                 else -> throw Exception("Operation not implemented in this View")
             }
 
+            aId = Random.nextInt(UNITS.size)
+            val choiceList = ((max(0,aId-shiftDifficulty) .. min(aId+shiftDifficulty, UNITS.size-1)) - aId)
+            answerId = choiceList[Random.nextInt(choiceList.size)]
+            val difference = answerId - aId
+
+            if (difference > 0){
+                ratioId = aId
+                for (i in 1..abs(difference)) {
+                    ratio *= RATIO[ratioId]
+                    ratioId++
+                }
+                a = Random.nextInt(1, numberDifficulty + 1)
+                answer = a * ratio
+            }
+            else{
+                ratioId = aId-1
+                for (i in 1..abs(difference)) {
+                    ratio *= RATIO[ratioId]
+                    ratioId--
+                }
+                a = Random.nextInt(1, numberDifficulty + 1) * ratio
+                answer = a / ratio
+            }
+
             val equationToAdd = EquationUnits(
                 a,
-                aUnitId,
+                aId,
                 operation,
-                correctAnswer,
-                answerUnitId
+                answer,
+                answerId
             )
 
             results.contains(equationToAdd).let {
