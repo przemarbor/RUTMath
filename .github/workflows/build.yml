@@ -2,6 +2,8 @@ name: "Build App"
 
 on:
   pull_request:
+    paths:
+      - "app/src/**"
     types:
       - "opened"
       - "reopened"
@@ -10,11 +12,7 @@ on:
 jobs:
   build:
     permissions:
-      # Required to upload/save artifact, otherwise you'll get
-      # "Error: Resource not accessible by integration"
       contents: write
-      # Required to post comment, otherwise you'll get
-      # "Error: Resource not accessible by integration"
       pull-requests: write
     name: "build"
     runs-on: "ubuntu-latest"
@@ -27,19 +25,18 @@ jobs:
         with:
           distribution: "temurin"
           java-version: "17"
+          cache: "gradle"
 
       - name: "Setup Gradle"
         uses: "gradle/gradle-build-action@v2"
         with:
-          gradle-home-cache-cleanup: true
           generate-job-summary: false
 
       - name: "Build APK"
         run: "bash gradlew assembleRelease --no-daemon"
 
-      - name: "Comment apk url file on PR"
-        uses: "gavv/pull-request-artifacts@v1.1.0"
+      - name: "Upload artifacts"
+        uses: "actions/upload-artifact@v3"
         with:
-          commit: "${{ github.event.pull_request.head.sha }}"
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          artifacts: "app/build/outputs/apk/release/app-release.apk"
+          name: "app-release"
+          path: "app/build/outputs/apk/release/app-release.apk"
