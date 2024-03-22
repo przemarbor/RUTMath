@@ -1,7 +1,9 @@
 package com.hexbit.rutmath.ui.fragment.mulDivList
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -10,10 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.ExerciseType
 import com.hexbit.rutmath.data.model.Operation
+import com.hexbit.rutmath.databinding.FragmentExerciseListBinding
 import com.hexbit.rutmath.ui.view.GridSpacingItemDecoration
 import com.hexbit.rutmath.ui.view.NormalRateDialog
 import com.hexbit.rutmath.util.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_exercise_list.*
 import org.koin.android.ext.android.inject
 
 class MulDivListFragment : BaseFragment() {
@@ -25,8 +27,18 @@ class MulDivListFragment : BaseFragment() {
     }
 
     private val args: MulDivListFragmentArgs by navArgs()
-
+    private var _binding: FragmentExerciseListBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: MulDivListViewModel by inject()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentExerciseListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,10 +65,10 @@ class MulDivListFragment : BaseFragment() {
                         viewModel.unlockExerciseType(args.player.nick, Operation.DIVIDE, args.exerciseType!!.difficulty)
                     }
                 }
-                NormalRateDialog(context!!, args.rate).show()
+                NormalRateDialog(requireContext(), args.rate).show()
             }
         }
-        player_name.text = args.player.nick
+        binding.playerName.text = args.player.nick
     }
 
     private fun initViewModel() {
@@ -66,7 +78,7 @@ class MulDivListFragment : BaseFragment() {
         viewModel.loadExercises(args.player.nick)
     }
 
-    private fun initRecyclerView(list: List<ExerciseType>) {
+    private fun initRecyclerView(list: List<ExerciseType>) = with(binding){
         recyclerView.apply {
             layoutManager = GridLayoutManager(context, COLUMNS_COUNT)
 
@@ -93,5 +105,10 @@ class MulDivListFragment : BaseFragment() {
                 args.player
             )
         findNavController().navigate(direction)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

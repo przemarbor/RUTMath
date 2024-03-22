@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.ExerciseType
+import com.hexbit.rutmath.databinding.NormalExerciseItemBinding
 
 /**
  * Adapter that contains exercise list.
@@ -18,8 +18,8 @@ class MulDivListAdapter(
 
     @SuppressLint("InflateParams")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MulDivViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.normal_exercise_item, null, false)
-        return MulDivViewHolder(view, clickCallback)
+        val binding = NormalExerciseItemBinding.inflate(LayoutInflater.from(parent.context))
+        return MulDivViewHolder(binding, clickCallback)
     }
 
     override fun getItemCount(): Int = exercises.size

@@ -1,18 +1,16 @@
 package com.hexbit.rutmath.ui.fragment.mulDivList
 
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.ExerciseType
 import com.hexbit.rutmath.data.model.Operation
-import kotlinx.android.synthetic.main.normal_exercise_item.view.*
+import com.hexbit.rutmath.databinding.NormalExerciseItemBinding
 
 class MulDivViewHolder(
-    private val view: View,
-    private val clickCallback: (exerciseType: ExerciseType) -> Unit
-) :
-    RecyclerView.ViewHolder(view) {
+    private val binding: NormalExerciseItemBinding,
+    private val clickCallback: (exerciseType: ExerciseType) -> Unit) :
+    RecyclerView.ViewHolder(binding.root) {
 
     companion object {
         const val MULTIPLY_VALUE = "×"
@@ -20,8 +18,8 @@ class MulDivViewHolder(
         const val MULTIPLY_DIVIDE_VALUE = "×/÷"
     }
 
-    fun bind(exerciseType: ExerciseType) {
-        view.title.text = when (exerciseType.operation) {
+    fun bind(exerciseType: ExerciseType) = with(binding){
+        title.text = when (exerciseType.operation) {
             Operation.MULTIPLY -> MULTIPLY_VALUE
             Operation.DIVIDE -> DIVIDE_VALUE
             Operation.MULTIPLY_DIVIDE -> MULTIPLY_DIVIDE_VALUE
@@ -31,14 +29,18 @@ class MulDivViewHolder(
         /**
          *  Set a listener on unlocked exercise tile and change its color
          */
+
+        /**
+         *  Set a listener on unlocked exercise tile and change its color
+         */
         if (exerciseType.isUnlocked) {
-            view.setOnClickListener {
+            root.setOnClickListener {
                 clickCallback.invoke(exerciseType)
             }
-            view.background = ContextCompat.getDrawable(view.context,R.drawable.bg_in_tile_exercise)
+            root.background = ContextCompat.getDrawable(root.context,R.drawable.bg_in_tile_exercise)
         }
 
-        val stars = arrayOf(view.star1, view.star2, view.star3, view.star4, view.star5)
+        val stars = arrayOf(star1, star2, star3, star4, star5)
         for (i in 1..exerciseType.rate) {
             stars[i - 1].setImageResource(R.drawable.ic_star_yellow_24dp)
         }

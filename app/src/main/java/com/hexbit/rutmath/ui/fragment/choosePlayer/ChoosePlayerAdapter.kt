@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.Player
+import com.hexbit.rutmath.databinding.PlayerRowBinding
 
 class ChoosePlayerAdapter(
     private val onItemClickedListener: (Player) -> Unit
@@ -15,9 +15,9 @@ class ChoosePlayerAdapter(
 
     @SuppressLint("InflateParams")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.player_row, null, false)
+        val binding = PlayerRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PlayerViewHolder(
-            view,
+            binding,
             onItemClickedListener
         )
     }

@@ -147,7 +147,8 @@
             app:argType="com.hexbit.rutmath.data.model.Player" />
         <argument
             android:name="res"
-            app:argType="integer" />
+            app:argType="integer"
+            android:defaultValue="-1" />
         <action
             android:id="@+id/action_chooseModeFragment_to_addSubListFragment"
             app:destination="@id/addSubListFragment" />

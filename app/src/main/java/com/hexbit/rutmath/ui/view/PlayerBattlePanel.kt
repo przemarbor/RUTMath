@@ -8,12 +8,13 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import com.hexbit.rutmath.R
+import com.hexbit.rutmath.databinding.BattlePlayerViewBinding
 import com.hexbit.rutmath.util.gone
 import com.hexbit.rutmath.util.invisible
 import com.hexbit.rutmath.util.visible
-import kotlinx.android.synthetic.main.battle_player_view.view.*
 
 class PlayerBattlePanel @JvmOverloads constructor(
     context: Context,
@@ -34,6 +35,9 @@ class PlayerBattlePanel @JvmOverloads constructor(
 
     private var lastSelectedButton: Button? = null
 
+    private var _binding: BattlePlayerViewBinding? = null
+    private val binding get() = _binding!!
+
     private var bonusToAdd = 0
 
     var canAnswer = true
@@ -41,8 +45,8 @@ class PlayerBattlePanel @JvmOverloads constructor(
     var totalPoints = 0
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.battle_player_view, this, true)
-        arrayOf(answer1, answer2, answer3, answer4).forEach {
+        _binding = BattlePlayerViewBinding.inflate(LayoutInflater.from(context), this, true)
+        arrayOf(binding.answer1, binding.answer2, binding.answer3, binding.answer4).forEach {
             it.setOnClickListener { view ->
                 if (!canAnswer) {
                     return@setOnClickListener
@@ -53,13 +57,13 @@ class PlayerBattlePanel @JvmOverloads constructor(
             }
         }
 
-        progressBar.apply {
+        binding.progressBar.apply {
             progress = 0
         }
-        score.gone()
+        binding.score.gone()
     }
 
-    fun onCorrectAnswerSelected() {
+    fun onCorrectAnswerSelected() = with(binding){
         progressBar.progress++
         totalPoints = progressBar.progress + bonusToAdd
         score.text = totalPoints.toString()
@@ -72,7 +76,7 @@ class PlayerBattlePanel @JvmOverloads constructor(
         bonusToAdd++
     }
 
-    fun onIncorrectAnswerSelected() {
+    fun onIncorrectAnswerSelected() = with(binding){
         bonusToAdd = 0
         progressBar.progress--
         totalPoints--
@@ -86,7 +90,7 @@ class PlayerBattlePanel @JvmOverloads constructor(
         lastSelectedButton?.background = ColorDrawable(ContextCompat.getColor(context, R.color.red))
     }
 
-    fun setAnswers(answers: IntArray) {
+    fun setAnswers(answers: IntArray) = with(binding) {
         require(answers.size == 4)
         val answersButtons = arrayOf(answer1, answer2, answer3, answer4)
         answersButtons.forEachIndexed { index, button ->
@@ -97,7 +101,7 @@ class PlayerBattlePanel @JvmOverloads constructor(
         canAnswer = true
     }
 
-    private fun showBonus(bonusValue: Int) {
+    private fun showBonus(bonusValue: Int) = with(binding) {
         bonus.text = context.getString(R.string.battle_view_bonus, bonusValue)
         bonus.visible()
         Handler(Looper.getMainLooper()).postDelayed({
@@ -115,5 +119,18 @@ class PlayerBattlePanel @JvmOverloads constructor(
 
     fun setListener(listener: PanelListener) {
         this.listener = listener
+    }
+
+    fun setEquation(text: String){
+        binding.equation.text = text
+    }
+
+    fun setProgressBar(progress:Int, max:Int){
+        binding.progressBar.progress = progress
+        binding.progressBar.max = max
+    }
+
+    fun getProgressBar(): ProgressBar {
+        return binding.progressBar
     }
 }

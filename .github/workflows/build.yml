@@ -1,0 +1,42 @@
+name: "Build App"
+
+on:
+  pull_request:
+    paths:
+      - "app/src/**"
+    types:
+      - "opened"
+      - "reopened"
+      - "synchronize"
+
+jobs:
+  build:
+    permissions:
+      contents: write
+      pull-requests: write
+    name: "build"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout code"
+        uses: "actions/checkout@v3"
+
+      - name: "Setup Java"
+        uses: "actions/setup-java@v3"
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: "gradle"
+
+      - name: "Setup Gradle"
+        uses: "gradle/gradle-build-action@v2"
+        with:
+          generate-job-summary: false
+
+      - name: "Build APK"
+        run: "bash gradlew assembleRelease --no-daemon"
+
+      - name: "Upload artifacts"
+        uses: "actions/upload-artifact@v3"
+        with:
+          name: "app-release"
+          path: "app/build/outputs/apk/release/app-release.apk"

@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.ExerciseType
+import com.hexbit.rutmath.databinding.UnitsExerciseItemBinding
 
 /**
  * Adapter that contains units exercise list.
@@ -18,8 +18,8 @@ class UnitsListAdapter(
 
     @SuppressLint("InflateParams")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UnitsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.units_exercise_item, null, false)
-        return UnitsViewHolder(view, clickCallback)
+        val binding = UnitsExerciseItemBinding.inflate(LayoutInflater.from(parent.context))
+        return UnitsViewHolder(binding, clickCallback)
     }
 
     override fun getItemCount(): Int = exercises.size

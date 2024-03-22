@@ -48,5 +48,6 @@
     <string name="units_surface">Surface</string>
     <string name="units_all">All</string>
     <string name="time_units">d,h,min,sec</string>
+    <string name="question_mark">?</string>
 
 </resources>

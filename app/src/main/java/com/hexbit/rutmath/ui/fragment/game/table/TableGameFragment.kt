@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -12,9 +14,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.Operation
+import com.hexbit.rutmath.databinding.FragmentTableGameBinding
 import com.hexbit.rutmath.ui.view.KeyboardView
 import com.hexbit.rutmath.util.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_table_game.*
 import org.koin.android.ext.android.inject
 import java.lang.Exception
 
@@ -25,7 +27,8 @@ class TableGameFragment : BaseFragment() {
     }
 
     override val layout: Int = R.layout.fragment_table_game
-
+    private var _binding: FragmentTableGameBinding? = null
+    private val binding get() = _binding!!
     private val args: TableGameFragmentArgs by navArgs()
 
     private val viewModel: TableGameViewModel by inject()
@@ -35,14 +38,22 @@ class TableGameFragment : BaseFragment() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             findNavController().navigate(
                 TableGameFragmentDirections.actionTableGameFragmentToChooseModeFragment(
-                    args.player,
+                    player = args.player,
                     res = -1
                 )
             )
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentTableGameBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
         initKeyboardListener()
         progressBar.max = TableGameViewModel.EXERCISES_COUNT
@@ -50,7 +61,7 @@ class TableGameFragment : BaseFragment() {
         initViewModel()
     }
 
-    private fun initViewModel() {
+    private fun initViewModel() = with(binding) {
         viewModel.getActiveEquation().observe(viewLifecycleOwner, Observer {
             resetColors()
             equation.text = it.let {
@@ -75,8 +86,8 @@ class TableGameFragment : BaseFragment() {
         viewModel.getEndGameEvent().observe(viewLifecycleOwner, Observer { rate ->
             findNavController().navigate(
                 TableGameFragmentDirections.actionTableGameFragmentToChooseModeFragment(
-                    args.player,
-                    rate
+                    player = args.player,
+                    res = rate
                 )
             )
         })
@@ -101,7 +112,7 @@ class TableGameFragment : BaseFragment() {
         viewModel.init(args)
     }
 
-    private fun initKeyboardListener() {
+    private fun initKeyboardListener() = with(binding) {
         keyboardView.setListener(object : KeyboardView.InputListener {
             @SuppressLint("SetTextI18n")
             override fun onNumberClicked(value: Int) {
@@ -137,19 +148,22 @@ class TableGameFragment : BaseFragment() {
         })
     }
 
-    private fun updateUiOnErrorAnswer() {
-        input.setTextColor(ContextCompat.getColor(context!!, R.color.red))
-        equation.setTextColor(ContextCompat.getColor(context!!, R.color.red))
+    private fun updateUiOnErrorAnswer() = with(binding) {
+        input.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+        equation.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
     }
 
-    private fun updateUiOnCorrectAnswer() {
-        input.setTextColor(ContextCompat.getColor(context!!, R.color.green))
-        equation.setTextColor(ContextCompat.getColor(context!!, R.color.green))
+    private fun updateUiOnCorrectAnswer() = with(binding) {
+        input.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        equation.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
     }
 
-    private fun resetColors() {
-        input.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
-        equation.setTextColor(ContextCompat.getColor(context!!, R.color.accent))
+    private fun resetColors() = with(binding){
+        input.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent))
+        equation.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent))
     }
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

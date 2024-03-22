@@ -1,7 +1,9 @@
 package com.hexbit.rutmath.ui.fragment.addSubList
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -10,15 +12,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.ExerciseType
 import com.hexbit.rutmath.data.model.Operation
+import com.hexbit.rutmath.databinding.FragmentExerciseListBinding
 import com.hexbit.rutmath.ui.view.GridSpacingItemDecoration
 import com.hexbit.rutmath.ui.view.NormalRateDialog
 import com.hexbit.rutmath.util.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_exercise_list.*
 import org.koin.android.ext.android.inject
 
 class AddSubListFragment : BaseFragment() {
 
     override val layout = R.layout.fragment_exercise_list
+    private var _binding: FragmentExerciseListBinding? = null
+    private val binding get() = _binding!!
 
     companion object {
         private const val COLUMNS_COUNT = 3
@@ -28,7 +32,16 @@ class AddSubListFragment : BaseFragment() {
 
     private val viewModel: AddSubListViewModel by inject()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentExerciseListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
 
         // On back button pressed => navigate to chooseModeFragment
@@ -36,8 +49,7 @@ class AddSubListFragment : BaseFragment() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             findNavController().navigate(
                 AddSubListFragmentDirections.actionAddSubListFragmentToChooseModeFragment(
-                    args.player,
-                    res = -1
+                    args.player, -1
                 )
             )
         }
@@ -55,10 +67,11 @@ class AddSubListFragment : BaseFragment() {
                     }
                 }
 
-                NormalRateDialog(context!!, args.rate).show()
+                NormalRateDialog(requireContext(), args.rate).show()
             }
         }
-        player_name.text = args.player.nick
+
+        binding.playerName.text = args.player.nick
 
     }
 
@@ -69,7 +82,7 @@ class AddSubListFragment : BaseFragment() {
         viewModel.loadExercises(args.player.nick)
     }
 
-    private fun initRecyclerView(list: List<ExerciseType>) {
+    private fun initRecyclerView(list: List<ExerciseType>) = with(binding) {
         recyclerView.apply {
             layoutManager = GridLayoutManager(context, COLUMNS_COUNT)
 
@@ -97,5 +110,10 @@ class AddSubListFragment : BaseFragment() {
                 args.player
             )
         findNavController().navigate(direction)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

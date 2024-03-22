@@ -3,10 +3,10 @@ package com.hexbit.rutmath.ui.view
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Window
-import com.hexbit.rutmath.R
+import com.hexbit.rutmath.databinding.TableRateDialogBinding
 import com.hexbit.rutmath.util.visible
-import kotlinx.android.synthetic.main.table_rate_dialog.*
 
 /**
  * Dialog with stars after finishing TableGame
@@ -20,15 +20,17 @@ class TableRateDialog(context: Context, private val resultPercentage: Int) : Dia
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.table_rate_dialog)
+        val binding = TableRateDialogBinding.inflate(LayoutInflater.from(context))
 
-        val stars = arrayOf(star1, star2, star3, star4, star5)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setContentView(binding.root)
+
+        val stars = arrayOf(binding.star1, binding.star2, binding.star3, binding.star4, binding.star5)
         for (index in 0 until resultPercentage/20) {
             stars[index].visible()
         }
-        scoreText.text = " $resultPercentage%"
-        okButton.setOnClickListener {
+        binding.scoreText.text = " $resultPercentage%"
+        binding.okButton.setOnClickListener {
             dismiss()
         }
     }

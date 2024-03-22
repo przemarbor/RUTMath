@@ -3,40 +3,50 @@ package com.hexbit.rutmath.ui.fragment.game.battle
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.Operation
+import com.hexbit.rutmath.databinding.FragmentBattleGameBinding
 import com.hexbit.rutmath.ui.view.PlayerBattlePanel
 import com.hexbit.rutmath.util.base.BaseFragment
-import kotlinx.android.synthetic.main.battle_player_view.view.*
-import kotlinx.android.synthetic.main.fragment_battle_game.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class BattleGameFragment : BaseFragment() {
 
     companion object {
-        private const val POINTS_TO_ACHIEVE = 10
+        private const val POINTS_TO_ACHIEVE = 20
     }
 
     override val layout: Int = R.layout.fragment_battle_game
-
+    private var _binding: FragmentBattleGameBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: BattleFragmentViewModel by viewModel()
 
     private val player1Panel: PlayerBattlePanel by lazy {
-        player1
+        binding.player1
     }
 
     private val player2Panel: PlayerBattlePanel by lazy {
-        player2
+        binding.player2
     }
     private val args: BattleGameFragmentArgs by navArgs()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentBattleGameBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding){
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getAnswersDrawedEvent().observe(viewLifecycleOwner, Observer {
@@ -61,8 +71,8 @@ class BattleGameFragment : BaseFragment() {
                     .plus(it.componentB)
                     .plus(" = ?")
             }
-            player1.equation.text = equationString
-            player2.equation.text = equationString
+            player1.setEquation(equationString)
+            player2.setEquation(equationString)
         })
 
         viewModel.getSaveScoreFinishedEvent().observe(viewLifecycleOwner, Observer {
@@ -110,12 +120,12 @@ class BattleGameFragment : BaseFragment() {
             }
         })
 
-        player1Panel.progressBar.max = POINTS_TO_ACHIEVE
-        player2Panel.progressBar.max = POINTS_TO_ACHIEVE
+        player1Panel.setProgressBar(progress= 0, max= POINTS_TO_ACHIEVE)
+        player2Panel.setProgressBar(progress= 0, max= POINTS_TO_ACHIEVE)
     }
 
     private fun onGameEnded() {
-        val alert: AlertDialog.Builder = AlertDialog.Builder(context!!)
+        val alert: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         alert.setTitle(getString(R.string.battle_game_ended))
         alert.setMessage(
             getString(
@@ -140,8 +150,8 @@ class BattleGameFragment : BaseFragment() {
     }
 
     private fun isGameEnd(): Boolean {
-        return player1Panel.progressBar.progress >= POINTS_TO_ACHIEVE ||
-                player2Panel.progressBar.progress >= POINTS_TO_ACHIEVE
+        return player1Panel.getProgressBar().progress >= POINTS_TO_ACHIEVE ||
+                player2Panel.getProgressBar().progress >= POINTS_TO_ACHIEVE
     }
 
     private fun loadNextEquationIfNeeded() {
@@ -150,5 +160,9 @@ class BattleGameFragment : BaseFragment() {
                 viewModel.loadNextEquation()
             }, 500)
         }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
