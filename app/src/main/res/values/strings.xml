@@ -48,6 +48,12 @@
     <string name="units_surface">Surface</string>
     <string name="units_all">All</string>
     <string name="time_units">d,h,min,sec</string>
-    <string name="question_mark">?</string>
+    <string name="question_mark" translatable="false">?</string>
+    <string name="prz_url">https://w.prz.edu.pl/en/</string>
+    <string name="weii_url">https://weii.prz.edu.pl/en/</string>
+    <string name="menu_play">Exercises</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_pvp">Battle</string>
+    <string name="menu_leaderboard">Leaderboard</string>
 
 </resources>

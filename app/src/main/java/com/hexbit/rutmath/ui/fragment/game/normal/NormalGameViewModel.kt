@@ -19,7 +19,7 @@ class NormalGameViewModel : DisposableViewModel() {
 
     /**
      * Result of user answer. It can be VALID or INVALID.
-     * It is valid only when user input correct value that is equals to activeEquaction.correctAnswer
+     * Answer is valid only when user inputs correct value equal to activeEquaction.correctAnswer
      */
     enum class AnswerEvent {
         VALID,
@@ -170,7 +170,7 @@ class NormalGameViewModel : DisposableViewModel() {
     }
 
     /**
-     * Validate if user deliver proper answer to current equation.
+     * Validate if user delivered proper answer to current equation.
      */
 
     fun validateAnswer(answer: Int) {
@@ -182,8 +182,8 @@ class NormalGameViewModel : DisposableViewModel() {
     }
 
     /**
-     * If user deliver invalid answer current equation should be mark as failed.
-     * That will affect on game rate.
+     * If user delivered invalid answer current equation should be mark as failed.
+     * This will have an effect on the game rate.
      */
 
     fun markActiveEquationAsFailed() {

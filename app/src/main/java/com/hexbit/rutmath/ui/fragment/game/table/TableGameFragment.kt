@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.Operation
 import com.hexbit.rutmath.databinding.FragmentTableGameBinding
+import com.hexbit.rutmath.ui.fragment.game.normal.NormalGameFragment
 import com.hexbit.rutmath.ui.view.KeyboardView
 import com.hexbit.rutmath.util.base.BaseFragment
 import org.koin.android.ext.android.inject
@@ -99,12 +100,14 @@ class TableGameFragment : BaseFragment() {
                         if(isVisible) {
                             progressBar.progress = progressBar.progress + 1
                             viewModel.setNextActiveEquation()
+                            keyboardView.enableKeyboard()
                         }
                     }, 1000)
                 }
                 TableGameViewModel.AnswerEvent.INVALID -> {
                     updateUiOnErrorAnswer()
                     viewModel.markActiveEquationAsFailed()
+                    keyboardView.enableKeyboard()
                 }
                 null -> throw Exception("Error: AnswerEvent is null")
             }
@@ -138,8 +141,13 @@ class TableGameFragment : BaseFragment() {
 
             override fun onAcceptClicked() {
                 try {
-                    val userAnswer = input.text.toString().toInt()
-                    viewModel.validateAnswer(userAnswer)
+                    if (input.text != DEFAULT_INPUT_VALUE){
+                        updateUiOnErrorAnswer()
+                        keyboardView.disableKeyboard()
+                        val userAnswer = input.text.toString().toInt()
+                        viewModel.validateAnswer(userAnswer)
+                    }
+
                 } catch (exception: Exception) {
                     return
                 }

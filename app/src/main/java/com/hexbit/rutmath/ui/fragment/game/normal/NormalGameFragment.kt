@@ -20,6 +20,7 @@ import com.hexbit.rutmath.ui.view.KeyboardView
 import com.hexbit.rutmath.util.base.BaseFragment
 import com.hexbit.rutmath.util.gone
 import com.hexbit.rutmath.util.visible
+import kotlinx.coroutines.delay
 import org.koin.android.ext.android.inject
 import java.lang.Exception
 
@@ -137,15 +138,21 @@ class NormalGameFragment : BaseFragment() {
                         if(isVisible) {
                             progressBar.progress = progressBar.progress + 1
                             viewModel.setNextActiveEquation()
+//                            acceptActive = true
+                            keyboardView.enableKeyboard()
                         }
                     }, 1000)
                 }
                 NormalGameViewModel.AnswerEvent.INVALID -> {
                     updateUiOnErrorAnswer()
                     viewModel.markActiveEquationAsFailed()
+//                    acceptActive = true
+                    keyboardView.enableKeyboard()
                 }
                 null -> throw Exception("Error: AnswerEvent is null")
             }
+//            keyboardView.enableKeyboard()
+
         })
         viewModel.init(args)
     }
@@ -176,8 +183,13 @@ class NormalGameFragment : BaseFragment() {
 
             override fun onAcceptClicked() {
                 try {
-                    val userAnswer = input.text.toString().toInt()
-                    viewModel.validateAnswer(userAnswer)
+                    if (input.text != DEFAULT_INPUT_VALUE){
+                        updateUiOnErrorAnswer()
+                        keyboardView.disableKeyboard()
+                        val userAnswer = input.text.toString().toInt()
+                        viewModel.validateAnswer(userAnswer)
+                    }
+
                 } catch (exception: Exception) {
                     return
                 }

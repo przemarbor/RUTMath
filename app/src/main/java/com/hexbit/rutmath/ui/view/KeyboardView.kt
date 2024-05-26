@@ -49,6 +49,38 @@ class KeyboardView @JvmOverloads constructor(
         accept.setOnClickListener { inputListener?.onAcceptClicked() }
     }
 
+    fun disableKeyboard() = with(binding){
+        button0.isClickable = false
+        button1.isClickable = false
+        button2.isClickable = false
+        button3.isClickable = false
+        button4.isClickable = false
+        button5.isClickable = false
+        button6.isClickable = false
+        button7.isClickable = false
+        button8.isClickable = false
+        button9.isClickable = false
+        backspace.isClickable = false
+        accept.isClickable = false
+    }
+
+
+    fun enableKeyboard() = with(binding){
+        button0.isClickable = true
+        button1.isClickable = true
+        button2.isClickable = true
+        button3.isClickable = true
+        button4.isClickable = true
+        button5.isClickable = true
+        button6.isClickable = true
+        button7.isClickable = true
+        button8.isClickable = true
+        button9.isClickable = true
+        backspace.isClickable = true
+        accept.isClickable = true
+    }
+
+
     fun setListener(inputListener: InputListener) {
         this.inputListener = inputListener
     }
