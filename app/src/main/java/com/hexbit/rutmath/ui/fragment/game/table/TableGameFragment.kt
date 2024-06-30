@@ -122,10 +122,14 @@ class TableGameFragment : BaseFragment() {
                 if (input.text.length > 2) {
                     return
                 }
-                if (input.text.toString() == DEFAULT_INPUT_VALUE) {
-                    input.text = ""
+                var p = input.text.toString();
+                if (p == DEFAULT_INPUT_VALUE) {
+                    p = ""
+                } else if (p == "-$DEFAULT_INPUT_VALUE")
+                {
+                    p = "-"
                 }
-                input.text = input.text.toString() + value
+                input.text = p + value
                 resetColors()
             }
 
@@ -150,6 +154,17 @@ class TableGameFragment : BaseFragment() {
 
                 } catch (exception: Exception) {
                     return
+                }
+            }
+
+            override fun onNegativeClicked(){
+                val s = input.text.toString()
+                if (s.startsWith("-", 0)) {
+                    input.text = s.substring(1)
+                }
+                else {
+                    val ss = "-" + s
+                    input.text = ss
                 }
             }
 

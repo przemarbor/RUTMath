@@ -22,11 +22,11 @@ class AddSubListViewModel(private val database: AppDatabase) : DisposableViewMod
      */
     fun loadExercises(nick: String) {
         manageDisposable {
-            database.exerciseTypeDao().getAll(nick, listOf("PLUS","MINUS","PLUS_MINUS"))
+            database.exerciseTypeDao().getAll(nick, listOf("PLUS","MINUS","PLUS_MINUS","NEGATIVE_PLUS","NEGATIVE_MINUS", "NEGATIVE_PLUS_MINUS"))
                 .flatMap { list ->
                     if (list.isEmpty()) {
                         initializeExerciseListInDatabase(nick).andThen(
-                            database.exerciseTypeDao().getAll(nick, listOf("PLUS","MINUS","PLUS_MINUS")).subscribeOn(Schedulers.io())
+                            database.exerciseTypeDao().getAll(nick, listOf("PLUS","MINUS","PLUS_MINUS","NEGATIVE_PLUS","NEGATIVE_MINUS", "NEGATIVE_PLUS_MINUS")).subscribeOn(Schedulers.io())
                         )
                     } else {
                         Single.just(list)
@@ -74,6 +74,10 @@ class AddSubListViewModel(private val database: AppDatabase) : DisposableViewMod
                 true
             )
         )
+        //new code here for negative numbers
+
+
+
         /**
          *  Add locked PLUS/MINUS exercises
          */
@@ -106,6 +110,64 @@ class AddSubListViewModel(private val database: AppDatabase) : DisposableViewMod
                 )
             )
         }
+
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_PLUS,
+                5,
+                -1,
+                nick,
+                false
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_MINUS,
+                5,
+                -1,
+                nick,
+                false
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_PLUS_MINUS,
+                5,
+                -1,
+                nick,
+                false
+            )
+        )
+        range.forEach {
+            exercises.add(
+                ExerciseType(
+                    Operation.NEGATIVE_PLUS,
+                    it,
+                    -1,
+                    nick,
+                    false
+                )
+            )
+            exercises.add(
+                ExerciseType(
+                    Operation.NEGATIVE_MINUS,
+                    it,
+                    -1,
+                    nick,
+                    false
+                )
+            )
+            exercises.add(
+                ExerciseType(
+                    Operation.NEGATIVE_PLUS_MINUS,
+                    it,
+                    -1,
+                    nick,
+                    false
+                )
+            )
+        }
+
         return database.exerciseTypeDao()
             .insertAll(exercises)
             .observeOn(AndroidSchedulers.mainThread())
@@ -122,7 +184,7 @@ class AddSubListViewModel(private val database: AppDatabase) : DisposableViewMod
                 .update(exerciseType)
                 .subscribeOn(Schedulers.io())
                 .andThen(Single.defer {
-                    database.exerciseTypeDao().getAll(nick, listOf("PLUS","MINUS","PLUS_MINUS"))
+                    database.exerciseTypeDao().getAll(nick, listOf("PLUS","MINUS","PLUS_MINUS","NEGATIVE_PLUS", "NEGATIVE_MINUS", "NEGATIVE_PLUS_MINUS"))
                 })
                 .subscribe ({ newList ->
                     exerciseTypes.postValue(newList)
@@ -146,7 +208,7 @@ class AddSubListViewModel(private val database: AppDatabase) : DisposableViewMod
                 }
                 .subscribeOn(Schedulers.io())
                 .subscribe ({ exerciseType -> updateExerciseType(exerciseType.copy(isUnlocked = true), nick) },
-                { println("ERROR: Cannot find ExerciseType to unlock") })
+                    { println("ERROR: Cannot find ExerciseType to unlock") })
         }
     }
 }

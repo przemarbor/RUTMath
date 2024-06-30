@@ -13,7 +13,11 @@ class AddSubViewHolder(private val binding: NormalExerciseItemBinding, private v
     companion object {
         const val PLUS_VALUE = "+"
         const val MINUS_VALUE = "-"
-        const val PLUS_MINUS_VALUE = "+/-"
+        const val PLUS_MINUS_VALUE = "±"
+        // new code here for negative number
+        const val  NEGATIVE_PLUS_VALUE="+(-)"
+        const val  NEGATIVE_MINUS_VALUE="-(-)"
+        const val  NEGATIVE_PLUS_MINUS_VALUE="±(-)"
     }
 
     fun bind(exerciseType: ExerciseType) = with(binding){
@@ -21,6 +25,10 @@ class AddSubViewHolder(private val binding: NormalExerciseItemBinding, private v
             Operation.PLUS -> PLUS_VALUE
             Operation.MINUS -> MINUS_VALUE
             Operation.PLUS_MINUS -> PLUS_MINUS_VALUE
+            // new code here for negative numbers
+            Operation.NEGATIVE_PLUS -> NEGATIVE_PLUS_VALUE
+            Operation.NEGATIVE_MINUS-> NEGATIVE_MINUS_VALUE
+            Operation.NEGATIVE_PLUS_MINUS-> NEGATIVE_PLUS_MINUS_VALUE
             else -> null
         }.plus(" ").plus(exerciseType.difficulty)
 
@@ -30,6 +38,11 @@ class AddSubViewHolder(private val binding: NormalExerciseItemBinding, private v
                 clickCallback.invoke(exerciseType)
             }
             root.background = ContextCompat.getDrawable(root.context,R.drawable.bg_in_tile_exercise)
+        }
+        else
+        {
+            root.setOnClickListener(null)
+            root.background = ContextCompat.getDrawable(root.context,R.drawable.bg_in_tile_exercise_disabled)
         }
 
         val stars = arrayOf(binding.star1, binding.star2, binding.star3, binding.star4, binding.star5)

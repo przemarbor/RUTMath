@@ -19,7 +19,7 @@ class NormalGameViewModel : DisposableViewModel() {
 
     /**
      * Result of user answer. It can be VALID or INVALID.
-     * Answer is valid only when user inputs correct value equal to activeEquaction.correctAnswer
+     * It is valid only when user input correct value that is equals to activeEquaction.correctAnswer
      */
     enum class AnswerEvent {
         VALID,
@@ -74,6 +74,11 @@ class NormalGameViewModel : DisposableViewModel() {
                     Operation.MULTIPLY
                 else
                     Operation.DIVIDE
+            else if (args.exerciseType.operation == Operation.NEGATIVE_PLUS_MINUS)
+                operation = if (Random.nextInt(2) == 0)
+                    Operation.NEGATIVE_PLUS
+                else
+                    Operation.NEGATIVE_MINUS
             else
                 operation = args.exerciseType.operation
 
@@ -119,6 +124,73 @@ class NormalGameViewModel : DisposableViewModel() {
                         a = possibleValues.random()
                     correctAnswer = a / b
                 }
+                Operation.NEGATIVE_PLUS -> {
+                    a = Random.nextInt(1+(difficulty* 0.1).toInt(), (difficulty*0.9).toInt())
+                    for (num in (1+(difficulty * 0.1).toInt())..(difficulty + 1)){
+                        if (a + num < difficulty+1)
+                            possibleValues.add(num)
+                    }
+                    if (possibleValues.any())
+                        b = -possibleValues.random()
+                    correctAnswer = a + b
+                }
+                Operation.NEGATIVE_MINUS -> {
+                    a = Random.nextInt(1+(difficulty* 0.1).toInt(), (difficulty*0.9).toInt())
+                    for (num in (1+(difficulty * 0.1).toInt())..(difficulty + 1)){
+                        if (a + num < difficulty+1)
+                            possibleValues.add(num)
+                    }
+                    if (possibleValues.any())
+                        b = -possibleValues.random()
+                    correctAnswer = a - b
+                }
+                // added code here for multyplication with negative numbers
+                Operation.NEGATIVE_PLUS_MUL -> {
+                    a = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
+                    for (num in 1..(difficulty + 1)){
+                        if ((a * num <= difficulty+1) and ((a * num) >= (difficulty* 0.2)))
+                            possibleValues.add(num)
+                    }
+                    if (possibleValues.any())
+                        b = -possibleValues.random()
+                    correctAnswer = a * b
+                }
+                Operation.NEGATIVE_MINUS_MUL -> {
+                    a = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
+                    for (num in 1..(difficulty + 1)){
+                        if ((a * num <= difficulty+1) and ((a * num) >= (difficulty* 0.2)))
+                            possibleValues.add(num)
+                    }
+                    if (possibleValues.any())
+                        b = -possibleValues.random()
+                    correctAnswer = a * -b
+                }
+                Operation.NEGATIVE_PLUS_DIV -> {
+                    b = -Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
+                    for (num in ((difficulty* 0.2).toInt())..(difficulty+1)){
+                        if (num % b == 0)
+                            possibleValues.add(num)
+                    }
+                    if (possibleValues.any())
+                        a = possibleValues.random()
+                    correctAnswer = a / b
+                }
+                Operation.NEGATIVE_MINUS_DIV -> {
+                    b = -Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
+
+                    for (num in ((difficulty* 0.2).toInt())..(difficulty+1)){
+                        if (num % b == 0)
+                            possibleValues.add(num)
+                    }
+                    if (possibleValues.any())
+                        a = possibleValues.random()
+                    correctAnswer = a / -b
+                }
+
+
+
+
+
                 else -> throw Exception("Operation not implemented in this View")
             }
 
@@ -170,7 +242,7 @@ class NormalGameViewModel : DisposableViewModel() {
     }
 
     /**
-     * Validate if user delivered proper answer to current equation.
+     * Validate if user deliver proper answer to current equation.
      */
 
     fun validateAnswer(answer: Int) {
@@ -182,8 +254,8 @@ class NormalGameViewModel : DisposableViewModel() {
     }
 
     /**
-     * If user delivered invalid answer current equation should be mark as failed.
-     * This will have an effect on the game rate.
+     * If user deliver invalid answer current equation should be mark as failed.
+     * That will affect on game rate.
      */
 
     fun markActiveEquationAsFailed() {

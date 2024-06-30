@@ -64,6 +64,21 @@ class MulDivListFragment : BaseFragment() {
                         viewModel.unlockExerciseType(args.player.nick, Operation.MULTIPLY, args.exerciseType!!.difficulty)
                         viewModel.unlockExerciseType(args.player.nick, Operation.DIVIDE, args.exerciseType!!.difficulty)
                     }
+                    if (args.exerciseType!!.operation == Operation.MULTIPLY_DIVIDE && args.exerciseType!!.difficulty == 200)
+                    {
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_MINUS_DIV, 0)
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_PLUS_DIV, 0)
+                    }
+                    if (args.exerciseType!!.operation == Operation.NEGATIVE_PLUS_MINUS_MUL)
+                    {
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_MINUS_DIV, args.exerciseType!!.difficulty)
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_PLUS_DIV, args.exerciseType!!.difficulty)
+                    }
+                    if (args.exerciseType!!.operation == Operation.NEGATIVE_PLUS_MINUS_MUL && args.exerciseType!!.difficulty == 200)
+                    {
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_MINUS_DIV, 0)
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_PLUS_DIV, 0)
+                    }
                 }
                 NormalRateDialog(requireContext(), args.rate).show()
             }
