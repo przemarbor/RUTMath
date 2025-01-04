@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import androidx.core.view.isVisible
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.databinding.KeyboardBinding
 
@@ -20,12 +21,16 @@ class KeyboardView @JvmOverloads constructor(
         fun onBackspaceClicked()
 
         fun onAcceptClicked()
+
+        fun onNegativeClicked()
     }
 
     private var inputListener: InputListener? = null
 
     private var _binding: KeyboardBinding? = null
     private val binding get() = _binding!!
+
+    private var isNegativeEnabled = true
 
     init {
         _binding = KeyboardBinding.inflate(LayoutInflater.from(context), this, true)
@@ -35,6 +40,7 @@ class KeyboardView @JvmOverloads constructor(
     }
 
     private fun initListeners() = with(binding){
+        neg.isVisible = isNegativeEnabled
         button0.setOnClickListener { inputListener?.onNumberClicked(0) }
         button1.setOnClickListener { inputListener?.onNumberClicked(1) }
         button2.setOnClickListener { inputListener?.onNumberClicked(2) }
@@ -47,6 +53,9 @@ class KeyboardView @JvmOverloads constructor(
         button9.setOnClickListener { inputListener?.onNumberClicked(9) }
         backspace.setOnClickListener { inputListener?.onBackspaceClicked() }
         accept.setOnClickListener { inputListener?.onAcceptClicked() }
+        if (isNegativeEnabled){
+            neg.setOnClickListener{inputListener?.onNegativeClicked()}
+        }
     }
 
     fun disableKeyboard() = with(binding){
@@ -62,8 +71,20 @@ class KeyboardView @JvmOverloads constructor(
         button9.isClickable = false
         backspace.isClickable = false
         accept.isClickable = false
+        neg.isClickable = false
     }
 
+    fun enableNegative() = with(binding){
+        isNegativeEnabled = true
+        neg.isVisible = true
+        neg.isClickable = true
+    }
+
+    fun disableNegative() = with(binding){
+        isNegativeEnabled = false
+        neg.isVisible = false
+        neg.isClickable = false
+    }
 
     fun enableKeyboard() = with(binding){
         button0.isClickable = true
@@ -78,6 +99,7 @@ class KeyboardView @JvmOverloads constructor(
         button9.isClickable = true
         backspace.isClickable = true
         accept.isClickable = true
+        neg.isClickable = true
     }
 
 

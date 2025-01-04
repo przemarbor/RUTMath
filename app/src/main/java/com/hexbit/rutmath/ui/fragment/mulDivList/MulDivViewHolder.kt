@@ -16,6 +16,16 @@ class MulDivViewHolder(
         const val MULTIPLY_VALUE = "×"
         const val DIVIDE_VALUE = "÷"
         const val MULTIPLY_DIVIDE_VALUE = "×/÷"
+
+        const val  NEGATIVE_PLUS_MUL_VALUE="×+(-)"
+        const val  NEGATIVE_MINUS_MUL_VALUE="×-(-)"
+        const val  NEGATIVE_PLUS_DIV_VALUE="÷+(-)"
+        const val  NEGATIVE_MINUS_DIV_VALUE="÷-(-)"
+
+        const val NEGATIVE_PLUS_MINUS_MULTIPLY_VALUE = "×±(-)"
+        const val NEGATIVE_PLUS_MINUS_DIVIDE_VALUE = "÷±(-)"
+
+
     }
 
     fun bind(exerciseType: ExerciseType) = with(binding){
@@ -23,6 +33,13 @@ class MulDivViewHolder(
             Operation.MULTIPLY -> MULTIPLY_VALUE
             Operation.DIVIDE -> DIVIDE_VALUE
             Operation.MULTIPLY_DIVIDE -> MULTIPLY_DIVIDE_VALUE
+            //new code here
+            Operation.NEGATIVE_PLUS_MUL->NEGATIVE_PLUS_MUL_VALUE
+            Operation.NEGATIVE_MINUS_MUL-> NEGATIVE_MINUS_MUL_VALUE
+            Operation.NEGATIVE_PLUS_DIV->NEGATIVE_PLUS_DIV_VALUE
+            Operation.NEGATIVE_MINUS_DIV-> NEGATIVE_MINUS_DIV_VALUE
+            Operation.NEGATIVE_PLUS_MINUS_MUL-> NEGATIVE_PLUS_MINUS_MULTIPLY_VALUE
+            Operation.NEGATIVE_PLUS_MINUS_DIV-> NEGATIVE_PLUS_MINUS_DIVIDE_VALUE
             else -> null
         }.plus(" ").plus(exerciseType.difficulty)
 
@@ -39,6 +56,14 @@ class MulDivViewHolder(
             }
             root.background = ContextCompat.getDrawable(root.context,R.drawable.bg_in_tile_exercise)
         }
+        else
+        {
+            root.setOnClickListener(null)
+            root.background = ContextCompat.getDrawable(root.context,R.drawable.bg_in_tile_exercise_disabled)
+        }
+
+
+
 
         val stars = arrayOf(star1, star2, star3, star4, star5)
         for (i in 1..exerciseType.rate) {

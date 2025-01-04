@@ -138,10 +138,21 @@
                 android:id="@+id/backspace"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/accent"
-                android:src="@drawable/ic_backspace_48dp"
-                android:layout_margin="5dp" />
+                android:src="@drawable/ic_backspace_48dp" />
+
+            <Button
+                android:id="@+id/neg"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@color/accent"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:text="±" />
 
             <Button
                 android:id="@+id/button0"

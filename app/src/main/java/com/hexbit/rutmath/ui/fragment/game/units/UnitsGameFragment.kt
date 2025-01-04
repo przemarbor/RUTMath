@@ -15,7 +15,6 @@ import androidx.navigation.fragment.navArgs
 import com.hexbit.rutmath.R
 import com.hexbit.rutmath.data.model.Operation
 import com.hexbit.rutmath.databinding.FragmentUnitsGameBinding
-import com.hexbit.rutmath.ui.fragment.game.normal.NormalGameFragment
 import com.hexbit.rutmath.ui.view.KeyboardView
 import com.hexbit.rutmath.ui.view.UnitsHelpDialog
 import com.hexbit.rutmath.util.base.BaseFragment
@@ -133,10 +132,14 @@ class UnitsGameFragment : BaseFragment() {
                 if (input.text.length > 6) {
                     return
                 }
-                if (input.text.toString() == DEFAULT_INPUT_VALUE) {
-                    input.text = ""
+                var p = input.text.toString();
+                if (p == DEFAULT_INPUT_VALUE) {
+                    p = ""
+                } else if (p == "-$DEFAULT_INPUT_VALUE")
+                {
+                    p = "-"
                 }
-                input.text = input.text.toString() + value
+                input.text = p + value
                 resetColors()
             }
 
@@ -160,6 +163,17 @@ class UnitsGameFragment : BaseFragment() {
                     }
                 } catch (exception: Exception) {
                     return
+                }
+            }
+
+            override fun onNegativeClicked(){
+                val s = input.text.toString()
+                if (s.startsWith("-", 0)) {
+                    input.text = s.substring(1)
+                }
+                else {
+                    val ss = "-$s"
+                    input.text = ss
                 }
             }
 

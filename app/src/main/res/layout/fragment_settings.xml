@@ -104,6 +104,15 @@
             android:text="Portuguese "
             android:textSize="24sp" />
 
+        <RadioButton
+            android:id="@+id/rb_Greek"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:padding="10dp"
+            android:text="Ελληνικά "
+            android:textSize="24sp" />
+
     </RadioGroup>
 
     <Button

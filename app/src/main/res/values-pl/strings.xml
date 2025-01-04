@@ -48,6 +48,7 @@
     <string name="units_surface">Powierzchnia</string>
     <string name="units_all">Wszystkie</string>
     <string name="time_units">d,godz,min,sek</string>
+    <string name="question_mark">\?</string>
     <string name="prz_url">https://w.prz.edu.pl</string>
     <string name="weii_url">https://weii.prz.edu.pl</string>
     <string name="menu_play">Ćwiczenia</string>

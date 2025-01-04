@@ -22,11 +22,11 @@ class MulDivListViewModel(private val database: AppDatabase) : DisposableViewMod
      */
     fun loadExercises(nick: String) {
         manageDisposable {
-            database.exerciseTypeDao().getAll(nick, listOf("MULTIPLY","DIVIDE","MULTIPLY_DIVIDE"))
+            database.exerciseTypeDao().getAll(nick, listOf("MULTIPLY","DIVIDE","MULTIPLY_DIVIDE","NEGATIVE_PLUS_MUL","NEGATIVE_MINUS_MUL","NEGATIVE_PLUS_DIV","NEGATIVE_MINUS_DIV","NEGATIVE_PLUS_MINUS_MUL","NEGATIVE_PLUS_MINUS_DIV"))
                 .flatMap { list ->
                     if (list.isEmpty()) {
                         initializeExerciseListInDatabase(nick).andThen(
-                            database.exerciseTypeDao().getAll(nick, listOf("MULTIPLY","DIVIDE","MULTIPLY_DIVIDE")).subscribeOn(Schedulers.io())
+                            database.exerciseTypeDao().getAll(nick, listOf("MULTIPLY","DIVIDE","MULTIPLY_DIVIDE","NEGATIVE_PLUS_MUL","NEGATIVE_MINUS_MUL","NEGATIVE_PLUS_DIV","NEGATIVE_MINUS_DIV","NEGATIVE_PLUS_MINUS_MUL","NEGATIVE_PLUS_MINUS_DIV")).subscribeOn(Schedulers.io())
                         )
                     } else {
                         Single.just(list)
@@ -42,15 +42,15 @@ class MulDivListViewModel(private val database: AppDatabase) : DisposableViewMod
      */
     private fun initializeExerciseListInDatabase(nick: String): Completable {
         val exercises = arrayListOf<ExerciseType>()
-        val range = (20..100 step 10) + 200
-
+        //val range = (20..100 step 10) + 200
+        val range = (10..20 step 5) + (30..60 step 10) + (80..100 step 20) +200
         /**
          *  Add unlocked MULTIPLY/DIVIDE exercises
          */
         exercises.add(
             ExerciseType(
                 Operation.MULTIPLY,
-                10,
+                5,
                 -1,
                 nick,
                 true
@@ -59,7 +59,7 @@ class MulDivListViewModel(private val database: AppDatabase) : DisposableViewMod
         exercises.add(
             ExerciseType(
                 Operation.DIVIDE,
-                10,
+                5,
                 -1,
                 nick,
                 true
@@ -68,12 +68,55 @@ class MulDivListViewModel(private val database: AppDatabase) : DisposableViewMod
         exercises.add(
             ExerciseType(
                 Operation.MULTIPLY_DIVIDE,
-                10,
+                5,
                 -1,
                 nick,
                 true
             )
         )
+        /*exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_MINUS_MUL,
+                5,
+                -1,
+                nick,
+                true
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_PLUS_MUL,
+                5,
+                -1,
+                nick,
+                true
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_PLUS_DIV,
+                5,
+                -1,
+                nick,
+                true
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_MINUS_DIV,
+                5,
+                -1,
+                nick,
+                true
+            )
+        ) */
+
+
+
+
+
+
+
         /**
          *  Add locked MULTIPLY/DIVIDE exercises
          */
@@ -106,6 +149,128 @@ class MulDivListViewModel(private val database: AppDatabase) : DisposableViewMod
                 )
             )
         }
+        // Negative Multiplication
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_PLUS_MUL,
+                5,
+                -1,
+                nick,
+                false
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_MINUS_MUL,
+                5,
+                -1,
+                nick,
+                false
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_PLUS_MINUS_MUL,
+                5,
+                -1,
+                nick,
+                false
+            )
+        )
+
+        range.forEach {
+            // Negative Multiplication
+            exercises.add(
+                ExerciseType(
+                    Operation.NEGATIVE_PLUS_MUL,
+                    it,
+                    -1,
+                    nick,
+                    false
+                )
+            )
+            exercises.add(
+                ExerciseType(
+                    Operation.NEGATIVE_MINUS_MUL,
+                    it,
+                    -1,
+                    nick,
+                    false
+                )
+            )
+            exercises.add(
+                ExerciseType(
+                    Operation.NEGATIVE_PLUS_MINUS_MUL,
+                    it,
+                    -1,
+                    nick,
+                    false
+                )
+            )
+
+        }
+
+        // Negative Division
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_PLUS_DIV,
+                5,
+                -1,
+                nick,
+                false
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_MINUS_DIV,
+                5,
+                -1,
+                nick,
+                false
+            )
+        )
+        exercises.add(
+            ExerciseType(
+                Operation.NEGATIVE_PLUS_MINUS_DIV,
+                5,
+                -1,
+                nick,
+                false
+            )
+        )
+
+        range.forEach {
+            // Negative Division
+            exercises.add(
+                ExerciseType(
+                    Operation.NEGATIVE_PLUS_DIV,
+                    it,
+                    -1,
+                    nick,
+                    false
+                )
+            )
+            exercises.add(
+                ExerciseType(
+                    Operation.NEGATIVE_MINUS_DIV,
+                    it,
+                    -1,
+                    nick,
+                    false
+                )
+            )
+
+            exercises.add(
+                ExerciseType(
+                    Operation.NEGATIVE_PLUS_MINUS_DIV,
+                    it,
+                    -1,
+                    nick,
+                    false
+                )
+            )
+        }
+
         return database.exerciseTypeDao()
             .insertAll(exercises)
             .observeOn(AndroidSchedulers.mainThread())
@@ -122,7 +287,7 @@ class MulDivListViewModel(private val database: AppDatabase) : DisposableViewMod
                 .update(exerciseType)
                 .subscribeOn(Schedulers.io())
                 .andThen(Single.defer {
-                    database.exerciseTypeDao().getAll(nick, listOf("MULTIPLY","DIVIDE","MULTIPLY_DIVIDE"))
+                    database.exerciseTypeDao().getAll(nick, listOf("MULTIPLY","DIVIDE","MULTIPLY_DIVIDE","NEGATIVE_PLUS_MUL","NEGATIVE_MINUS_MUL","NEGATIVE_PLUS_DIV","NEGATIVE_MINUS_DIV","NEGATIVE_PLUS_MINUS_MUL","NEGATIVE_PLUS_MINUS_DIV"))
                 })
                 .subscribe ({ newList ->
                     exerciseTypes.postValue(newList)

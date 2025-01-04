@@ -64,6 +64,18 @@ class AddSubListFragment : BaseFragment() {
                     {
                         viewModel.unlockExerciseType(args.player.nick, Operation.PLUS, args.exerciseType!!.difficulty)
                         viewModel.unlockExerciseType(args.player.nick, Operation.MINUS, args.exerciseType!!.difficulty)
+                        //added code here
+                    }
+                    if (args.exerciseType!!.operation == Operation.NEGATIVE_PLUS_MINUS)
+                    {
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_PLUS, args.exerciseType!!.difficulty)
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_MINUS, args.exerciseType!!.difficulty)
+                    }
+                    if (args.exerciseType!!.operation == Operation.PLUS_MINUS && args.exerciseType!!.difficulty == 200)
+                    {
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_PLUS, 0)
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_MINUS, 0)
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_PLUS_MINUS, 0)
                     }
                 }
 
