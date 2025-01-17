@@ -42,7 +42,7 @@
         android:layout_height="120dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/logo_transparent"
+        android:src="@drawable/logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/przLogo" />
 

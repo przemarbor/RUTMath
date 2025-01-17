@@ -66,18 +66,12 @@ class MulDivListFragment : BaseFragment() {
                     }
                     if (args.exerciseType!!.operation == Operation.MULTIPLY_DIVIDE && args.exerciseType!!.difficulty == 200)
                     {
-                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_MINUS_DIV, 0)
-                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_PLUS_DIV, 0)
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_DIV, 0)
                     }
-                    if (args.exerciseType!!.operation == Operation.NEGATIVE_PLUS_MINUS_MUL)
+                    if (args.exerciseType!!.operation == Operation.NEGATIVE_MUL_DIV)
                     {
-                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_MINUS_DIV, args.exerciseType!!.difficulty)
-                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_PLUS_DIV, args.exerciseType!!.difficulty)
-                    }
-                    if (args.exerciseType!!.operation == Operation.NEGATIVE_PLUS_MINUS_MUL && args.exerciseType!!.difficulty == 200)
-                    {
-                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_MINUS_DIV, 0)
-                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_PLUS_DIV, 0)
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_MUL, args.exerciseType!!.difficulty)
+                        viewModel.unlockExerciseType(args.player.nick, Operation.NEGATIVE_DIV, args.exerciseType!!.difficulty)
                     }
                 }
                 NormalRateDialog(requireContext(), args.rate).show()

@@ -6,9 +6,7 @@ import com.hexbit.rutmath.data.AppDatabase
 import com.hexbit.rutmath.data.model.ExerciseType
 import com.hexbit.rutmath.data.model.Operation
 import com.hexbit.rutmath.util.base.DisposableViewModel
-import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class AddSubListViewModel(private val database: AppDatabase) : DisposableViewModel() {
@@ -22,157 +20,59 @@ class AddSubListViewModel(private val database: AppDatabase) : DisposableViewMod
      */
     fun loadExercises(nick: String) {
         manageDisposable {
-            database.exerciseTypeDao().getAll(nick, listOf("PLUS","MINUS","PLUS_MINUS","NEGATIVE_PLUS","NEGATIVE_MINUS", "NEGATIVE_PLUS_MINUS"))
-                .flatMap { list ->
-                    if (list.isEmpty()) {
-                        initializeExerciseListInDatabase(nick).andThen(
-                            database.exerciseTypeDao().getAll(nick, listOf("PLUS","MINUS","PLUS_MINUS","NEGATIVE_PLUS","NEGATIVE_MINUS", "NEGATIVE_PLUS_MINUS")).subscribeOn(Schedulers.io())
-                        )
+            database.exerciseTypeDao().getAll(nick, listOf("PLUS", "MINUS", "PLUS_MINUS", "NEGATIVE_PLUS", "NEGATIVE_MINUS", "NEGATIVE_PLUS_MINUS"))
+                .flatMap { existingList ->
+                    val allExercises = generateAllExercises(nick) // Generate all exercises as a list
+                    val missingExercises = allExercises.filter { newExercise ->
+                        existingList.none { it.operation == newExercise.operation && it.difficulty == newExercise.difficulty }
+                    }
+
+                    if (missingExercises.isNotEmpty()) {
+                        database.exerciseTypeDao().insertAll(missingExercises)
+                            .andThen(Single.just(existingList + missingExercises)) // Return the updated list
                     } else {
-                        Single.just(list)
+                        Single.just(existingList) // No new exercises to add
                     }
                 }
                 .subscribeOn(Schedulers.io())
-                .subscribe( { list -> exerciseTypes.postValue(list) },
-                    { println("ERROR: Cannot load Exercises") })
+                .subscribe({ updatedList ->
+                    exerciseTypes.postValue(updatedList) // Update LiveData
+                }, {
+                    println("ERROR: Cannot load or update Exercises")
+                })
         }
     }
-    /**
-     *  Initialize exercises in Database for the New Player
-     */
-    private fun initializeExerciseListInDatabase(nick: String): Completable {
-        val exercises = arrayListOf<ExerciseType>()
-        val range = (10..20 step 5) + (30..60 step 10) + (80..100 step 20) +200
 
-        /**
-         *  Add unlocked PLUS/MINUS exercises
-         */
-        exercises.add(
-            ExerciseType(
-                Operation.PLUS,
-                5,
-                -1,
-                nick,
-                true
-            )
-        )
-        exercises.add(
-            ExerciseType(
-                Operation.MINUS,
-                5,
-                -1,
-                nick,
-                true
-            )
-        )
-        exercises.add(
-            ExerciseType(
-                Operation.PLUS_MINUS,
-                5,
-                -1,
-                nick,
-                true
-            )
-        )
-        //new code here for negative numbers
+    private fun generateAllExercises(nick: String): List<ExerciseType> {
+        val exercises = mutableListOf<ExerciseType>()
+        val range = (10..20 step 5) + (30..60 step 10) + (80..100 step 20) + 200
 
+        // Add unlocked PLUS/MINUS exercises
+        exercises.add(ExerciseType(Operation.PLUS, 5, -1, nick, true))
+        exercises.add(ExerciseType(Operation.MINUS, 5, -1, nick, true))
+        exercises.add(ExerciseType(Operation.PLUS_MINUS, 5, -1, nick, true))
 
-
-        /**
-         *  Add locked PLUS/MINUS exercises
-         */
+        // Add locked PLUS/MINUS exercises
         range.forEach {
-            exercises.add(
-                ExerciseType(
-                    Operation.PLUS,
-                    it,
-                    -1,
-                    nick,
-                    false
-                )
-            )
-            exercises.add(
-                ExerciseType(
-                    Operation.MINUS,
-                    it,
-                    -1,
-                    nick,
-                    false
-                )
-            )
-            exercises.add(
-                ExerciseType(
-                    Operation.PLUS_MINUS,
-                    it,
-                    -1,
-                    nick,
-                    false
-                )
-            )
+            exercises.add(ExerciseType(Operation.PLUS, it, -1, nick, false))
+            exercises.add(ExerciseType(Operation.MINUS, it, -1, nick, false))
+            exercises.add(ExerciseType(Operation.PLUS_MINUS, it, -1, nick, false))
         }
 
-        exercises.add(
-            ExerciseType(
-                Operation.NEGATIVE_PLUS,
-                5,
-                -1,
-                nick,
-                false
-            )
-        )
-        exercises.add(
-            ExerciseType(
-                Operation.NEGATIVE_MINUS,
-                5,
-                -1,
-                nick,
-                false
-            )
-        )
-        exercises.add(
-            ExerciseType(
-                Operation.NEGATIVE_PLUS_MINUS,
-                5,
-                -1,
-                nick,
-                false
-            )
-        )
+        // Add new negative exercises
+        exercises.add(ExerciseType(Operation.NEGATIVE_PLUS, 5, -1, nick, false))
+        exercises.add(ExerciseType(Operation.NEGATIVE_MINUS, 5, -1, nick, false))
+        exercises.add(ExerciseType(Operation.NEGATIVE_PLUS_MINUS, 5, -1, nick, false))
+
         range.forEach {
-            exercises.add(
-                ExerciseType(
-                    Operation.NEGATIVE_PLUS,
-                    it,
-                    -1,
-                    nick,
-                    false
-                )
-            )
-            exercises.add(
-                ExerciseType(
-                    Operation.NEGATIVE_MINUS,
-                    it,
-                    -1,
-                    nick,
-                    false
-                )
-            )
-            exercises.add(
-                ExerciseType(
-                    Operation.NEGATIVE_PLUS_MINUS,
-                    it,
-                    -1,
-                    nick,
-                    false
-                )
-            )
+            exercises.add(ExerciseType(Operation.NEGATIVE_PLUS, it, -1, nick, false))
+            exercises.add(ExerciseType(Operation.NEGATIVE_MINUS, it, -1, nick, false))
+            exercises.add(ExerciseType(Operation.NEGATIVE_PLUS_MINUS, it, -1, nick, false))
         }
 
-        return database.exerciseTypeDao()
-            .insertAll(exercises)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+        return exercises
     }
+
 
     /**
      * It updates exercise type in database (for example when user finished game and we should update

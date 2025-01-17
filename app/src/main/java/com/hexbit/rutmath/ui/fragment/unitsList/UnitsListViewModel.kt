@@ -6,9 +6,7 @@ import com.hexbit.rutmath.data.AppDatabase
 import com.hexbit.rutmath.data.model.ExerciseType
 import com.hexbit.rutmath.data.model.Operation
 import com.hexbit.rutmath.util.base.DisposableViewModel
-import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class UnitsListViewModel(private val database: AppDatabase) : DisposableViewModel() {
@@ -22,50 +20,52 @@ class UnitsListViewModel(private val database: AppDatabase) : DisposableViewMode
      */
     fun loadExercises(nick: String) {
         manageDisposable {
-            database.exerciseTypeDao().getAll(nick, listOf("UNITS_ALL","UNITS_LENGTH","UNITS_TIME","UNITS_WEIGHT","UNITS_SURFACE"))
-                .flatMap { list ->
-                    if (list.isEmpty()) {
-                        initializeExerciseListInDatabase(nick).andThen(
-                            database.exerciseTypeDao().getAll(nick, listOf("UNITS_ALL","UNITS_LENGTH","UNITS_TIME","UNITS_WEIGHT","UNITS_SURFACE")).subscribeOn(
-                                Schedulers.io()
-                            )
-                        )
+            database.exerciseTypeDao()
+                .getAll(nick, listOf("UNITS_ALL", "UNITS_LENGTH", "UNITS_TIME", "UNITS_WEIGHT", "UNITS_SURFACE"))
+                .flatMap { existingList ->
+                    val allExercises = generateAllExercises(nick) // Generate the complete list of exercises
+                    val missingExercises = allExercises.filter { newExercise ->
+                        existingList.none {
+                            it.operation == newExercise.operation && it.difficulty == newExercise.difficulty
+                        }
+                    }
+
+                    if (missingExercises.isNotEmpty()) {
+                        database.exerciseTypeDao()
+                            .insertAll(missingExercises)
+                            .andThen(Single.just(existingList + missingExercises)) // Combine updated list
                     } else {
-                        Single.just(list)
+                        Single.just(existingList) // No new exercises to add
                     }
                 }
                 .subscribeOn(Schedulers.io())
-                .subscribe( { list -> exerciseTypes.postValue(list) },
-                    { println("Cannot load Exercises") })
+                .subscribe(
+                    { updatedList -> exerciseTypes.postValue(updatedList) },
+                    { println("ERROR: Cannot load or update Exercises") }
+                )
         }
     }
 
-    /**
-     *  Initialize exercises in Database for the New Player
-     */
-    private fun initializeExerciseListInDatabase(nick: String): Completable {
-        val exercises = arrayListOf<ExerciseType>()
-        val operations = listOf(Operation.UNITS_LENGTH,Operation.UNITS_TIME,Operation.UNITS_WEIGHT,Operation.UNITS_SURFACE,Operation.UNITS_ALL)
-        for (i in 0..operations.size-1)
-        {
-            /**
-             *  Add unlocked UNITS exercise
-             */
+
+    private fun generateAllExercises(nick: String): List<ExerciseType> {
+        val exercises = mutableListOf<ExerciseType>()
+        val operations = listOf(Operation.UNITS_LENGTH, Operation.UNITS_TIME, Operation.UNITS_WEIGHT, Operation.UNITS_SURFACE, Operation.UNITS_ALL)
+
+        operations.forEach { operation ->
+            // Add unlocked UNIT exercise
             exercises.add(
                 ExerciseType(
-                    operations[i],
+                    operation,
                     1,
                     -1,
                     nick,
                     true
                 )
             )
-            /**
-             *  Add locked UNITS exercise
-             */
+            // Add locked UNIT exercise
             exercises.add(
                 ExerciseType(
-                    operations[i],
+                    operation,
                     2,
                     -1,
                     nick,
@@ -73,11 +73,10 @@ class UnitsListViewModel(private val database: AppDatabase) : DisposableViewMode
                 )
             )
         }
-        return database.exerciseTypeDao()
-            .insertAll(exercises)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+
+        return exercises
     }
+
 
     /**
      * It updates exercise type in database (for example when user finished game and we should update

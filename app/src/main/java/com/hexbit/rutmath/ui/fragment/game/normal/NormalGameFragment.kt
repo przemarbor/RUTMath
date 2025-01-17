@@ -20,7 +20,7 @@ import com.hexbit.rutmath.ui.view.KeyboardView
 import com.hexbit.rutmath.util.base.BaseFragment
 import com.hexbit.rutmath.util.gone
 import com.hexbit.rutmath.util.visible
-import kotlinx.coroutines.delay
+//import kotlinx.coroutines.delay
 import org.koin.android.ext.android.inject
 import java.lang.Exception
 
@@ -51,7 +51,7 @@ class NormalGameFragment : BaseFragment() {
                             player=args.player
                         )
                     )
-                Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE, Operation.NEGATIVE_PLUS_MUL, Operation.NEGATIVE_PLUS_DIV, Operation.NEGATIVE_MINUS_MUL, Operation.NEGATIVE_MINUS_DIV, Operation.NEGATIVE_PLUS_MINUS_MUL, Operation.NEGATIVE_PLUS_MINUS_DIV ->
+                Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE, Operation.NEGATIVE_MUL, Operation.NEGATIVE_DIV, Operation.NEGATIVE_MUL_DIV ->
                     findNavController().navigate(
                         NormalGameFragmentDirections.actionNormalGameFragmentToMulDivListFragment(
                             rate=0,
@@ -88,31 +88,24 @@ class NormalGameFragment : BaseFragment() {
                     .plus(" ")
                     .plus(
                         when (it.operation) {
-                            Operation.PLUS -> "+"
-                            Operation.MINUS -> "-"
-                            Operation.MULTIPLY -> "×"
-                            Operation.DIVIDE -> "÷"
-                            Operation.NEGATIVE_PLUS->"+("
-                            Operation.NEGATIVE_MINUS->"-("
+                            Operation.PLUS, Operation.NEGATIVE_PLUS -> " + "
+                            Operation.MINUS, Operation.NEGATIVE_MINUS -> " - "
+                            Operation.MULTIPLY, Operation.NEGATIVE_MUL -> " × "
+                            Operation.DIVIDE, Operation.NEGATIVE_DIV -> " ÷ "
+//                            Operation.NEGATIVE_PLUS->"+ "
+//                            Operation.NEGATIVE_MINUS->"- "
                             //new code here
-                            Operation.NEGATIVE_PLUS_MUL->"× ("
-                            Operation.NEGATIVE_MINUS_MUL->"× -("
-                            Operation.NEGATIVE_PLUS_DIV->"÷ ("
-                            Operation.NEGATIVE_MINUS_DIV->"÷ -("
+//                            Operation.NEGATIVE_PLUS_MUL->"× ("
+//                            Operation.NEGATIVE_MINUS_MUL->"× -("
+//                            Operation.NEGATIVE_PLUS_DIV->"÷ ("
+//                            Operation.NEGATIVE_MINUS_DIV->"÷ -("
+//                            Operation.NEGATIVE_MUL->
                             else -> throw Exception("Invalid operation!")
                         }
                     )
                     .plus(" ")
                     .plus(it.componentB)
-                    .plus(when (it.operation) {
-                        Operation.NEGATIVE_PLUS -> ") = "
-                        Operation.NEGATIVE_MINUS -> ") = "
-                        Operation.NEGATIVE_PLUS_MUL -> ") = "
-                        Operation.NEGATIVE_MINUS_MUL-> ") = "
-                        Operation.NEGATIVE_PLUS_DIV->") = "
-                        Operation.NEGATIVE_MINUS_DIV->") = "
-                        else->" = "
-                    })
+                    .plus(" = ")
             }
             input.text = DEFAULT_INPUT_VALUE
             if (args.exerciseType.difficulty <= 10 && (args.exerciseType.operation == Operation.PLUS || args.exerciseType.operation == Operation.MINUS || args.exerciseType.operation == Operation.PLUS_MINUS)) {
@@ -139,7 +132,7 @@ class NormalGameFragment : BaseFragment() {
                             player=args.player
                         )
                     )
-                Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE, Operation.NEGATIVE_PLUS_MUL, Operation.NEGATIVE_MINUS_MUL, Operation.NEGATIVE_PLUS_DIV, Operation.NEGATIVE_MINUS_DIV, Operation.NEGATIVE_PLUS_MINUS_MUL, Operation.NEGATIVE_PLUS_MINUS_DIV ->
+                Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE, Operation.NEGATIVE_MUL, Operation.NEGATIVE_DIV, Operation.NEGATIVE_MUL_DIV ->
                     findNavController().navigate(
                         NormalGameFragmentDirections.actionNormalGameFragmentToMulDivListFragment(
                             rate=rate,
@@ -157,7 +150,7 @@ class NormalGameFragment : BaseFragment() {
                     updateUiOnCorrectAnswer()
                     Handler(Looper.getMainLooper()).postDelayed({
                         if(isVisible) {
-                            progressBar.progress = progressBar.progress + 1
+                            progressBar.progress += 1
                             viewModel.setNextActiveEquation()
                             keyboardView.enableKeyboard()
                         }
@@ -181,7 +174,7 @@ class NormalGameFragment : BaseFragment() {
                 if (input.text.length > 2) {
                     return
                 }
-                var p = input.text.toString();
+                var p = input.text.toString()
                 if (p == NormalGameFragment.DEFAULT_INPUT_VALUE) {
                     p = ""
                 } else if (p == "-" + NormalGameFragment.DEFAULT_INPUT_VALUE)

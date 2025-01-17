@@ -124,6 +124,7 @@ class NormalGameViewModel : DisposableViewModel() {
                         a = possibleValues.random()
                     correctAnswer = a / b
                 }
+
                 Operation.NEGATIVE_PLUS -> {
                     a = Random.nextInt(1+(difficulty* 0.1).toInt(), (difficulty*0.9).toInt())
                     for (num in (1+(difficulty * 0.1).toInt())..(difficulty + 1)){
@@ -131,7 +132,21 @@ class NormalGameViewModel : DisposableViewModel() {
                             possibleValues.add(num)
                     }
                     if (possibleValues.any())
-                        b = -possibleValues.random()
+                        b = possibleValues.random()
+
+                    if (Random.nextBoolean()) {
+                        a = -a
+                        if (Random.nextBoolean()) {
+                            b = -b
+                        }
+                    } else {
+                        b = -b
+                        if (Random.nextBoolean()) {
+                            a = -a
+                        }
+                    }
+
+
                     correctAnswer = a + b
                 }
                 Operation.NEGATIVE_MINUS -> {
@@ -141,54 +156,103 @@ class NormalGameViewModel : DisposableViewModel() {
                             possibleValues.add(num)
                     }
                     if (possibleValues.any())
-                        b = -possibleValues.random()
+                        b = possibleValues.random()
+
+                    if (Random.nextBoolean()) {
+                        a = -a
+                        if (Random.nextBoolean()) {
+                            b = -b
+                        }
+                    } else {
+                        b = -b
+                        if (Random.nextBoolean()) {
+                            a = -a
+                        }
+                    }
+
                     correctAnswer = a - b
                 }
+
                 // added code here for multyplication with negative numbers
-                Operation.NEGATIVE_PLUS_MUL -> {
+                Operation.NEGATIVE_MUL -> {
                     a = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
                     for (num in 1..(difficulty + 1)){
                         if ((a * num <= difficulty+1) and ((a * num) >= (difficulty* 0.2)))
                             possibleValues.add(num)
                     }
                     if (possibleValues.any())
-                        b = -possibleValues.random()
+                        b = possibleValues.random()
+
+                    if (Random.nextBoolean()) {
+                        a = -a
+                        if (Random.nextBoolean()) {
+                            b = -b
+                        }
+                    } else {
+                        b = -b
+                        if (Random.nextBoolean()) {
+                            a = -a
+                        }
+                    }
+
                     correctAnswer = a * b
                 }
-                Operation.NEGATIVE_MINUS_MUL -> {
-                    a = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
-                    for (num in 1..(difficulty + 1)){
-                        if ((a * num <= difficulty+1) and ((a * num) >= (difficulty* 0.2)))
-                            possibleValues.add(num)
-                    }
-                    if (possibleValues.any())
-                        b = -possibleValues.random()
-                    correctAnswer = a * -b
-                }
-                Operation.NEGATIVE_PLUS_DIV -> {
-                    b = -Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
+//                Operation.NEGATIVE_MINUS_MUL -> {
+//                    a = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
+//                    for (num in 1..(difficulty + 1)){
+//                        if ((a * num <= difficulty+1) and ((a * num) >= (difficulty* 0.2)))
+//                            possibleValues.add(num)
+//                    }
+//                    if (possibleValues.any())
+//                        b = possibleValues.random()
+//
+//                    if (Random.nextBoolean())
+//                        a = -a
+//                    else
+//                        b = -b
+//
+//                    correctAnswer = a * -b
+//                }
+                Operation.NEGATIVE_DIV -> {
+                    b = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
                     for (num in ((difficulty* 0.2).toInt())..(difficulty+1)){
                         if (num % b == 0)
                             possibleValues.add(num)
                     }
                     if (possibleValues.any())
                         a = possibleValues.random()
+
+                    if (Random.nextBoolean()) {
+                        a = -a
+                        if (Random.nextBoolean()) {
+                            b = -b
+                        }
+                    } else {
+                        b = -b
+                        if (Random.nextBoolean()) {
+                            a = -a
+                        }
+                    }
+
                     correctAnswer = a / b
                 }
-                Operation.NEGATIVE_MINUS_DIV -> {
-                    b = -Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
-
-                    for (num in ((difficulty* 0.2).toInt())..(difficulty+1)){
-                        if (num % b == 0)
-                            possibleValues.add(num)
-                    }
-                    if (possibleValues.any())
-                        a = possibleValues.random()
-                    correctAnswer = a / -b
-                }
-
-
-
+//                Operation.NEGATIVE_MINUS_DIV -> {
+//                    b = Random.nextInt(2, sqrt((difficulty).toDouble()).roundToInt()+1)
+//
+//                    for (num in ((difficulty* 0.2).toInt())..(difficulty+1)){
+//                        if (num % b == 0)
+//                            possibleValues.add(num)
+//                    }
+//                    if (possibleValues.any())
+//                        a = possibleValues.random()
+//
+//                    if (Random.nextBoolean())
+//                        a = -a
+//                    else
+//                        b = -b
+//
+//                    correctAnswer = a / b
+//                }
 
 
                 else -> throw Exception("Operation not implemented in this View")

@@ -6,9 +6,7 @@ import com.hexbit.rutmath.data.AppDatabase
 import com.hexbit.rutmath.data.model.ExerciseType
 import com.hexbit.rutmath.data.model.Operation
 import com.hexbit.rutmath.util.base.DisposableViewModel
-import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class DivisibilityListViewModel(private val database: AppDatabase) : DisposableViewModel() {
@@ -22,32 +20,37 @@ class DivisibilityListViewModel(private val database: AppDatabase) : DisposableV
      */
     fun loadExercises(nick: String) {
         manageDisposable {
-            database.exerciseTypeDao().getAll(nick, listOf("DIVISIBILITY"))
-                .flatMap { list ->
-                    if (list.isEmpty()) {
-                        initializeExerciseListInDatabase(nick).andThen(
-                            database.exerciseTypeDao().getAll(nick, listOf("DIVISIBILITY")).subscribeOn(
-                                Schedulers.io())
-                        )
+            database.exerciseTypeDao()
+                .getAll(nick, listOf("DIVISIBILITY"))
+                .flatMap { existingList ->
+                    val allExercises = generateAllExercises(nick) // Generate all exercises as a list
+                    val missingExercises = allExercises.filter { newExercise ->
+                        existingList.none {
+                            it.operation == newExercise.operation && it.difficulty == newExercise.difficulty
+                        }
+                    }
+
+                    if (missingExercises.isNotEmpty()) {
+                        database.exerciseTypeDao()
+                            .insertAll(missingExercises)
+                            .andThen(Single.just(existingList + missingExercises)) // Combine updated list
                     } else {
-                        Single.just(list)
+                        Single.just(existingList) // No new exercises to add
                     }
                 }
                 .subscribeOn(Schedulers.io())
-                .subscribe( { list -> exerciseTypes.postValue(list) },
-                    { println("ERROR: Cannot load Exercises") })
+                .subscribe(
+                    { updatedList -> exerciseTypes.postValue(updatedList) },
+                    { println("ERROR: Cannot load or update Exercises") }
+                )
         }
     }
-    /**
-     *  Initialize exercises in Database for the New Player
-     */
-    private fun initializeExerciseListInDatabase(nick: String): Completable {
-        val exercises = arrayListOf<ExerciseType>()
+
+    private fun generateAllExercises(nick: String): List<ExerciseType> {
+        val exercises = mutableListOf<ExerciseType>()
         val range = (2..10 step 1)
 
-        /**
-         *  Add unlocked DIVISIBILITY exercises
-         */
+        // Add unlocked DIVISIBILITY exercise
         exercises.add(
             ExerciseType(
                 Operation.DIVISIBILITY,
@@ -57,9 +60,8 @@ class DivisibilityListViewModel(private val database: AppDatabase) : DisposableV
                 true
             )
         )
-        /**
-         *  Add locked DIVISIBILITY exercises
-         */
+
+        // Add locked DIVISIBILITY exercises
         range.forEach {
             exercises.add(
                 ExerciseType(
@@ -71,11 +73,10 @@ class DivisibilityListViewModel(private val database: AppDatabase) : DisposableV
                 )
             )
         }
-        return database.exerciseTypeDao()
-            .insertAll(exercises)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+
+        return exercises
     }
+
 
     /**
      * It updates exercise type in database (for example when user finished game and we should update
