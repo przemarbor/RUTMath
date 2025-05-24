@@ -51,4 +51,8 @@
     <string name="question_mark">;</string>
     <string name="prz_url">https://w.prz.edu.pl/en/</string>
     <string name="weii_url">https://weii.prz.edu.pl/en/</string>
+    <string name="menu_play">Ασκήσεις</string>
+    <string name="menu_settings">Ρυθμίσεις</string>
+    <string name="menu_pvp">Μονομαχία</string>
+    <string name="menu_leaderboard">Πίνακας Κατάταξης</string>
 </resources>

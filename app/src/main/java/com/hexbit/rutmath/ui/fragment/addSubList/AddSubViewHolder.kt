@@ -43,16 +43,12 @@ class AddSubViewHolder(private val binding: NormalExerciseItemBinding, private v
         }
 
         val stars = arrayOf(binding.star1, binding.star2, binding.star3, binding.star4, binding.star5)
-
         // Reset all stars to the default white icon
         stars.forEach { star ->
             star.setImageResource(R.drawable.ic_star) // Use your default star icon
         }
-
-
         for (i in 1..exerciseType.rate.coerceIn(0, 5)) {
             stars[i - 1].setImageResource(R.drawable.ic_star_yellow_24dp)
         }
     }
-
 }

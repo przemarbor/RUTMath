@@ -92,14 +92,6 @@ class NormalGameFragment : BaseFragment() {
                             Operation.MINUS, Operation.NEGATIVE_MINUS -> " - "
                             Operation.MULTIPLY, Operation.NEGATIVE_MUL -> " × "
                             Operation.DIVIDE, Operation.NEGATIVE_DIV -> " ÷ "
-//                            Operation.NEGATIVE_PLUS->"+ "
-//                            Operation.NEGATIVE_MINUS->"- "
-                            //new code here
-//                            Operation.NEGATIVE_PLUS_MUL->"× ("
-//                            Operation.NEGATIVE_MINUS_MUL->"× -("
-//                            Operation.NEGATIVE_PLUS_DIV->"÷ ("
-//                            Operation.NEGATIVE_MINUS_DIV->"÷ -("
-//                            Operation.NEGATIVE_MUL->
                             else -> throw Exception("Invalid operation!")
                         }
                     )
@@ -198,7 +190,7 @@ class NormalGameFragment : BaseFragment() {
             override fun onAcceptClicked() {
                 try {
                     if (input.text != DEFAULT_INPUT_VALUE && input.text != "-" && input.text != "-$DEFAULT_INPUT_VALUE"){
-                        updateUiOnErrorAnswer()
+//                        updateUiOnErrorAnswer()
                         keyboardView.disableKeyboard()
                         val userAnswer = input.text.toString().toInt()
                         viewModel.validateAnswer(userAnswer)
