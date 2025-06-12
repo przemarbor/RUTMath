@@ -15,3 +15,32 @@
 .idea/deploymentTargetDropDown.xml
 .idea/misc.xml
 .idea/runConfigurations.xml
+
+# Kotlin Multiplatform
+**/build/
+kotlin-js-store/
+node_modules/
+
+# Android
+*.apk
+*.ap_
+*.dex
+*.class
+local.properties
+*.log
+release/
+
+# iOS
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+DerivedData/
+build/
+*.ipa
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
