@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg_gradient"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/bg_image" />
+
+    <TextView
+        android:id="@+id/maxBattleModeNumberTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/fragment_settings_max_number"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/maxBattleModeNumberLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maxBattleModeNumberTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/maxBattleModeNumber"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:maxLength="3"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/selectLanguageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/fragment_settings_select_language"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maxBattleModeNumberLayout" />
+
+    <RadioGroup
+        android:id="@+id/rg_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectLanguageTitle">
+
+        <RadioButton
+            android:id="@+id/rb_English"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="English"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_French"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="Français"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_Polish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="Polski"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_Portuguese"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="Portuguese"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_Spanish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="Español"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_Greek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="Ελληνικά"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_Dutch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="Nederlands"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_Slovak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="Slovenčina"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_Italian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="Italiano"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_German"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="Deutsch"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_Hungarian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="Magyar"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_Czech"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:text="Čeština"
+            android:textSize="18sp" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/save"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="16dp"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="16dp"
+        android:text="@string/save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

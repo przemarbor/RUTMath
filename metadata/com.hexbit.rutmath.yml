@@ -1,0 +1,34 @@
+Categories:
+  - Games
+  - Science & Education
+License: GPL-3.0-or-later
+AuthorName: Arkadiusz Połeć
+AuthorEmail: apolec01@st.prz.edu.pl
+WebSite: https://github.com/przemarbor/RUTMath
+SourceCode: https://github.com/przemarbor/RUTMath
+IssueTracker: https://github.com/przemarbor/RUTMath/issues
+Changelog: https://github.com/przemarbor/RUTMath/releases
+
+AutoName: RUTMath
+Name: RUTMath
+
+RepoType: git
+Repo: https://github.com/przemarbor/RUTMath.git
+
+Builds:
+  - versionName: 0.1.4
+    versionCode: 5
+    commit: v0.1.4
+    subdir: androidApp
+    gradle:
+      - release
+    prebuild: echo 'org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8' >> ../gradle.properties
+
+MaintainerNotes: |
+  This is a Kotlin Multiplatform Mobile project.
+  The Android app is built from the androidApp subdirectory.
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: 0.1.4
+CurrentVersionCode: 5 

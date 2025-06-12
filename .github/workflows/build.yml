@@ -3,11 +3,18 @@ name: "Build App"
 on:
   pull_request:
     paths:
-      - "app/src/**"
+      - "androidApp/src/**"
+      - "shared/src/**"
+      - "*.gradle*"
+      - "gradle/**"
     types:
       - "opened"
       - "reopened"
       - "synchronize"
+  push:
+    branches:
+      - "main"
+      - "master"
 
 jobs:
   build:
@@ -18,25 +25,34 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout code"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Setup Java"
-        uses: "actions/setup-java@v3"
+        uses: "actions/setup-java@v4"
         with:
           distribution: "temurin"
           java-version: "17"
           cache: "gradle"
 
       - name: "Setup Gradle"
-        uses: "gradle/gradle-build-action@v2"
+        uses: "gradle/gradle-build-action@v3"
         with:
           generate-job-summary: false
 
-      - name: "Build APK"
-        run: "bash gradlew assembleRelease --no-daemon"
+      - name: "Grant execute permission for gradlew"
+        run: "chmod +x gradlew"
 
-      - name: "Upload artifacts"
-        uses: "actions/upload-artifact@v3"
+      - name: "Build APK"
+        run: "./gradlew androidApp:assembleRelease --no-daemon"
+
+      - name: "Upload APK artifacts"
+        uses: "actions/upload-artifact@v4"
         with:
           name: "app-release"
-          path: "app/build/outputs/apk/release/app-release.apk"
+          path: "androidApp/build/outputs/apk/release/androidApp-release.apk"
+
+      - name: "Upload AAB artifacts"
+        uses: "actions/upload-artifact@v4"
+        with:
+          name: "app-release-bundle"
+          path: "androidApp/build/outputs/bundle/release/androidApp-release.aab"
