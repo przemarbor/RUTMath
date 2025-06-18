@@ -16,7 +16,7 @@
     <string name="nick_empty">Nazwa nie może być pusta!</string>
     <string name="fragment_settings_select_language">Wybierz język</string>
     <string name="fragment_settings_max_number">Maks. liczba dla pojedynku</string>
-    <string name="fragment_menu_university">Politechnika Rzeszów</string>
+    <string name="fragment_menu_university">Politechnika Rzeszowska</string>
     <string name="battle_view_bonus">Bonus za sekwencję +%d</string>
     <string name="fragment_modes_instruction">Wybierz ćwiczenie z listy:</string>
     <string name="fragment_modes_add_sub">Dodawanie i odejmowanie</string>
@@ -48,5 +48,12 @@
     <string name="units_surface">Powierzchnia</string>
     <string name="units_all">Wszystkie</string>
     <string name="time_units">d,godz,min,sek</string>
+    <string name="question_mark">\?</string>
+    <string name="prz_url">https://w.prz.edu.pl</string>
+    <string name="weii_url">https://weii.prz.edu.pl</string>
+    <string name="menu_play">Ćwiczenia</string>
+    <string name="menu_settings">Ustawienia</string>
+    <string name="menu_pvp">Pojedynek</string>
+    <string name="menu_leaderboard">Wyniki</string>
 
 </resources>

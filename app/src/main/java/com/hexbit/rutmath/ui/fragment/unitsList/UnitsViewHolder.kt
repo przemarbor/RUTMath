@@ -42,6 +42,12 @@ class UnitsViewHolder(
         }
 
         val stars = arrayOf(star1, star2, star3, star4, star5)
+
+        // Reset all stars to the default white icon
+        stars.forEach { star ->
+            star.setImageResource(R.drawable.ic_star)
+        }
+
         for (i in 1..exerciseType.rate) {
             stars[i - 1].setImageResource(R.drawable.ic_star_yellow_24dp)
         }

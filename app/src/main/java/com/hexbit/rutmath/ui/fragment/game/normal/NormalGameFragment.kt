@@ -20,6 +20,7 @@ import com.hexbit.rutmath.ui.view.KeyboardView
 import com.hexbit.rutmath.util.base.BaseFragment
 import com.hexbit.rutmath.util.gone
 import com.hexbit.rutmath.util.visible
+//import kotlinx.coroutines.delay
 import org.koin.android.ext.android.inject
 import java.lang.Exception
 
@@ -42,7 +43,7 @@ class NormalGameFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             when (args.exerciseType.operation){
-                Operation.PLUS, Operation.MINUS, Operation.PLUS_MINUS ->
+                Operation.PLUS, Operation.MINUS, Operation.PLUS_MINUS, Operation.NEGATIVE_PLUS, Operation.NEGATIVE_MINUS, Operation.NEGATIVE_PLUS_MINUS ->
                     findNavController().navigate(
                         NormalGameFragmentDirections.actionNormalGameFragmentToAddSubListFragment(
                             rate=0,
@@ -50,7 +51,7 @@ class NormalGameFragment : BaseFragment() {
                             player=args.player
                         )
                     )
-                Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE ->
+                Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE, Operation.NEGATIVE_MUL, Operation.NEGATIVE_DIV, Operation.NEGATIVE_MUL_DIV ->
                     findNavController().navigate(
                         NormalGameFragmentDirections.actionNormalGameFragmentToMulDivListFragment(
                             rate=0,
@@ -87,10 +88,10 @@ class NormalGameFragment : BaseFragment() {
                     .plus(" ")
                     .plus(
                         when (it.operation) {
-                            Operation.PLUS -> "+"
-                            Operation.MINUS -> "-"
-                            Operation.MULTIPLY -> "×"
-                            Operation.DIVIDE -> "÷"
+                            Operation.PLUS, Operation.NEGATIVE_PLUS -> " + "
+                            Operation.MINUS, Operation.NEGATIVE_MINUS -> " - "
+                            Operation.MULTIPLY, Operation.NEGATIVE_MUL -> " × "
+                            Operation.DIVIDE, Operation.NEGATIVE_DIV -> " ÷ "
                             else -> throw Exception("Invalid operation!")
                         }
                     )
@@ -99,17 +100,23 @@ class NormalGameFragment : BaseFragment() {
                     .plus(" = ")
             }
             input.text = DEFAULT_INPUT_VALUE
-            if (args.exerciseType.difficulty <= 10 && args.exerciseType.operation != Operation.MULTIPLY && args.exerciseType.operation != Operation.DIVIDE && args.exerciseType.operation != Operation.MULTIPLY_DIVIDE) {
+            if (args.exerciseType.difficulty <= 10 && (args.exerciseType.operation == Operation.PLUS || args.exerciseType.operation == Operation.MINUS || args.exerciseType.operation == Operation.PLUS_MINUS)) {
                 graphicRepresentationContainer.visible()
                 drawGraphicRepresentation(it)
             } else {
                 graphicRepresentationContainer.gone()
             }
+            when (args.exerciseType.operation){
+                Operation.PLUS, Operation.MINUS, Operation.PLUS_MINUS, Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE ->
+                    keyboardView.disableNegative()
+                else ->
+                    keyboardView.enableNegative()
+            }
         })
 
         viewModel.getEndGameEvent().observe(viewLifecycleOwner, Observer { rate ->
             when (args.exerciseType.operation){
-                Operation.PLUS, Operation.MINUS, Operation.PLUS_MINUS ->
+                Operation.PLUS, Operation.MINUS, Operation.PLUS_MINUS, Operation.NEGATIVE_PLUS, Operation.NEGATIVE_MINUS, Operation.NEGATIVE_PLUS_MINUS ->
                     findNavController().navigate(
                         NormalGameFragmentDirections.actionNormalGameFragmentToAddSubListFragment(
                             rate=rate,
@@ -117,7 +124,7 @@ class NormalGameFragment : BaseFragment() {
                             player=args.player
                         )
                     )
-                Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE ->
+                Operation.MULTIPLY, Operation.DIVIDE, Operation.MULTIPLY_DIVIDE, Operation.NEGATIVE_MUL, Operation.NEGATIVE_DIV, Operation.NEGATIVE_MUL_DIV ->
                     findNavController().navigate(
                         NormalGameFragmentDirections.actionNormalGameFragmentToMulDivListFragment(
                             rate=rate,
@@ -135,14 +142,16 @@ class NormalGameFragment : BaseFragment() {
                     updateUiOnCorrectAnswer()
                     Handler(Looper.getMainLooper()).postDelayed({
                         if(isVisible) {
-                            progressBar.progress = progressBar.progress + 1
+                            progressBar.progress += 1
                             viewModel.setNextActiveEquation()
+                            keyboardView.enableKeyboard()
                         }
                     }, 1000)
                 }
                 NormalGameViewModel.AnswerEvent.INVALID -> {
                     updateUiOnErrorAnswer()
                     viewModel.markActiveEquationAsFailed()
+                    keyboardView.enableKeyboard()
                 }
                 null -> throw Exception("Error: AnswerEvent is null")
             }
@@ -157,10 +166,14 @@ class NormalGameFragment : BaseFragment() {
                 if (input.text.length > 2) {
                     return
                 }
-                if (input.text.toString() == DEFAULT_INPUT_VALUE) {
-                    input.text = ""
+                var p = input.text.toString()
+                if (p == NormalGameFragment.DEFAULT_INPUT_VALUE) {
+                    p = ""
+                } else if (p == "-" + NormalGameFragment.DEFAULT_INPUT_VALUE)
+                {
+                    p = "-"
                 }
-                input.text = input.text.toString() + value
+                input.text = p + value
                 resetColors()
             }
 
@@ -176,13 +189,27 @@ class NormalGameFragment : BaseFragment() {
 
             override fun onAcceptClicked() {
                 try {
-                    val userAnswer = input.text.toString().toInt()
-                    viewModel.validateAnswer(userAnswer)
+                    if (input.text != DEFAULT_INPUT_VALUE && input.text != "-" && input.text != "-$DEFAULT_INPUT_VALUE"){
+//                        updateUiOnErrorAnswer()
+                        keyboardView.disableKeyboard()
+                        val userAnswer = input.text.toString().toInt()
+                        viewModel.validateAnswer(userAnswer)
+                    }
+
                 } catch (exception: Exception) {
                     return
                 }
             }
-
+            override  fun onNegativeClicked(){
+                val s = input.text.toString()
+                if (s.startsWith("-", 0)) {
+                    input.text = s.substring(1)
+                }
+                else {
+                    val ss = "-$s"
+                    input.text = ss
+                }
+            }
         })
     }
 

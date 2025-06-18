@@ -48,5 +48,6 @@ Translations:
 <td>
        <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/3zsgs5qvmo9s44c/4.png?dl=0">
 </td>
-
+</tr>
+</table>
 

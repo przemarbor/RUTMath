@@ -17,9 +17,9 @@
     <string name="fragment_settings_select_language">Select language</string>
     <string name="fragment_settings_max_number">Max. number for duel</string>
     <string name="fragment_menu_university">Rzeszów University of Technology</string>
-    <string name="battle_view_bonus">Sequention bonus +%d</string>
+    <string name="battle_view_bonus">Sequential bonus +%d</string>
     <string name="fragment_modes_instruction">Select an exercise from the list:</string>
-    <string name="fragment_modes_add_sub">Addition and Substraction</string>
+    <string name="fragment_modes_add_sub">Addition and Subtraction</string>
     <string name="fragment_modes_mul_div">Multiplication and Division</string>
     <string name="fragment_modes_divisibility">Divisibility</string>
     <string name="fragment_modes_units">Unit conversion</string>
@@ -49,5 +49,11 @@
     <string name="units_all">All</string>
     <string name="time_units">d,h,min,sec</string>
     <string name="question_mark">?</string>
+    <string name="prz_url">https://w.prz.edu.pl/en/</string>
+    <string name="weii_url">https://weii.prz.edu.pl/en/</string>
+    <string name="menu_play">Exercises</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_pvp">Battle</string>
+    <string name="menu_leaderboard">Leaderboard</string>
 
 </resources>

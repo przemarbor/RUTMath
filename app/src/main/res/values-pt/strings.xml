@@ -47,5 +47,12 @@
     <string name="units_surface">Área</string>
     <string name="units_all">Todos</string>
     <string name="time_units">d,h,min,seg</string>
+    <string name="question_mark">\?</string>
+    <string name="prz_url">https://w.prz.edu.pl/en/</string>
+    <string name="weii_url">https://weii.prz.edu.pl/en/</string>
+    <string name="menu_play">Exercícios</string>
+    <string name="menu_settings">Configurações</string>
+    <string name="menu_pvp">Batalha</string>
+    <string name="menu_leaderboard">Lista de Pontuações</string>
 
 </resources>

@@ -1,5 +1,7 @@
 package com.hexbit.rutmath.ui.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +31,17 @@ class MenuFragment : BaseFragment() {
     }
 
     private fun initButtons() = with(binding) {
+        // University Logo in top left corner - redirects to PRz Website based on language selected
+
+        przLogo.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.prz_url))))
+        }
+
+        // Faculty Logo in top center - redirects to WEiI Website based on language selected
+        weiiLogo.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.weii_url))))
+        }
+
         modesButton.setOnClickListener {
             findNavController().navigate(
                 MenuFragmentDirections.actionMenuFragmentToChoosePlayerFragment()

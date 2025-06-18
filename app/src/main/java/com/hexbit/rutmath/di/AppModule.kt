@@ -13,8 +13,8 @@ import com.hexbit.rutmath.ui.fragment.game.units.UnitsGameViewModel
 import com.hexbit.rutmath.ui.fragment.mulDivList.MulDivListViewModel
 import com.hexbit.rutmath.ui.fragment.unitsList.UnitsListViewModel
 import org.koin.android.ext.koin.androidContext
-import org.koin.androidx.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.module
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
 val appModule = module {
 

@@ -10,7 +10,9 @@ import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
-import org.koin.android.ext.android.startKoin
+//import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 /**
  * Main application object.
@@ -21,10 +23,10 @@ class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin(
-            this,
-            listOf(appModule)
-        )
+        startKoin {
+            androidContext(this@BaseApplication)
+            modules(appModule)
+        }
         initDatabaseIfNeeded()
     }
 

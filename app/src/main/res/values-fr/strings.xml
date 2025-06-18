@@ -47,6 +47,12 @@
     <string name="units_all">Tout</string>
     <string name="time_units">j,h,min,sec</string>
     <string name="units_length">Longueur</string>
-    <string name="question_mark"> ?</string>
+    <string name="question_mark">\?</string>
+    <string name="prz_url">https://w.prz.edu.pl/en/</string>
+    <string name="weii_url">https://weii.prz.edu.pl/en/</string>
+    <string name="menu_play">Exercices</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="menu_pvp">Duel</string>
+    <string name="menu_leaderboard">Liste des Scores</string>
 
 </resources>

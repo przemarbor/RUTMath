@@ -110,12 +110,14 @@ class UnitsGameFragment : BaseFragment() {
                         if(isVisible) {
                             progressBar.progress = progressBar.progress + 1
                             viewModel.setNextActiveEquation()
+                            keyboardView.enableKeyboard()
                         }
                     }, 1000)
                 }
                 UnitsGameViewModel.AnswerEvent.INVALID -> {
                     updateUiOnErrorAnswer()
                     viewModel.markActiveEquationAsFailed()
+                    keyboardView.enableKeyboard()
                 }
                 null -> throw Exception("Error: AnswerEvent is null")
             }
@@ -130,10 +132,14 @@ class UnitsGameFragment : BaseFragment() {
                 if (input.text.length > 6) {
                     return
                 }
-                if (input.text.toString() == DEFAULT_INPUT_VALUE) {
-                    input.text = ""
+                var p = input.text.toString();
+                if (p == DEFAULT_INPUT_VALUE) {
+                    p = ""
+                } else if (p == "-$DEFAULT_INPUT_VALUE")
+                {
+                    p = "-"
                 }
-                input.text = input.text.toString() + value
+                input.text = p + value
                 resetColors()
             }
 
@@ -149,10 +155,25 @@ class UnitsGameFragment : BaseFragment() {
 
             override fun onAcceptClicked() {
                 try {
-                    val userAnswer = input.text.toString().toInt()
-                    viewModel.validateAnswer(userAnswer)
+                    if (input.text != DEFAULT_INPUT_VALUE){
+                        updateUiOnErrorAnswer()
+                        keyboardView.disableKeyboard()
+                        val userAnswer = input.text.toString().toInt()
+                        viewModel.validateAnswer(userAnswer)
+                    }
                 } catch (exception: Exception) {
                     return
+                }
+            }
+
+            override fun onNegativeClicked(){
+                val s = input.text.toString()
+                if (s.startsWith("-", 0)) {
+                    input.text = s.substring(1)
+                }
+                else {
+                    val ss = "-$s"
+                    input.text = ss
                 }
             }
 

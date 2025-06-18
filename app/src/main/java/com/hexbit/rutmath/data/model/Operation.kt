@@ -18,7 +18,21 @@ enum class Operation {
     UNITS_LENGTH,
     UNITS_WEIGHT,
     UNITS_SURFACE,
-    UNITS_ALL
+    UNITS_ALL,
+    //adding negative plus and negative minus
+    NEGATIVE_PLUS,
+    NEGATIVE_MINUS,
+    NEGATIVE_PLUS_MINUS,
+    //new code added here
+//    NEGATIVE_PLUS_MUL,
+//    NEGATIVE_MINUS_MUL,
+//    NEGATIVE_PLUS_DIV,
+//    NEGATIVE_MINUS_DIV,
+//    NEGATIVE_PLUS_MINUS_MUL,
+//    NEGATIVE_PLUS_MINUS_DIV
+    NEGATIVE_MUL,
+    NEGATIVE_DIV,
+    NEGATIVE_MUL_DIV
 }
 
 /**

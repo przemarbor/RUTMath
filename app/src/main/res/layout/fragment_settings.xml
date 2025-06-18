@@ -18,9 +18,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="@string/fragment_settings_max_number"
-        android:textStyle="bold"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/maxBattleModeNumberLayout"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -29,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,58 +49,69 @@
         android:id="@+id/selectLanguageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="@string/fragment_settings_select_language"
-        android:textStyle="bold"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/maxBattleModeNumberLayout"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/maxBattleModeNumberLayout" />
 
     <RadioGroup
         android:id="@+id/rg_language"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectLanguageTitle">
 
         <RadioButton
             android:id="@+id/rb_English"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
             android:padding="10dp"
             android:text="English "
-            android:textSize="20sp"
-            android:layout_marginHorizontal="10dp"/>
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/rb_French"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
             android:padding="10dp"
             android:text="Français "
-            android:textSize="20sp"
-            android:layout_marginHorizontal="10dp"/>
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/rb_Polish"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
             android:padding="10dp"
             android:text="Polski "
-            android:textSize="20sp"
-            android:layout_marginHorizontal="10dp"/>
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/rb_Portuguese"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
             android:padding="10dp"
             android:text="Portuguese "
-            android:textSize="20sp"
-            android:layout_marginHorizontal="10dp"/>
+            android:textSize="24sp" />
+
+        <RadioButton
+            android:id="@+id/rb_Greek"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:padding="10dp"
+            android:text="Ελληνικά "
+            android:textSize="24sp" />
 
     </RadioGroup>
 

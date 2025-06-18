@@ -124,12 +124,16 @@ class DivisibilityGameFragment : BaseFragment() {
     private fun initAnswerButtons() = with(binding){
         yesButton.setOnClickListener {
             try {
+                yesButton.isClickable = false
+                noButton.isClickable = false
                 val userAnswer = 1
                 viewModel.validateAnswer(userAnswer)
             } catch (exception: Exception) { }
         }
         noButton.setOnClickListener {
             try {
+                yesButton.isClickable = false
+                noButton.isClickable = false
                 val userAnswer = 0
                 viewModel.validateAnswer(userAnswer)
             } catch (exception: Exception) { }
@@ -148,6 +152,8 @@ class DivisibilityGameFragment : BaseFragment() {
     }
 
     private fun resetColors() = with(binding){
+        yesButton.isClickable = true
+        noButton.isClickable = true
         equationText.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent))
         equationNumbers.setTextColor(ContextCompat.getColor(requireContext(), R.color.accent))
     }
