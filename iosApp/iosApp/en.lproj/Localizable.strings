@@ -1,0 +1,124 @@
+/* 
+  Localizable.strings (English)
+  RUTMath
+*/
+
+// General
+"ok" = "OK";
+"cancel" = "Cancel";
+"yes" = "Yes";
+"no" = "No";
+"error" = "Error";
+"save" = "Save";
+"empty" = "Empty";
+
+// Main menu
+"menu_exercises" = "EXERCISES";
+"menu_battle" = "DUEL";
+"menu_leaderboard" = "LEADERBOARD";
+"menu_settings" = "SETTINGS";
+
+// Fragment menu
+"fragment_menu_university" = "Rzeszów University of Technology";
+
+// Settings
+"settings_select_language" = "Select language";
+"settings_max_number" = "Max number for duel";
+"settings_saved" = "Settings saved";
+"settings_saved_message" = "Your settings have been saved successfully.";
+
+// Player names fragment
+"fragment_player_names_instruction" = "Enter player names";
+"fragment_player_names_nickname_1" = "Player1 name (top):";
+"fragment_player_names_nickname_2" = "Player2 name (bottom):";
+"fragment_player_names_start" = "Start";
+"nick_empty" = "Name cannot be empty!";
+
+// Fragment wyboru gracza
+"fragment_choose_player_instruction" = "Choose a player from the list\nor create new one with plus button";
+"choose_player_input" = "Enter player name";
+"choose_player_nick_exist" = "Player with this name already exists";
+
+// Exercises
+"exercises_title" = "Select an exercise from the list:";
+"exercises_player_name" = "Player name:";
+"exercises_enter_name" = "Enter your name";
+"exercises_set_name" = "Set";
+"exercises_change_name" = "Change name";
+"exercises_hello" = "Hello, %@!";
+
+// Duel
+"battle_player_names" = "Enter player nicknames";
+"battle_player1_name" = "Player1 nickname (top):";
+"battle_player2_name" = "Player2 nickname (bottom):";
+"battle_start" = "Start";
+"battle_name_empty" = "Name cannot be empty!";
+
+// Leaderboard
+"leaderboard_title" = "LEADERBOARD:";
+"leaderboard_empty" = "LEADERBOARD IS EMPTY.\nPLAY IN DUEL MODE TO SEE THE BEST SCORES!";
+"leaderboard_position" = "Position";
+"leaderboard_player" = "Player";
+"leaderboard_score" = "Score";
+"leaderboard_clear" = "Clear Results";
+
+// Game
+"game_question" = "Question %d/%d";
+"game_score" = "Score: %d";
+"game_question_short" = "Question";
+"game_score_short" = "Score";
+"game_time" = "Time: %d";
+"game_correct" = "Correct!";
+"game_wrong" = "Wrong!";
+"game_equation" = "Equation";
+"game_answer" = "Answer";
+"game_correct" = "Correct!";
+"game_incorrect" = "Incorrect!";
+"game_time_up" = "Time's up!";
+"game_final_score" = "Final score";
+"game_progress" = "Progress";
+"game_questions_answered" = "Questions answered";
+
+// Exercise categories
+"category_add_sub" = "Addition and Subtraction";
+"category_mul_div" = "Multiplication and Division";
+"category_divisibility" = "Divisibility";
+"category_units" = "Unit Conversion";
+"category_table" = "Multiplication Table";
+
+// Divisibility difficulty levels
+"divisibility_difficulty_1" = "Easy";
+"divisibility_difficulty_2" = "Medium";
+"divisibility_difficulty_3" = "Hard";
+"divisibility_difficulty_4" = "Very Hard";
+
+// Units types
+"units_time" = "Time";
+"units_length" = "Length";
+"units_weight" = "Weight";
+"units_surface" = "Surface";
+"units_all" = "All";
+
+// Battle/Duel
+"battle_title" = "DUEL MODE";
+"battle_player1" = "Player 1";
+"battle_player2" = "Player 2";
+"battle_winner" = "Winner!";
+"battle_draw" = "Draw!";
+"battle_score" = "Score";
+
+// Divisibility buttons
+"divisibility_yes" = "YES";
+"divisibility_no" = "NO";
+
+// Common buttons
+"start" = "Start";
+"stop" = "Stop";
+"pause" = "Pause";
+"resume" = "Resume";
+"restart" = "Restart";
+"back" = "Back";
+"next" = "Next";
+"previous" = "Previous";
+"close" = "Close";
+"done" = "Done"; 

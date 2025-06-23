@@ -1,0 +1,113 @@
+/* 
+  Localizable.strings (Portuguese)
+  RUTMath
+*/
+
+// Geral
+"ok" = "OK";
+"cancel" = "Cancelar";
+"yes" = "Sim";
+"no" = "Não";
+"error" = "Erro";
+"save" = "Salvar";
+"empty" = "Vazio";
+
+// Menu principal
+"menu_exercises" = "EXERCÍCIOS";
+"menu_battle" = "BATALHA";
+"menu_leaderboard" = "RANKING";
+"menu_settings" = "CONFIGURAÇÕES";
+
+// Fragment menu
+"fragment_menu_university" = "Universidade de Tecnologia de Rzeszów";
+
+// Configurações
+"settings_select_language" = "Selecionar idioma";
+"settings_max_number" = "Núm. máx. para batalha";
+"settings_saved" = "Configurações salvas";
+"settings_saved_message" = "Suas configurações foram salvas com sucesso.";
+
+// Fragment nomes dos jogadores
+"fragment_player_names_instruction" = "Entre com os apelidos dos jogadores";
+"fragment_player_names_nickname_1" = "Apelido Jogador1 (cima):";
+"fragment_player_names_nickname_2" = "Apelido Jogador2 (baixo):";
+"fragment_player_names_start" = "Iniciar";
+"nick_empty" = "Apelido não pode ser vazio!";
+
+// Fragment escolha do jogador
+"fragment_choose_player_instruction" = "Escolha um jogador da lista\nou crie um novo com o botão mais";
+"choose_player_input" = "Digite o nome do jogador";
+"choose_player_nick_exist" = "Já existe um jogador com esse nome";
+
+// Exercícios
+"exercises_title" = "Selecione um exercício da lista:";
+"exercises_player_name" = "Nome do jogador:";
+"exercises_enter_name" = "Digite seu nome";
+"exercises_set_name" = "Definir";
+"exercises_change_name" = "Alterar nome";
+"exercises_hello" = "Olá, %@!";
+
+// Batalha
+"battle_title" = "MODO BATALHA";
+"battle_player1" = "Jogador 1";
+"battle_player2" = "Jogador 2";
+"battle_start" = "INICIAR BATALHA";
+"battle_winner" = "Vencedor!";
+"battle_draw" = "Empate!";
+"battle_score" = "Pontuação";
+
+// Ranking
+"leaderboard_title" = "RANKING:";
+"leaderboard_empty" = "RANKING ESTÁ VAZIO.\nJOGUE NO MODO BATALHA PARA VER AS MELHORES PONTUAÇÕES!";
+"leaderboard_position" = "Posição";
+"leaderboard_player" = "Jogador";
+"leaderboard_score" = "Pontuação";
+"leaderboard_clear" = "Limpar resultados";
+
+// Jogo
+"game_equation" = "Equação";
+"game_answer" = "Resposta";
+"game_question_short" = "Pergunta";
+"game_score_short" = "Pontuação";
+"game_correct" = "Correto!";
+"game_incorrect" = "Incorreto!";
+"game_time_up" = "Tempo esgotado!";
+"game_final_score" = "Pontuação final";
+"game_progress" = "Progresso";
+"game_questions_answered" = "Perguntas respondidas";
+
+// Categorias de exercícios
+"category_add_sub" = "Adição e Subtração";
+"category_mul_div" = "Multiplicação e Divisão";
+"category_divisibility" = "Divisibilidade";
+"category_units" = "Conversão de Unidades";
+"category_table" = "Tabuada";
+
+// Níveis de dificuldade da divisibilidade
+"divisibility_difficulty_1" = "Fácil";
+"divisibility_difficulty_2" = "Médio";
+"divisibility_difficulty_3" = "Difícil";
+"divisibility_difficulty_4" = "Muito Difícil";
+
+// Tipos de unidades
+"units_time" = "Tempo";
+"units_length" = "Comprimento";
+"units_weight" = "Peso";
+"units_surface" = "Área";
+"units_all" = "Todos";
+
+// Botões divisibilidade
+"divisibility_yes" = "SIM";
+"divisibility_no" = "NÃO";
+
+// Botões
+"start" = "Iniciar";
+"stop" = "Parar";
+"pause" = "Pausar";
+"resume" = "Retomar";
+"restart" = "Reiniciar";
+"back" = "Voltar";
+"next" = "Próximo";
+"previous" = "Anterior";
+"close" = "Fechar";
+"done" = "Pronto"; 
