@@ -1,0 +1,86 @@
+plugins {
+    id('com.android.library')
+    id('org.jetbrains.kotlin.multiplatform')
+    id('org.jetbrains.kotlin.plugin.serialization')
+    id('kotlin-parcelize')
+}
+
+kotlin {
+    androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "11"
+            }
+        }
+    }
+    
+    // iOS targets with framework configuration
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+    
+    // Configure iOS framework
+    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget) {
+        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework) {
+            baseName = "RutMathShared"
+            export("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+            export("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
+            export("io.insert-koin:koin-core:3.5.0")
+        }
+    }
+    
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3'
+                implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0'
+                implementation 'org.jetbrains.kotlinx:kotlinx-datetime:0.4.1'
+                implementation 'io.insert-koin:koin-core:3.5.0'
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-test:1.9.20'
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+                implementation 'io.insert-koin:koin-android:3.5.0'
+                implementation 'androidx.room:room-runtime:2.6.1'
+                implementation 'androidx.room:room-ktx:2.6.1'
+            }
+        }
+        androidUnitTest {
+            dependencies {
+                implementation 'androidx.test.ext:junit:1.1.5'
+                implementation 'androidx.test.espresso:espresso-core:3.5.1'
+            }
+        }
+        iosMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3'
+            }
+        }
+        iosTest {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-test:1.9.20'
+            }
+        }
+    }
+}
+
+android {
+    namespace 'com.hexbit.rutmath.shared'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 22
+        targetSdk 34
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+} 
