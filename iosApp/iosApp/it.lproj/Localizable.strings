@@ -1,0 +1,56 @@
+/* 
+  Localizable.strings (Italian)
+  RUTMath
+*/
+
+// Generale
+"ok" = "OK";
+"cancel" = "Annulla";
+"yes" = "Sì";
+"no" = "No";
+"error" = "Errore";
+"save" = "Salva";
+"empty" = "Vuoto";
+
+// Menu principale
+"menu_exercises" = "ESERCIZI";
+"menu_battle" = "DUELLO";
+"menu_leaderboard" = "RISULTATI";
+"menu_settings" = "IMPOSTAZIONI";
+
+"fragment_menu_university" = "Università Tecnologica di Rzeszów";
+
+"settings_select_language" = "Seleziona lingua";
+"settings_max_number" = "Numero max per duello";
+
+"fragment_player_names_instruction" = "Inserisci nomi giocatori";
+"fragment_player_names_start" = "Inizia";
+"nick_empty" = "Il nome non può essere vuoto!";
+
+"exercises_title" = "Scegli esercizio dalla lista:";
+"battle_title" = "MODALITÀ DUELLO";
+"leaderboard_title" = "RISULTATI:";
+
+"category_add_sub" = "Addizione e sottrazione";
+"category_mul_div" = "Moltiplicazione e divisione";
+"category_divisibility" = "Divisibilità";
+"category_units" = "Conversione unità";
+"category_table" = "Tavola moltiplicazione";
+
+"divisibility_difficulty_1" = "Facile";
+"divisibility_difficulty_2" = "Medio";
+"divisibility_difficulty_3" = "Difficile";
+"divisibility_difficulty_4" = "Molto Difficile";
+
+"units_time" = "Tempo";
+"units_length" = "Lunghezza";
+"units_weight" = "Peso";
+"units_surface" = "Superficie";
+"units_all" = "Tutti";
+
+"divisibility_yes" = "SÌ";
+"divisibility_no" = "NO";
+
+"start" = "Inizia";
+"back" = "Indietro";
+"done" = "Fatto"; 

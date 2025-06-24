@@ -16,6 +16,14 @@ This app is available in the following languages:
 - Polish
 - French
 - Portuguese
+- Spanish
+- Greek
+- Dutch
+- Slovak
+- Italian
+- German
+- Hungarian
+- Czech
 
 # License
 This software is licensed under the terms of the GNU General Public License version 3 (GPLv3).</br>
@@ -26,8 +34,10 @@ Thank you for your contribution!
 
 Code development: 
 - [@krolik7](https://www.github.com/krolik7) (original developer)
-- [Arkadiusz Połeć](https://github.com/Nydeyas) (current maintainer)
+- [Arkadiusz Połeć](https://github.com/Nydeyas) (developer)
+- [@RadimDev](https://github.com/RadimDev) (current maintainer)
 - [@przemarbor](https://github.com/przemarbor) (good spirit/éminence grise)
+
 
 Translations:
 - [Benoît Harrault](https://github.com/benoitharrault) (French)
@@ -36,7 +46,7 @@ Translations:
 # Screenshots
 <table>
 <tr>
-<td>
+<td>/g
        <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/l7uk640ixgpxlrr/1.png?dl=0">
 </td>
 <td>
