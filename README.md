@@ -35,6 +35,7 @@ Thank you for your contribution!
 Code development: 
 - [@krolik7](https://www.github.com/krolik7) (original developer)
 - [Arkadiusz Połeć](https://github.com/Nydeyas) (developer)
+- [@WegWojciech](https://github.com/WegWojciech) (developer)
 - [@RadimDev](https://github.com/RadimDev) (current maintainer)
 - [@przemarbor](https://github.com/przemarbor) (good spirit/éminence grise)
 
@@ -46,17 +47,17 @@ Translations:
 # Screenshots
 <table>
 <tr>
-<td>/g
-       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/l7uk640ixgpxlrr/1.png?dl=0">
+<td>
+       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/scl/fi/gq1uvcrjko063obuw03hd/1.jpg?rlkey=1q8cxvzmg9g4wtg2lhrara4iv&st=wrpx8tmj&dl=0">
 </td>
 <td>
-       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/j6lz1w2yux3z42a/2.png?dl=0">
+       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/scl/fi/i6ekbckrls2tpfs24jpzq/6.jpg?rlkey=81tgxfudfjjob407bbf81sh8u&st=wu2fbayo&dl=0">
 </td>
 <td>
-       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/vwzrdi941gz0m9f/3.png?dl=0">
+       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/scl/fi/rzeqpzhvl2w2h0kzlm4zr/3.jpg?rlkey=kk0p7qvyox9fp2vycnflqwtjk&st=27whkzy9&dl=0">
 </td>
 <td>
-       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/s/3zsgs5qvmo9s44c/4.png?dl=0">
+       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/scl/fi/2yrs01zcu5as7un2dzjmr/5.jpg?rlkey=z7ee7u62riv1vtut8yu8kv2av&st=j0rh28pc&dl=0">
 </td>
 </tr>
 </table>
