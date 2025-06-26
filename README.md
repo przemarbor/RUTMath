@@ -51,13 +51,21 @@ Translations:
        <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/scl/fi/gq1uvcrjko063obuw03hd/1.jpg?rlkey=1q8cxvzmg9g4wtg2lhrara4iv&st=wrpx8tmj&dl=0">
 </td>
 <td>
+<<<<<<< future
        <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/scl/fi/i6ekbckrls2tpfs24jpzq/6.jpg?rlkey=81tgxfudfjjob407bbf81sh8u&st=wu2fbayo&dl=0">
+=======
+       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/scl/fi/1atbn5qytpnreh106prmg/2.jpg?rlkey=midzrk2h9l5ay8rj3s5auupho&st=jiome8ya&dl=0">
+>>>>>>> feature-add-support-for-iOS
 </td>
 <td>
        <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/scl/fi/rzeqpzhvl2w2h0kzlm4zr/3.jpg?rlkey=kk0p7qvyox9fp2vycnflqwtjk&st=27whkzy9&dl=0">
 </td>
 <td>
+<<<<<<< future
        <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/scl/fi/2yrs01zcu5as7un2dzjmr/5.jpg?rlkey=z7ee7u62riv1vtut8yu8kv2av&st=j0rh28pc&dl=0">
+=======
+       <img width="185px" height="355px" src="https://dl.dropboxusercontent.com/scl/fi/ge2xp3jgpm0v3btlhkcgp/4.jpg?rlkey=lpbx3wb56oj1e7msdvven018j&st=q09d0054&dl=0">
+>>>>>>> feature-add-support-for-iOS
 </td>
 </tr>
 </table>
