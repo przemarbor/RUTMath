@@ -3,6 +3,7 @@ name: "F-Droid Update"
 on:
   release:
     types: [published]
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
 
 jobs:
   fdroid-update:
