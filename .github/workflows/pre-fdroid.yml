@@ -35,47 +35,47 @@ jobs:
           token: ${{ secrets.FDROID_TOKEN }}
           path: 'fdroiddata'
 
-      - name: "Update F-Droid metadata"
-        run: |
-          cd fdroiddata
-          
-          # Create or update metadata file
-          mkdir -p metadata
-          
-          cat > metadata/com.hexbit.rutmath.yml << 'EOF'
-          Categories:
-            - Games
-            - Science & Education
-          License: GPL-3.0-or-later
-          AuthorName: Arkadiusz Połeć
-          AuthorEmail: apolec01@st.prz.edu.pl
-          WebSite: https://github.com/przemarbor/RUTMath
-          SourceCode: https://github.com/przemarbor/RUTMath
-          IssueTracker: https://github.com/przemarbor/RUTMath/issues
-          Changelog: https://github.com/przemarbor/RUTMath/releases
+#      - name: "Update F-Droid metadata"
+#        run: |
+#          cd fdroiddata
+#          
+#          # Create or update metadata file
+#          mkdir -p metadata
+#          
+#          cat > metadata/com.hexbit.rutmath.yml << 'EOF'
+#          Categories:
+#            - Games
+#            - Science & Education
+#          License: GPL-3.0-or-later
+#          AuthorName: Arkadiusz Połeć
+#          AuthorEmail: apolec01@st.prz.edu.pl
+#          WebSite: https://github.com/przemarbor/RUTMath
+#          SourceCode: https://github.com/przemarbor/RUTMath
+#          IssueTracker: https://github.com/przemarbor/RUTMath/issues
+#          Changelog: https://github.com/przemarbor/RUTMath/releases
 
-          AutoName: RUTMath
-          Name: RUTMath
+#          AutoName: RUTMath
+#          Name: RUTMath
 
-          RepoType: git
-          Repo: https://github.com/przemarbor/RUTMath.git
+#          RepoType: git
+#          Repo: https://github.com/przemarbor/RUTMath.git
 
-          Builds:
-            - versionName: ${{ steps.version.outputs.version_name }}
-              versionCode: ${{ steps.version.outputs.version_code }}
-              commit: ${{ steps.version.outputs.tag_name }}
-              subdir: androidApp
-              gradle:
-                - release
-              prebuild: echo 'org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8' >> ../gradle.properties
+#          Builds:
+#            - versionName: ${{ steps.version.outputs.version_name }}
+#              versionCode: ${{ steps.version.outputs.version_code }}
+#              commit: ${{ steps.version.outputs.tag_name }}
+#              subdir: androidApp
+#              gradle:
+#                - release
+#              prebuild: echo 'org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8' >> ../gradle.properties
 
-          MaintainerNotes: |
-            This is a Kotlin Multiplatform Mobile project.
-            The Android app is built from the androidApp subdirectory.
+#          MaintainerNotes: |
+#            This is a Kotlin Multiplatform Mobile project.
+#            The Android app is built from the androidApp subdirectory.
 
-          AutoUpdateMode: Version
-          UpdateCheckMode: Tags
-          CurrentVersion: ${{ steps.version.outputs.version_name }}
-          CurrentVersionCode: ${{ steps.version.outputs.version_code }}
+#          AutoUpdateMode: Version
+#          UpdateCheckMode: Tags
+#          CurrentVersion: ${{ steps.version.outputs.version_name }}
+#          CurrentVersionCode: ${{ steps.version.outputs.version_code }}
           EOF
 
