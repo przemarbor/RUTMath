@@ -16,9 +16,9 @@ RepoType: git
 Repo: https://github.com/przemarbor/RUTMath.git
 
 Builds:
-  - versionName: 0.1.4
-    versionCode: 5
-    commit: v0.1.4
+  - versionName: 0.2.1
+    versionCode: 6
+    commit: v0.2.1
     subdir: androidApp
     gradle:
       - release
@@ -30,5 +30,5 @@ MaintainerNotes: |
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
-CurrentVersion: 0.1.4
-CurrentVersionCode: 5 
+CurrentVersion: 0.2.1
+CurrentVersionCode: 6 
