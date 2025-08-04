@@ -77,5 +77,4 @@ jobs:
 #          UpdateCheckMode: Tags
 #          CurrentVersion: ${{ steps.version.outputs.version_name }}
 #          CurrentVersionCode: ${{ steps.version.outputs.version_code }}
-          EOF
 

@@ -51,6 +51,9 @@ jobs:
           name: "app-release"
           path: "androidApp/build/outputs/apk/release/androidApp-release.apk"
 
+      - name: "Build AAB"
+        run: "./gradlew androidApp:bundleRelease --no-daemon"
+
       - name: "Upload AAB artifacts"
         uses: "actions/upload-artifact@v4"
         with:
