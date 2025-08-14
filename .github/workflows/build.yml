@@ -15,7 +15,9 @@ on:
     branches:
       - "main"
       - "master"
-
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+  
+      
 jobs:
   build:
     permissions:

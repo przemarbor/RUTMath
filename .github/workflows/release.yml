@@ -6,6 +6,8 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+  
 
 # Automatically create a GitHub Release, with release details specified (the relevant commits)
 jobs:
