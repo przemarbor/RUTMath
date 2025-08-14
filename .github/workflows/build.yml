@@ -1,6 +1,7 @@
 name: "Build App"
 
 on:
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
   pull_request:
     paths:
       - "androidApp/src/**"
@@ -14,8 +15,7 @@ on:
   push:
     branches:
       - "main"
-      - "master"      
-  workflow_dispatch:  # Allow manual trigger from GitHub UI
+      - "master"
 
 jobs:
   build:
