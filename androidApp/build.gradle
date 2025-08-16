@@ -6,33 +6,55 @@ apply plugin: "kotlin-kapt"
 
 android {
     namespace "com.hexbit.rutmath"
+    compileSdk 34
+
     defaultConfig {
-        compileSdk 34
         applicationId "com.hexbit2.rutmath"
         minSdkVersion 22
         targetSdkVersion 34
         versionCode 6
         versionName "0.2.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.debug
     }
+
+    signingConfigs {
+        release {
+            // Use environment variables for CI/CD signing
+            storeFile file(System.getenv("KEYSTORE_FILE") ?: "release.keystore")
+            storePassword System.getenv("KEYSTORE_PASSWORD") ?: ""
+            keyAlias System.getenv("KEY_ALIAS") ?: ""
+            keyPassword System.getenv("KEY_PASSWORD") ?: ""
+        }
+        debug {
+            // Optional: use debug keystore for local builds
+            storeFile file(System.getenv("KEYSTORE_FILE") ?: "release.keystore")
+            storePassword System.getenv("KEYSTORE_PASSWORD") ?: ""
+            keyAlias System.getenv("KEY_ALIAS") ?: ""
+            keyPassword System.getenv("KEY_PASSWORD") ?: ""
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
         debug {
             debuggable true
+            signingConfig signingConfigs.debug
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-    // For Kotlin projects
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         viewBinding = true
     }
@@ -58,18 +80,18 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
     implementation "androidx.room:room-runtime:2.6.1"
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
     implementation 'androidx.room:room-rxjava2:2.6.1'
     kapt "androidx.room:room-compiler:2.6.1"
 
-    // Updated Koin dependencies
-    implementation "io.insert-koin:koin-android:3.5.0"              // Core Koin library for Android
-    implementation "io.insert-koin:koin-androidx-navigation:3.5.0"  // Koin with Jetpack Navigation
-    implementation "io.insert-koin:koin-androidx-workmanager:3.5.0" // Koin with WorkManager (if needed)
+    // Koin dependencies
+    implementation "io.insert-koin:koin-android:3.5.0"
+    implementation "io.insert-koin:koin-androidx-navigation:3.5.0"
+    implementation "io.insert-koin:koin-androidx-workmanager:3.5.0"
 
-    // Coroutines support
+    // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
 
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'

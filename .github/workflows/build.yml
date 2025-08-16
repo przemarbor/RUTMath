@@ -15,28 +15,28 @@ on:
     branches:
       - "main"
       - "master"
-  workflow_dispatch:  # Allow manual trigger from GitHub UI
-  
+  workflow_dispatch:  # Allows manual trigger from GitHub UI
+
 jobs:
   build:
     permissions:
       contents: write
       pull-requests: write
-    name: "build"
+    name: "Build and Sign App"
     runs-on: "ubuntu-latest"
 
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v4
 
-      - name: "Setup Java"
+      - name: "Set up Java"
         uses: actions/setup-java@v4
         with:
           distribution: "temurin"
           java-version: "17"
           cache: "gradle"
 
-      - name: "Setup Gradle"
+      - name: "Set up Gradle"
         uses: gradle/gradle-build-action@v3
         with:
           generate-job-summary: false
@@ -44,43 +44,27 @@ jobs:
       - name: "Grant execute permission for gradlew"
         run: chmod +x gradlew
 
-      # Get the keystore back from GitHub Secrets
+      # Decode keystore from GitHub Secrets
       - name: "Decode keystore"
-        run: |
-          echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 --decode > release.keystore
+        run: echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 --decode > release.keystore
 
-      # Build APK (unsigned)
-      - name: "Build APK"
-        run: ./gradlew androidApp:assembleRelease --no-daemon
+      # Build APK and AAB with automatic signing via Gradle
+      - name: "Build APK and AAB"
+        run: ./gradlew androidApp:assembleRelease androidApp:bundleRelease --no-daemon
+        env:
+          KEYSTORE_FILE: release.keystore
+          KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
 
-      # Sign APK
-      - name: "Sign APK"
-        run: |
-          apksigner sign \
-            --ks release.keystore \
-            --ks-key-alias "${{ secrets.SIGNING_KEY_ALIAS }}" \
-            --ks-pass pass:"${{ secrets.SIGNING_KEYSTORE_PASSWORD }}" \
-            --key-pass pass:"${{ secrets.SIGNING_KEY_PASSWORD }}" \
-            --out androidApp-release-signed.apk \
-            androidApp/build/outputs/apk/release/androidApp-release-unsigned.apk
-
-      - name: "Verify APK signature"
-        run: apksigner verify --verbose --print-certs androidApp-release-signed.apk
-
+      # Upload signed APK artifact
       - name: "Upload signed APK"
         uses: actions/upload-artifact@v4
         with:
           name: "app-release-signed"
-          path: "androidApp-release-signed.apk"
+          path: "androidApp/build/outputs/apk/release/androidApp-release.apk"
 
-      # Build AAB 
-      - name: "Build AAB"
-        run: ./gradlew androidApp:bundleRelease --no-daemon \
-          -Pandroid.injected.signing.store.file=release.keystore \
-          -Pandroid.injected.signing.store.password=${{ secrets.SIGNING_KEYSTORE_PASSWORD }} \
-          -Pandroid.injected.signing.key.alias=${{ secrets.SIGNING_KEY_ALIAS }} \
-          -Pandroid.injected.signing.key.password=${{ secrets.SIGNING_KEY_PASSWORD }}
-
+      # Upload signed AAB artifact
       - name: "Upload signed AAB"
         uses: actions/upload-artifact@v4
         with:
