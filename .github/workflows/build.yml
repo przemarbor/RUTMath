@@ -15,58 +15,49 @@ on:
     branches:
       - "main"
       - "master"
-  workflow_dispatch:  # Allows manual trigger from GitHub UI
+  workflow_dispatch:  # Allow manual trigger
 
 jobs:
   build:
     permissions:
       contents: write
       pull-requests: write
-    name: "Build and Sign App"
+    name: "Build and sign Android app"
     runs-on: "ubuntu-latest"
 
     steps:
       - name: "Checkout code"
-        uses: actions/checkout@v4
+        uses: "actions/checkout@v4"
 
-      - name: "Set up Java"
-        uses: actions/setup-java@v4
+      - name: "Setup Java"
+        uses: "actions/setup-java@v4"
         with:
           distribution: "temurin"
           java-version: "17"
           cache: "gradle"
 
-      - name: "Set up Gradle"
-        uses: gradle/gradle-build-action@v3
+      - name: "Setup Gradle"
+        uses: "gradle/actions/setup-gradle@v2"
         with:
-          generate-job-summary: false
+          gradle-version: "8.3"  # adjust to your Gradle version
 
       - name: "Grant execute permission for gradlew"
-        run: chmod +x gradlew
+        run: "chmod +x gradlew"
 
-      # Decode keystore from GitHub Secrets
-      - name: "Decode keystore"
-        run: echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 --decode > release.keystore
+      - name: "Build release APK"
+        run: "./gradlew androidApp:assembleRelease --no-daemon"
 
-      # Build APK and AAB with automatic signing via Gradle
-      - name: "Build APK and AAB"
-        run: ./gradlew androidApp:assembleRelease androidApp:bundleRelease --no-daemon
-        env:
-          KEYSTORE_FILE: release.keystore
-          KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-
-      # Upload signed APK artifact
-      - name: "Upload signed APK"
-        uses: actions/upload-artifact@v4
+      - name: "Upload APK artifact"
+        uses: "actions/upload-artifact@v4"
         with:
-          name: "app-release-signed"
+          name: "app-release"
           path: "androidApp/build/outputs/apk/release/androidApp-release.apk"
 
-      # Upload signed AAB artifact
-      - name: "Upload signed AAB"
-        uses: actions/upload-artifact@v4
+      - name: "Build release AAB"
+        run: "./gradlew androidApp:bundleRelease --no-daemon"
+
+      - name: "Upload AAB artifact"
+        uses: "actions/upload-artifact@v4"
         with:
-          name: "app-release-bundle-signed"
+          name: "app-release-bundle"
           path: "androidApp/build/outputs/bundle/release/androidApp-release.aab"
