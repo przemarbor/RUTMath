@@ -5,7 +5,7 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: "kotlin-kapt"
 
 android {
-    namespace "com.hexbit.rutmath"
+    namespace "com.hexbit2.rutmath"
     compileSdk 34
 
     defaultConfig {
