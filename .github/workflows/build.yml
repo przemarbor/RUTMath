@@ -46,6 +46,12 @@ jobs:
 
       - name: "Build APK"
         run: "./gradlew androidApp:assembleRelease --no-daemon"
+        
+      - name: "Upload APK artifacts"
+        uses: "actions/upload-artifact@v4"
+        with:
+          name: "app-release"
+          path: "androidApp/build/outputs/apk/release/androidApp-release.apk"
 
       - uses: NoCrypt/sign-android@main
         name: Sign app APK
@@ -56,13 +62,7 @@ jobs:
           keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
-        
-      - name: "Upload APK artifacts"
-        uses: "actions/upload-artifact@v4"
-        with:
-          name: "app-release"
-          path: "androidApp/build/outputs/apk/release/androidApp-release.apk"
-
+          
       - name: "Build AAB"
         run: "./gradlew androidApp:bundleRelease --no-daemon"
 
