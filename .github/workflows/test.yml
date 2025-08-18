@@ -1,0 +1,45 @@
+name: "Check Android signing secrets"
+
+on:
+  workflow_dispatch:  # Run manually from GitHub UI
+
+jobs:
+  check-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check if secrets exist"
+        run: |
+          if [ -z "${{ secrets.KEYSTORE_FILE }}" ]; then
+            echo "❌ Secret KEYSTORE_FILE is missing"
+            exit 1
+          fi
+          if [ -z "${{ secrets.KEYSTORE_PASSWORD }}" ]; then
+            echo "❌ Secret KEYSTORE_PASSWORD is missing"
+            exit 1
+          fi
+          if [ -z "${{ secrets.KEY_ALIAS }}" ]; then
+            echo "❌ Secret KEY_ALIAS is missing"
+            exit 1
+          fi
+          if [ -z "${{ secrets.KEY_PASSWORD }}" ]; then
+            echo "❌ Secret KEY_PASSWORD is missing"
+            exit 1
+          fi
+          echo "✅ All secrets exist"
+
+      - name: "Decode keystore"
+        run: echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > release.keystore
+
+      - name: "Verify keystore"
+        run: |
+          set +e
+          keytool -list -v \
+            -keystore release.keystore \
+            -storepass "${{ secrets.KEYSTORE_PASSWORD }}" \
+            -keypass "${{ secrets.KEY_PASSWORD }}" \
+            -alias "${{ secrets.KEY_ALIAS }}"
+          if [ $? -ne 0 ]; then
+            echo "❌ Failed to open keystore with provided secrets"
+            exit 1
+          fi
+          echo "✅ Keystore and credentials are valid"
