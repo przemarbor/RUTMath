@@ -45,7 +45,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: "Decode keystore"
-        run: echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > release.keystore
+        run: echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 -d > androidApp/release.keystore
 
       - name: "Build release APK"
         run: ./gradlew androidApp:assembleRelease --no-daemon
