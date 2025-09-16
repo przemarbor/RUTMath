@@ -53,11 +53,11 @@ jobs:
           name: "app-release"
           path: "androidApp/build/outputs/apk/release/androidApp-release.apk"
 
-      - uses: NoCrypt/sign-android@main
-        name: Sign app APK
+      - name: Sign app APK
+        uses: NoCrypt/sign-android@main        
         id: sign_app
         with:
-          releaseDir: app/build/outputs/apk/release
+          releaseDir: androidApp/build/outputs/apk/release
           signingKey: ${{ secrets.SIGNING_KEYSTORE }}
           keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
