@@ -1,5 +1,5 @@
 # Name of the workflow
-name: Release
+name: "Release"
 
 # Run on every commit tag which begins with "v" (e.g., "v0.1.4")
 on:
@@ -9,6 +9,16 @@ on:
   workflow_dispatch:  # Allow manual trigger from GitHub UI
   
 
+
+
+
+
+
+
+
+
+
+  
 # Automatically create a GitHub Release, with release details specified (the relevant commits)
 jobs:
   release:
@@ -16,9 +26,10 @@ jobs:
     runs-on: "ubuntu-latest"
     permissions:
       contents: write
+      
     steps:
       - name: "Checkout source code"
-        uses: actions/checkout@v4
+        uses: "actions/checkout@v4"
         
       - name: "Setup Java"
         uses: "actions/setup-java@v4"
@@ -38,9 +49,31 @@ jobs:
       - name: "Build Release APK"
         run: "./gradlew androidApp:assembleRelease --no-daemon"
 
+      - name: "Upload APK artifacts"
+        uses: "actions/upload-artifact@v4"
+        with:
+          name: "app-release"
+          path: "androidApp/build/outputs/apk/release/androidApp-release.apk"
+
+      - name: "Sign APK"
+        uses: "NoCrypt/sign-android@main"
+        id: "sign_app"
+        with:
+          releaseDir: androidApp/build/outputs/apk/release
+          signingKey: ${{ secrets.SIGNING_KEYSTORE }}
+          keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        
       - name: "Build Release AAB"
         run: "./gradlew androidApp:bundleRelease --no-daemon"
 
+      - name: "Upload AAB artifacts"
+        uses: "actions/upload-artifact@v4"
+        with:
+          name: "app-release-bundle"
+          path: "androidApp/build/outputs/bundle/release/androidApp-release.aab"
+        
       - name: "Create GitHub Release"
         uses: "softprops/action-gh-release@v1"
         with:

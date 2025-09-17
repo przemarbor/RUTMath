@@ -1,4 +1,6 @@
+# Name of the workflow
 name: "Build App"
+
 
 on:
   pull_request:
@@ -20,11 +22,11 @@ on:
       
 jobs:
   build:
+    name: "Build"
+    runs-on: "ubuntu-latest"
     permissions:
       contents: write
       pull-requests: write
-    name: "build"
-    runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout code"
         uses: "actions/checkout@v4"
@@ -53,9 +55,9 @@ jobs:
           name: "app-release"
           path: "androidApp/build/outputs/apk/release/androidApp-release.apk"
 
-      - name: Sign app APK
-        uses: NoCrypt/sign-android@main        
-        id: sign_app
+      - name: "Sign APK"
+        uses: "NoCrypt/sign-android@main"
+        id: "sign_app"
         with:
           releaseDir: androidApp/build/outputs/apk/release
           signingKey: ${{ secrets.SIGNING_KEYSTORE }}
