@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.util.base
+package com.octbit.rutmath.util.base
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

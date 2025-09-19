@@ -1,12 +1,12 @@
-package com.hexbit.rutmath.ui.view
+package com.octbit.rutmath.ui.view
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.databinding.KeyboardBinding
+import com.octbit.rutmath.R
+import com.octbit.rutmath.databinding.KeyboardBinding
 
 class KeyboardView @JvmOverloads constructor(
     context: Context,

@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.util.base
+package com.octbit.rutmath.util.base
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import com.hexbit.rutmath.R
+import com.octbit.rutmath.R
 
 /**
  * BaseFragment for all fragments in app. It contains logic for easier inflating view from file.

@@ -54,7 +54,7 @@
 
     </LinearLayout>
 
-    <com.hexbit.rutmath.ui.view.KeyboardView
+    <com.octbit.rutmath.ui.view.KeyboardView
         android:id="@+id/keyboardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,10 +1,10 @@
-package com.hexbit.rutmath.ui.fragment.game.normal
+package com.octbit.rutmath.ui.fragment.game.normal
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.hexbit.rutmath.data.model.Equation
-import com.hexbit.rutmath.data.model.Operation
-import com.hexbit.rutmath.util.base.DisposableViewModel
+import com.octbit.rutmath.data.model.Equation
+import com.octbit.rutmath.data.model.Operation
+import com.octbit.rutmath.util.base.DisposableViewModel
 import java.lang.Exception
 import kotlin.math.round
 import kotlin.math.roundToInt

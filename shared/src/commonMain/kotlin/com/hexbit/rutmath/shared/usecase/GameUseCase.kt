@@ -1,10 +1,10 @@
-package com.hexbit.rutmath.shared.usecase
+package com.octbit.rutmath.shared.usecase
 
-import com.hexbit.rutmath.shared.game.AnswerResult
-import com.hexbit.rutmath.shared.game.EquationGenerator
-import com.hexbit.rutmath.shared.game.GameSession
-import com.hexbit.rutmath.shared.model.Equation
-import com.hexbit.rutmath.shared.model.ExerciseType
+import com.octbit.rutmath.shared.game.AnswerResult
+import com.octbit.rutmath.shared.game.EquationGenerator
+import com.octbit.rutmath.shared.game.GameSession
+import com.octbit.rutmath.shared.model.Equation
+import com.octbit.rutmath.shared.model.ExerciseType
 
 /**
  * Use case for managing regular mathematical games.
@@ -26,8 +26,8 @@ class GameUseCase(
      */
     suspend fun startGame(exerciseType: ExerciseType): GameSession {
         val exerciseCount = when (exerciseType.operation) {
-            com.hexbit.rutmath.shared.model.Operation.MULTIPLY -> TABLE_EXERCISES_COUNT
-            com.hexbit.rutmath.shared.model.Operation.DIVISIBILITY -> DIVISIBILITY_EXERCISES_COUNT
+            com.octbit.rutmath.shared.model.Operation.MULTIPLY -> TABLE_EXERCISES_COUNT
+            com.octbit.rutmath.shared.model.Operation.DIVISIBILITY -> DIVISIBILITY_EXERCISES_COUNT
             else -> DEFAULT_EXERCISES_COUNT
         }
         

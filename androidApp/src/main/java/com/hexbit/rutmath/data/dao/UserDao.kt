@@ -1,8 +1,8 @@
-package com.hexbit.rutmath.data.dao
+package com.octbit.rutmath.data.dao
 
 import androidx.room.*
-import com.hexbit.rutmath.data.model.Player
-import com.hexbit.rutmath.data.model.PlayerWithExercises
+import com.octbit.rutmath.data.model.Player
+import com.octbit.rutmath.data.model.PlayerWithExercises
 import io.reactivex.Completable
 import io.reactivex.Single
 

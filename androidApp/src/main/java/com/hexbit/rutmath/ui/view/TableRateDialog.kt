@@ -1,12 +1,12 @@
-package com.hexbit.rutmath.ui.view
+package com.octbit.rutmath.ui.view
 
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Window
-import com.hexbit.rutmath.databinding.TableRateDialogBinding
-import com.hexbit.rutmath.util.visible
+import com.octbit.rutmath.databinding.TableRateDialogBinding
+import com.octbit.rutmath.util.visible
 
 /**
  * Dialog with stars after finishing TableGame

@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.ui.fragment.game.table
+package com.octbit.rutmath.ui.fragment.game.table
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -12,12 +12,12 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.data.model.Operation
-import com.hexbit.rutmath.databinding.FragmentTableGameBinding
-import com.hexbit.rutmath.ui.fragment.game.normal.NormalGameFragment
-import com.hexbit.rutmath.ui.view.KeyboardView
-import com.hexbit.rutmath.util.base.BaseFragment
+import com.octbit.rutmath.R
+import com.octbit.rutmath.data.model.Operation
+import com.octbit.rutmath.databinding.FragmentTableGameBinding
+import com.octbit.rutmath.ui.fragment.game.normal.NormalGameFragment
+import com.octbit.rutmath.ui.view.KeyboardView
+import com.octbit.rutmath.util.base.BaseFragment
 import org.koin.android.ext.android.inject
 import java.lang.Exception
 

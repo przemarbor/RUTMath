@@ -14,7 +14,7 @@
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/bg_image" />
 
-    <com.hexbit.rutmath.ui.view.PlayerBattlePanel
+    <com.octbit.rutmath.ui.view.PlayerBattlePanel
         android:id="@+id/player1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.hexbit.rutmath.ui.view.PlayerBattlePanel
+    <com.octbit.rutmath.ui.view.PlayerBattlePanel
         android:id="@+id/player2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

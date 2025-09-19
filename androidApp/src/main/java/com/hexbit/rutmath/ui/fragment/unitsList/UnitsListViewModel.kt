@@ -1,11 +1,11 @@
-package com.hexbit.rutmath.ui.fragment.unitsList
+package com.octbit.rutmath.ui.fragment.unitsList
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.hexbit.rutmath.data.AppDatabase
-import com.hexbit.rutmath.data.model.ExerciseType
-import com.hexbit.rutmath.data.model.Operation
-import com.hexbit.rutmath.util.base.DisposableViewModel
+import com.octbit.rutmath.data.AppDatabase
+import com.octbit.rutmath.data.model.ExerciseType
+import com.octbit.rutmath.data.model.Operation
+import com.octbit.rutmath.util.base.DisposableViewModel
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 

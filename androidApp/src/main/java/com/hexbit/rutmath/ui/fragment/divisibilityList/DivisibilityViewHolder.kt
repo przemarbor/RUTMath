@@ -1,10 +1,10 @@
-package com.hexbit.rutmath.ui.fragment.divisibilityList
+package com.octbit.rutmath.ui.fragment.divisibilityList
 
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.data.model.ExerciseType
-import com.hexbit.rutmath.databinding.DivisibilityExerciseItemBinding
+import com.octbit.rutmath.R
+import com.octbit.rutmath.data.model.ExerciseType
+import com.octbit.rutmath.databinding.DivisibilityExerciseItemBinding
 
 
 class DivisibilityViewHolder(

@@ -1,9 +1,9 @@
-package com.hexbit.rutmath.shared.data
+package com.octbit.rutmath.shared.data
 
-import com.hexbit.rutmath.shared.model.ExerciseType
-import com.hexbit.rutmath.shared.model.Player
-import com.hexbit.rutmath.shared.model.Score
-import com.hexbit.rutmath.shared.model.Settings
+import com.octbit.rutmath.shared.model.ExerciseType
+import com.octbit.rutmath.shared.model.Player
+import com.octbit.rutmath.shared.model.Score
+import com.octbit.rutmath.shared.model.Settings
 
 /**
  * Repository interface for database operations.

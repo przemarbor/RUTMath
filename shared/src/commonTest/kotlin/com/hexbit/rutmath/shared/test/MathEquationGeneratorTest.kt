@@ -1,8 +1,8 @@
-package com.hexbit.rutmath.shared.test
+package com.octbit.rutmath.shared.test
 
-import com.hexbit.rutmath.shared.game.MathEquationGenerator
-import com.hexbit.rutmath.shared.model.ExerciseType
-import com.hexbit.rutmath.shared.model.Operation
+import com.octbit.rutmath.shared.game.MathEquationGenerator
+import com.octbit.rutmath.shared.model.ExerciseType
+import com.octbit.rutmath.shared.model.Operation
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull

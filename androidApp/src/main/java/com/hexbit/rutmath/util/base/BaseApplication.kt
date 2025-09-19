@@ -1,14 +1,14 @@
-package com.hexbit.rutmath.util.base
+package com.octbit.rutmath.util.base
 
 import android.annotation.SuppressLint
 import android.app.Application
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.data.AppDatabase
-import com.hexbit.rutmath.data.model.Settings
-import com.hexbit.rutmath.di.appModule
-import com.hexbit.rutmath.shared.di.androidSharedModule
-import com.hexbit.rutmath.shared.di.sharedModule
-import com.hexbit.rutmath.shared.usecase.DataUseCase
+import com.octbit.rutmath.R
+import com.octbit.rutmath.data.AppDatabase
+import com.octbit.rutmath.data.model.Settings
+import com.octbit.rutmath.di.appModule
+import com.octbit.rutmath.shared.di.androidSharedModule
+import com.octbit.rutmath.shared.di.sharedModule
+import com.octbit.rutmath.shared.usecase.DataUseCase
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

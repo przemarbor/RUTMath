@@ -1,9 +1,9 @@
-package com.hexbit.rutmath.shared.game
+package com.octbit.rutmath.shared.game
 
-import com.hexbit.rutmath.shared.model.Equation
-import com.hexbit.rutmath.shared.model.EquationUnits
-import com.hexbit.rutmath.shared.model.ExerciseType
-import com.hexbit.rutmath.shared.model.Operation
+import com.octbit.rutmath.shared.model.Equation
+import com.octbit.rutmath.shared.model.EquationUnits
+import com.octbit.rutmath.shared.model.ExerciseType
+import com.octbit.rutmath.shared.model.Operation
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min

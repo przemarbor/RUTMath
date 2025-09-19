@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.ui.fragment.game.divisibility
+package com.octbit.rutmath.ui.fragment.game.divisibility
 
 import android.content.Context
 import android.os.Bundle
@@ -12,9 +12,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.databinding.FragmentDivisibilityGameBinding
-import com.hexbit.rutmath.util.base.BaseFragment
+import com.octbit.rutmath.R
+import com.octbit.rutmath.databinding.FragmentDivisibilityGameBinding
+import com.octbit.rutmath.util.base.BaseFragment
 import org.koin.android.ext.android.inject
 import java.lang.Exception
 

@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.shared.model
+package com.octbit.rutmath.shared.model
 
 import kotlinx.serialization.Serializable
 

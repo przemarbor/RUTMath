@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.ui.fragment.choosePlayer
+package com.octbit.rutmath.ui.fragment.choosePlayer
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -9,11 +9,11 @@ import android.widget.EditText
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.databinding.FragmentChoosePlayerBinding
-import com.hexbit.rutmath.util.base.BaseFragment
-import com.hexbit.rutmath.util.gone
-import com.hexbit.rutmath.util.visible
+import com.octbit.rutmath.R
+import com.octbit.rutmath.databinding.FragmentChoosePlayerBinding
+import com.octbit.rutmath.util.base.BaseFragment
+import com.octbit.rutmath.util.gone
+import com.octbit.rutmath.util.visible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

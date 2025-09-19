@@ -1,15 +1,15 @@
-package com.hexbit.rutmath.data
+package com.octbit.rutmath.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.hexbit.rutmath.data.dao.ExerciseTypeDao
-import com.hexbit.rutmath.data.dao.ScoreDao
-import com.hexbit.rutmath.data.dao.SettingsDao
-import com.hexbit.rutmath.data.dao.UserDao
-import com.hexbit.rutmath.data.model.*
+import com.octbit.rutmath.data.dao.ExerciseTypeDao
+import com.octbit.rutmath.data.dao.ScoreDao
+import com.octbit.rutmath.data.dao.SettingsDao
+import com.octbit.rutmath.data.dao.UserDao
+import com.octbit.rutmath.data.model.*
 
 /**
  * Main abstraction for database. It contains whole Room database implementation.

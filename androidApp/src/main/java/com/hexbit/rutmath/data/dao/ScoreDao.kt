@@ -1,7 +1,7 @@
-package com.hexbit.rutmath.data.dao
+package com.octbit.rutmath.data.dao
 
 import androidx.room.*
-import com.hexbit.rutmath.data.model.Score
+import com.octbit.rutmath.data.model.Score
 import io.reactivex.Completable
 import io.reactivex.Single
 

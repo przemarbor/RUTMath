@@ -1,11 +1,11 @@
-package com.hexbit.rutmath.ui.fragment.unitsList
+package com.octbit.rutmath.ui.fragment.unitsList
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hexbit.rutmath.data.model.ExerciseType
-import com.hexbit.rutmath.databinding.UnitsExerciseItemBinding
+import com.octbit.rutmath.data.model.ExerciseType
+import com.octbit.rutmath.databinding.UnitsExerciseItemBinding
 
 /**
  * Adapter that contains units exercise list.

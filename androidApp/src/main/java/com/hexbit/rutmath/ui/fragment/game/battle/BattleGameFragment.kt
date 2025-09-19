@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.ui.fragment.game.battle
+package com.octbit.rutmath.ui.fragment.game.battle
 
 import android.os.Bundle
 import android.os.Handler
@@ -10,11 +10,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.data.model.Operation
-import com.hexbit.rutmath.databinding.FragmentBattleGameBinding
-import com.hexbit.rutmath.ui.view.PlayerBattlePanel
-import com.hexbit.rutmath.util.base.BaseFragment
+import com.octbit.rutmath.R
+import com.octbit.rutmath.data.model.Operation
+import com.octbit.rutmath.databinding.FragmentBattleGameBinding
+import com.octbit.rutmath.ui.view.PlayerBattlePanel
+import com.octbit.rutmath.util.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

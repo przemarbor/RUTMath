@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.MenuFragment"
+        android:name="com.octbit.rutmath.ui.fragment.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu">
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/addSubListFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.addSubList.AddSubListFragment"
+        android:name="com.octbit.rutmath.ui.fragment.addSubList.AddSubListFragment"
         android:label="fragment_add_sub_list"
         tools:layout="@layout/fragment_exercise_list">
         <action
@@ -39,11 +39,11 @@
             app:argType="integer" />
         <argument
             android:name="exerciseType"
-            app:argType="com.hexbit.rutmath.data.model.ExerciseType"
+            app:argType="com.octbit.rutmath.data.model.ExerciseType"
             app:nullable="true" />
         <argument
             android:name="player"
-            app:argType="com.hexbit.rutmath.data.model.Player"
+            app:argType="com.octbit.rutmath.data.model.Player"
             app:nullable="false" />
         <action
             android:id="@+id/action_addSubListFragment_to_chooseModeFragment"
@@ -53,15 +53,15 @@
     </fragment>
     <fragment
         android:id="@+id/normalGameFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.game.normal.NormalGameFragment"
+        android:name="com.octbit.rutmath.ui.fragment.game.normal.NormalGameFragment"
         android:label="fragment_normal_game"
         tools:layout="@layout/fragment_normal_game">
         <argument
             android:name="exerciseType"
-            app:argType="com.hexbit.rutmath.data.model.ExerciseType" />
+            app:argType="com.octbit.rutmath.data.model.ExerciseType" />
         <argument
             android:name="player"
-            app:argType="com.hexbit.rutmath.data.model.Player"
+            app:argType="com.octbit.rutmath.data.model.Player"
             app:nullable="false" />
         <action
             android:id="@+id/action_normalGameFragment_to_addSubListFragment"
@@ -78,7 +78,7 @@
 
     <fragment
         android:id="@+id/battleGameFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.game.battle.BattleGameFragment"
+        android:name="com.octbit.rutmath.ui.fragment.game.battle.BattleGameFragment"
         android:label="BattleGameFragment"
         tools:layout="@layout/fragment_battle_game">
         <action
@@ -97,7 +97,7 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.settings.SettingsFragment"
+        android:name="com.octbit.rutmath.ui.fragment.settings.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings">
         <action
@@ -109,13 +109,13 @@
 
     <fragment
         android:id="@+id/scoreboardFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.scoreboard.ScoreboardFragment"
+        android:name="com.octbit.rutmath.ui.fragment.scoreboard.ScoreboardFragment"
         android:label="ScoreboardFragment"
         tools:layout="@layout/fragment_scoreboard">
     </fragment>
     <fragment
         android:id="@+id/playersNamesFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.game.battle.PlayersNamesFragment"
+        android:name="com.octbit.rutmath.ui.fragment.game.battle.PlayersNamesFragment"
         android:label="PlayersNamesFragment"
         tools:layout="@layout/fragment_players_names">
         <action
@@ -125,7 +125,7 @@
 
     <fragment
         android:id="@+id/choosePlayerFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.choosePlayer.ChoosePlayerFragment"
+        android:name="com.octbit.rutmath.ui.fragment.choosePlayer.ChoosePlayerFragment"
         android:label="ChoosePlayerFragment"
         tools:layout="@layout/fragment_choose_player">
         <action
@@ -139,12 +139,12 @@
 
     <fragment
         android:id="@+id/chooseModeFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.chooseMode.ChooseModeFragment"
+        android:name="com.octbit.rutmath.ui.fragment.chooseMode.ChooseModeFragment"
         android:label="ChooseModeFragment"
         tools:layout="@layout/fragment_choose_mode">
         <argument
             android:name="player"
-            app:argType="com.hexbit.rutmath.data.model.Player" />
+            app:argType="com.octbit.rutmath.data.model.Player" />
         <argument
             android:name="res"
             app:argType="integer"
@@ -171,7 +171,7 @@
     </fragment>
     <fragment
         android:id="@+id/mulDivListFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.mulDivList.MulDivListFragment"
+        android:name="com.octbit.rutmath.ui.fragment.mulDivList.MulDivListFragment"
         android:label="fragment_mul_div_list"
         tools:layout="@layout/fragment_exercise_list">
         <argument
@@ -180,11 +180,11 @@
             android:defaultValue="-1" />
         <argument
             android:name="exerciseType"
-            app:argType="com.hexbit.rutmath.data.model.ExerciseType"
+            app:argType="com.octbit.rutmath.data.model.ExerciseType"
             app:nullable="true" />
         <argument
             android:name="player"
-            app:argType="com.hexbit.rutmath.data.model.Player" />
+            app:argType="com.octbit.rutmath.data.model.Player" />
         <action
             android:id="@+id/action_mulDivListFragment_to_normalGameFragment"
             app:destination="@id/normalGameFragment" />
@@ -200,12 +200,12 @@
     </fragment>
     <fragment
         android:id="@+id/tableGameFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.game.table.TableGameFragment"
+        android:name="com.octbit.rutmath.ui.fragment.game.table.TableGameFragment"
         android:label="fragment_normal_game"
         tools:layout="@layout/fragment_table_game">
         <argument
             android:name="player"
-            app:argType="com.hexbit.rutmath.data.model.Player" />
+            app:argType="com.octbit.rutmath.data.model.Player" />
         <action
             android:id="@+id/action_tableGameFragment_to_chooseModeFragment"
             app:destination="@id/chooseModeFragment"
@@ -214,7 +214,7 @@
     </fragment>
     <fragment
         android:id="@+id/divisibilityListFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.divisibilityList.DivisibilityListFragment"
+        android:name="com.octbit.rutmath.ui.fragment.divisibilityList.DivisibilityListFragment"
         android:label="DivisibilityListFragment"
         tools:layout="@layout/fragment_exercise_list">
         <argument
@@ -223,11 +223,11 @@
             android:defaultValue="-1" />
         <argument
             android:name="exerciseType"
-            app:argType="com.hexbit.rutmath.data.model.ExerciseType"
+            app:argType="com.octbit.rutmath.data.model.ExerciseType"
             app:nullable="true" />
         <argument
             android:name="player"
-            app:argType="com.hexbit.rutmath.data.model.Player" />
+            app:argType="com.octbit.rutmath.data.model.Player" />
         <action
             android:id="@+id/action_divisibilityListFragment_to_divisibilityGameFragment"
             app:destination="@id/divisibilityGameFragment" />
@@ -239,15 +239,15 @@
     </fragment>
     <fragment
         android:id="@+id/divisibilityGameFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.game.divisibility.DivisibilityGameFragment"
+        android:name="com.octbit.rutmath.ui.fragment.game.divisibility.DivisibilityGameFragment"
         android:label="DivisibilityGameFragment"
         tools:layout="@layout/fragment_divisibility_game">
         <argument
             android:name="exerciseType"
-            app:argType="com.hexbit.rutmath.data.model.ExerciseType" />
+            app:argType="com.octbit.rutmath.data.model.ExerciseType" />
         <argument
             android:name="player"
-            app:argType="com.hexbit.rutmath.data.model.Player"
+            app:argType="com.octbit.rutmath.data.model.Player"
             app:nullable="false" />
         <action
             android:id="@+id/action_divisibilityGameFragment_to_divisibilityListFragment"
@@ -257,7 +257,7 @@
     </fragment>
     <fragment
         android:id="@+id/unitsListFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.unitsList.UnitsListFragment"
+        android:name="com.octbit.rutmath.ui.fragment.unitsList.UnitsListFragment"
         android:label="UnitsListFragment"
         tools:layout="@layout/fragment_exercise_list">
         <argument
@@ -266,11 +266,11 @@
             android:defaultValue="-1" />
         <argument
             android:name="exerciseType"
-            app:argType="com.hexbit.rutmath.data.model.ExerciseType"
+            app:argType="com.octbit.rutmath.data.model.ExerciseType"
             app:nullable="true" />
         <argument
             android:name="player"
-            app:argType="com.hexbit.rutmath.data.model.Player" />
+            app:argType="com.octbit.rutmath.data.model.Player" />
         <action
             android:id="@+id/action_unitsListFragment_to_unitsGameFragment"
             app:destination="@id/unitsGameFragment" />
@@ -286,15 +286,15 @@
     </fragment>
     <fragment
         android:id="@+id/unitsGameFragment"
-        android:name="com.hexbit.rutmath.ui.fragment.game.units.UnitsGameFragment"
+        android:name="com.octbit.rutmath.ui.fragment.game.units.UnitsGameFragment"
         android:label="UnitsGameFragment"
         tools:layout="@layout/fragment_units_game">
         <argument
             android:name="exerciseType"
-            app:argType="com.hexbit.rutmath.data.model.ExerciseType" />
+            app:argType="com.octbit.rutmath.data.model.ExerciseType" />
         <argument
             android:name="player"
-            app:argType="com.hexbit.rutmath.data.model.Player"
+            app:argType="com.octbit.rutmath.data.model.Player"
             app:nullable="false" />
         <action
             android:id="@+id/action_unitsGameFragment_to_unitsListFragment"

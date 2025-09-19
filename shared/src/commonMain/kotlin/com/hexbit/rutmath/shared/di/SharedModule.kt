@@ -1,10 +1,10 @@
-package com.hexbit.rutmath.shared.di
+package com.octbit.rutmath.shared.di
 
-import com.hexbit.rutmath.shared.game.EquationGenerator
-import com.hexbit.rutmath.shared.game.MathEquationGenerator
-import com.hexbit.rutmath.shared.usecase.GameUseCase
-import com.hexbit.rutmath.shared.usecase.UnitsGameUseCase
-import com.hexbit.rutmath.shared.usecase.DataUseCase
+import com.octbit.rutmath.shared.game.EquationGenerator
+import com.octbit.rutmath.shared.game.MathEquationGenerator
+import com.octbit.rutmath.shared.usecase.GameUseCase
+import com.octbit.rutmath.shared.usecase.UnitsGameUseCase
+import com.octbit.rutmath.shared.usecase.DataUseCase
 import org.koin.dsl.module
 
 /**

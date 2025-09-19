@@ -1,9 +1,9 @@
-package com.hexbit.rutmath.ui.fragment.choosePlayer
+package com.octbit.rutmath.ui.fragment.choosePlayer
 
 import androidx.recyclerview.widget.RecyclerView
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.data.model.Player
-import com.hexbit.rutmath.databinding.PlayerRowBinding
+import com.octbit.rutmath.R
+import com.octbit.rutmath.data.model.Player
+import com.octbit.rutmath.databinding.PlayerRowBinding
 
 class PlayerViewHolder(
     private val binding: PlayerRowBinding,

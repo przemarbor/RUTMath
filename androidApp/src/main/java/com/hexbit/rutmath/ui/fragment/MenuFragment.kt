@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.ui.fragment
+package com.octbit.rutmath.ui.fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.databinding.FragmentMenuBinding
-import com.hexbit.rutmath.util.base.BaseFragment
+import com.octbit.rutmath.R
+import com.octbit.rutmath.databinding.FragmentMenuBinding
+import com.octbit.rutmath.util.base.BaseFragment
 
 class MenuFragment : BaseFragment() {
     override val layout: Int = R.layout.fragment_menu

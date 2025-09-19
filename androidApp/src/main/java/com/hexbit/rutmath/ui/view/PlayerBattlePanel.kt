@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.ui.view
+package com.octbit.rutmath.ui.view
 
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
@@ -10,11 +10,11 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.databinding.BattlePlayerViewBinding
-import com.hexbit.rutmath.util.gone
-import com.hexbit.rutmath.util.invisible
-import com.hexbit.rutmath.util.visible
+import com.octbit.rutmath.R
+import com.octbit.rutmath.databinding.BattlePlayerViewBinding
+import com.octbit.rutmath.util.gone
+import com.octbit.rutmath.util.invisible
+import com.octbit.rutmath.util.visible
 
 class PlayerBattlePanel @JvmOverloads constructor(
     context: Context,

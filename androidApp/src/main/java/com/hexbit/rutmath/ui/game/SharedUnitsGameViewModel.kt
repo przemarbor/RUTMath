@@ -1,15 +1,15 @@
-package com.hexbit.rutmath.ui.game
+package com.octbit.rutmath.ui.game
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hexbit.rutmath.shared.game.AnswerResult
-import com.hexbit.rutmath.shared.game.UnitsGameSession
-import com.hexbit.rutmath.shared.model.EquationUnits
-import com.hexbit.rutmath.shared.model.ExerciseType
-import com.hexbit.rutmath.shared.usecase.UnitsGameUseCase
-import com.hexbit.rutmath.shared.usecase.DataUseCase
+import com.octbit.rutmath.shared.game.AnswerResult
+import com.octbit.rutmath.shared.game.UnitsGameSession
+import com.octbit.rutmath.shared.model.EquationUnits
+import com.octbit.rutmath.shared.model.ExerciseType
+import com.octbit.rutmath.shared.usecase.UnitsGameUseCase
+import com.octbit.rutmath.shared.usecase.DataUseCase
 import kotlinx.coroutines.launch
 
 /**

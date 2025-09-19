@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.ui.fragment.chooseMode
+package com.octbit.rutmath.ui.fragment.chooseMode
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.hexbit.rutmath.util.base.BaseFragment
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.databinding.FragmentChooseModeBinding
-import com.hexbit.rutmath.ui.view.TableRateDialog
+import com.octbit.rutmath.util.base.BaseFragment
+import com.octbit.rutmath.R
+import com.octbit.rutmath.databinding.FragmentChooseModeBinding
+import com.octbit.rutmath.ui.view.TableRateDialog
 
 
 class ChooseModeFragment : BaseFragment() {

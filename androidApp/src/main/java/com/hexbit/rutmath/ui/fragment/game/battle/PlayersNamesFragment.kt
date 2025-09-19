@@ -1,14 +1,14 @@
-package com.hexbit.rutmath.ui.fragment.game.battle
+package com.octbit.rutmath.ui.fragment.game.battle
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.data.AppDatabase
-import com.hexbit.rutmath.databinding.FragmentPlayersNamesBinding
-import com.hexbit.rutmath.util.base.BaseFragment
+import com.octbit.rutmath.R
+import com.octbit.rutmath.data.AppDatabase
+import com.octbit.rutmath.databinding.FragmentPlayersNamesBinding
+import com.octbit.rutmath.util.base.BaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

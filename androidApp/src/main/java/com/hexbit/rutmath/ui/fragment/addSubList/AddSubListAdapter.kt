@@ -1,11 +1,11 @@
-package com.hexbit.rutmath.ui.fragment.addSubList
+package com.octbit.rutmath.ui.fragment.addSubList
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import com.hexbit.rutmath.data.model.ExerciseType
-import com.hexbit.rutmath.databinding.NormalExerciseItemBinding
+import com.octbit.rutmath.data.model.ExerciseType
+import com.octbit.rutmath.databinding.NormalExerciseItemBinding
 
 /**
  * Adapter that contains exercise list.

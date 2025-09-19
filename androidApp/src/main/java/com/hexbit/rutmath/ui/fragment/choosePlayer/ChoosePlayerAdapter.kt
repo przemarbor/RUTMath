@@ -1,11 +1,11 @@
-package com.hexbit.rutmath.ui.fragment.choosePlayer
+package com.octbit.rutmath.ui.fragment.choosePlayer
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hexbit.rutmath.data.model.Player
-import com.hexbit.rutmath.databinding.PlayerRowBinding
+import com.octbit.rutmath.data.model.Player
+import com.octbit.rutmath.databinding.PlayerRowBinding
 
 class ChoosePlayerAdapter(
     private val onItemClickedListener: (Player) -> Unit

@@ -1,9 +1,9 @@
-package com.hexbit.rutmath.ui.activity
+package com.octbit.rutmath.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.data.AppDatabase
+import com.octbit.rutmath.R
+import com.octbit.rutmath.data.AppDatabase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject

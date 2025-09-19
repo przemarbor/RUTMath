@@ -1,10 +1,10 @@
-package com.hexbit.rutmath.ui.fragment.game.units
+package com.octbit.rutmath.ui.fragment.game.units
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.hexbit.rutmath.data.model.EquationUnits
-import com.hexbit.rutmath.data.model.Operation
-import com.hexbit.rutmath.util.base.DisposableViewModel
+import com.octbit.rutmath.data.model.EquationUnits
+import com.octbit.rutmath.data.model.Operation
+import com.octbit.rutmath.util.base.DisposableViewModel
 import java.lang.Exception
 import kotlin.math.max
 import kotlin.math.abs

@@ -1,11 +1,11 @@
-package com.hexbit.rutmath.ui.view
+package com.octbit.rutmath.ui.view
 
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Window
-import com.hexbit.rutmath.databinding.UnitsHelpDialogBinding
+import com.octbit.rutmath.databinding.UnitsHelpDialogBinding
 
 
 /**

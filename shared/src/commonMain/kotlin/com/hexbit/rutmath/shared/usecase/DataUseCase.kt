@@ -1,10 +1,10 @@
-package com.hexbit.rutmath.shared.usecase
+package com.octbit.rutmath.shared.usecase
 
-import com.hexbit.rutmath.shared.data.DatabaseRepository
-import com.hexbit.rutmath.shared.model.ExerciseType
-import com.hexbit.rutmath.shared.model.Player
-import com.hexbit.rutmath.shared.model.Score
-import com.hexbit.rutmath.shared.model.Settings
+import com.octbit.rutmath.shared.data.DatabaseRepository
+import com.octbit.rutmath.shared.model.ExerciseType
+import com.octbit.rutmath.shared.model.Player
+import com.octbit.rutmath.shared.model.Score
+import com.octbit.rutmath.shared.model.Settings
 
 /**
  * Use case for managing data operations.
@@ -134,7 +134,7 @@ class DataUseCase(
         return listOf(
             // Basic addition - unlocked by default
             ExerciseType(
-                operation = com.hexbit.rutmath.shared.model.Operation.PLUS,
+                operation = com.octbit.rutmath.shared.model.Operation.PLUS,
                 difficulty = 10,
                 rate = 0,
                 userNick = "Player 1",
@@ -142,7 +142,7 @@ class DataUseCase(
             ),
             // Basic subtraction - unlocked by default
             ExerciseType(
-                operation = com.hexbit.rutmath.shared.model.Operation.MINUS,
+                operation = com.octbit.rutmath.shared.model.Operation.MINUS,
                 difficulty = 10,
                 rate = 0,
                 userNick = "Player 1",
@@ -150,7 +150,7 @@ class DataUseCase(
             ),
             // Mixed addition/subtraction - locked initially
             ExerciseType(
-                operation = com.hexbit.rutmath.shared.model.Operation.PLUS_MINUS,
+                operation = com.octbit.rutmath.shared.model.Operation.PLUS_MINUS,
                 difficulty = 15,
                 rate = 0,
                 userNick = "Player 1",
@@ -158,7 +158,7 @@ class DataUseCase(
             ),
             // Basic multiplication - locked initially
             ExerciseType(
-                operation = com.hexbit.rutmath.shared.model.Operation.MULTIPLY,
+                operation = com.octbit.rutmath.shared.model.Operation.MULTIPLY,
                 difficulty = 20,
                 rate = 0,
                 userNick = "Player 1",

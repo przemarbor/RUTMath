@@ -5,13 +5,13 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: "kotlin-kapt"
 
 android {
-    namespace "com.hexbit.rutmath"
+    namespace "com.octbit.rutmath"
     defaultConfig {
         compileSdk 34
         applicationId "com.octbit.rutmath"
         minSdkVersion 22
         targetSdkVersion 34
-        versionCode 6
+        versionCode 8
         versionName "0.2.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.debug

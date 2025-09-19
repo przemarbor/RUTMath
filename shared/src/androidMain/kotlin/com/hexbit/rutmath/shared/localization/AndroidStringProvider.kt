@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.shared.localization
+package com.octbit.rutmath.shared.localization
 
 import android.content.Context
 

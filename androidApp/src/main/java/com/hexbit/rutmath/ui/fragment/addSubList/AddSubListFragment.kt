@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.ui.fragment.addSubList
+package com.octbit.rutmath.ui.fragment.addSubList
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,13 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.data.model.ExerciseType
-import com.hexbit.rutmath.data.model.Operation
-import com.hexbit.rutmath.databinding.FragmentExerciseListBinding
-import com.hexbit.rutmath.ui.view.GridSpacingItemDecoration
-import com.hexbit.rutmath.ui.view.NormalRateDialog
-import com.hexbit.rutmath.util.base.BaseFragment
+import com.octbit.rutmath.R
+import com.octbit.rutmath.data.model.ExerciseType
+import com.octbit.rutmath.data.model.Operation
+import com.octbit.rutmath.databinding.FragmentExerciseListBinding
+import com.octbit.rutmath.ui.view.GridSpacingItemDecoration
+import com.octbit.rutmath.ui.view.NormalRateDialog
+import com.octbit.rutmath.util.base.BaseFragment
 import org.koin.android.ext.android.inject
 
 class AddSubListFragment : BaseFragment() {

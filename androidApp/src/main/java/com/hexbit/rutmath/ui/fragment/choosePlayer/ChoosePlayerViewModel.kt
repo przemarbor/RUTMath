@@ -1,10 +1,10 @@
-package com.hexbit.rutmath.ui.fragment.choosePlayer
+package com.octbit.rutmath.ui.fragment.choosePlayer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.hexbit.rutmath.data.AppDatabase
-import com.hexbit.rutmath.data.model.Player
-import com.hexbit.rutmath.util.base.DisposableViewModel
+import com.octbit.rutmath.data.AppDatabase
+import com.octbit.rutmath.data.model.Player
+import com.octbit.rutmath.util.base.DisposableViewModel
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

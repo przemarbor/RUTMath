@@ -1,11 +1,11 @@
-package com.hexbit.rutmath.ui.fragment.scoreboard
+package com.octbit.rutmath.ui.fragment.scoreboard
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hexbit.rutmath.data.model.Score
-import com.hexbit.rutmath.databinding.ScoreRowBinding
+import com.octbit.rutmath.data.model.Score
+import com.octbit.rutmath.databinding.ScoreRowBinding
 
 class ScoreboardAdapter(private val scoresList: List<Score>) :
     RecyclerView.Adapter<ScoreboardViewHolder>() {

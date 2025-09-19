@@ -1,4 +1,4 @@
-package com.hexbit.rutmath
+package com.octbit.rutmath
 
 import org.junit.Test
 

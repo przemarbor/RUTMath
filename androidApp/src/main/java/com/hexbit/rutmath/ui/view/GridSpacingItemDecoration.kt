@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.ui.view
+package com.octbit.rutmath.ui.view
 
 import android.graphics.Rect
 import android.view.View

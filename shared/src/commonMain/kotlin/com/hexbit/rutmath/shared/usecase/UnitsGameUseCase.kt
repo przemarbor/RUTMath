@@ -1,12 +1,12 @@
-package com.hexbit.rutmath.shared.usecase
+package com.octbit.rutmath.shared.usecase
 
-import com.hexbit.rutmath.shared.game.AnswerResult
-import com.hexbit.rutmath.shared.game.EquationGenerator
-import com.hexbit.rutmath.shared.game.MathEquationGenerator
-import com.hexbit.rutmath.shared.game.UnitsGameSession
-import com.hexbit.rutmath.shared.model.EquationUnits
-import com.hexbit.rutmath.shared.model.ExerciseType
-import com.hexbit.rutmath.shared.model.Operation
+import com.octbit.rutmath.shared.game.AnswerResult
+import com.octbit.rutmath.shared.game.EquationGenerator
+import com.octbit.rutmath.shared.game.MathEquationGenerator
+import com.octbit.rutmath.shared.game.UnitsGameSession
+import com.octbit.rutmath.shared.model.EquationUnits
+import com.octbit.rutmath.shared.model.ExerciseType
+import com.octbit.rutmath.shared.model.Operation
 
 /**
  * Use case for managing unit conversion games.

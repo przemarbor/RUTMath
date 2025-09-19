@@ -1,11 +1,11 @@
-package com.hexbit.rutmath.ui.fragment.mulDivList
+package com.octbit.rutmath.ui.fragment.mulDivList
 
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.data.model.ExerciseType
-import com.hexbit.rutmath.data.model.Operation
-import com.hexbit.rutmath.databinding.NormalExerciseItemBinding
+import com.octbit.rutmath.R
+import com.octbit.rutmath.data.model.ExerciseType
+import com.octbit.rutmath.data.model.Operation
+import com.octbit.rutmath.databinding.NormalExerciseItemBinding
 
 class MulDivViewHolder(
     private val binding: NormalExerciseItemBinding,

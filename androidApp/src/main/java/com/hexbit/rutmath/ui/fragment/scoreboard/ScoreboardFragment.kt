@@ -1,16 +1,16 @@
-package com.hexbit.rutmath.ui.fragment.scoreboard
+package com.octbit.rutmath.ui.fragment.scoreboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hexbit.rutmath.R
-import com.hexbit.rutmath.data.AppDatabase
-import com.hexbit.rutmath.databinding.FragmentScoreboardBinding
-import com.hexbit.rutmath.util.base.BaseFragment
-import com.hexbit.rutmath.util.gone
-import com.hexbit.rutmath.util.visible
+import com.octbit.rutmath.R
+import com.octbit.rutmath.data.AppDatabase
+import com.octbit.rutmath.databinding.FragmentScoreboardBinding
+import com.octbit.rutmath.util.base.BaseFragment
+import com.octbit.rutmath.util.gone
+import com.octbit.rutmath.util.visible
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

@@ -1,14 +1,14 @@
-package com.hexbit.rutmath.shared.api
+package com.octbit.rutmath.shared.api
 
-import com.hexbit.rutmath.shared.data.DatabaseRepository
-import com.hexbit.rutmath.shared.data.IosDatabaseRepository
-import com.hexbit.rutmath.shared.di.iosSharedModule
-import com.hexbit.rutmath.shared.di.sharedModule
-import com.hexbit.rutmath.shared.game.EquationGenerator
-import com.hexbit.rutmath.shared.model.*
-import com.hexbit.rutmath.shared.usecase.DataUseCase
-import com.hexbit.rutmath.shared.usecase.GameUseCase
-import com.hexbit.rutmath.shared.usecase.UnitsGameUseCase
+import com.octbit.rutmath.shared.data.DatabaseRepository
+import com.octbit.rutmath.shared.data.IosDatabaseRepository
+import com.octbit.rutmath.shared.di.iosSharedModule
+import com.octbit.rutmath.shared.di.sharedModule
+import com.octbit.rutmath.shared.game.EquationGenerator
+import com.octbit.rutmath.shared.model.*
+import com.octbit.rutmath.shared.usecase.DataUseCase
+import com.octbit.rutmath.shared.usecase.GameUseCase
+import com.octbit.rutmath.shared.usecase.UnitsGameUseCase
 import kotlinx.coroutines.*
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin

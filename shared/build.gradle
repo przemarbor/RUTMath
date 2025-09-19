@@ -71,7 +71,7 @@ kotlin {
 }
 
 android {
-    namespace 'com.hexbit.rutmath.shared'
+    namespace 'com.octbit.rutmath.shared'
     compileSdk 34
 
     defaultConfig {

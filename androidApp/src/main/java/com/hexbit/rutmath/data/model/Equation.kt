@@ -1,4 +1,4 @@
-package com.hexbit.rutmath.data.model
+package com.octbit.rutmath.data.model
 
 /**
  * Equation model.

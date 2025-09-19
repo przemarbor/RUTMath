@@ -1,9 +1,9 @@
-package com.hexbit.rutmath.shared.data
+package com.octbit.rutmath.shared.data
 
-import com.hexbit.rutmath.shared.model.ExerciseType
-import com.hexbit.rutmath.shared.model.Player
-import com.hexbit.rutmath.shared.model.Score
-import com.hexbit.rutmath.shared.model.Settings
+import com.octbit.rutmath.shared.model.ExerciseType
+import com.octbit.rutmath.shared.model.Player
+import com.octbit.rutmath.shared.model.Score
+import com.octbit.rutmath.shared.model.Settings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -45,7 +45,7 @@ class AndroidDatabaseRepository(
     override suspend fun updateSettings(settings: Settings): Unit = withContext(Dispatchers.IO) {
         try {
             // Create Room Settings object using reflection
-            val settingsClass = Class.forName("com.hexbit.rutmath.data.model.Settings")
+            val settingsClass = Class.forName("com.octbit.rutmath.data.model.Settings")
             val roomSettings = settingsClass.newInstance()
             
             // Set values
@@ -200,27 +200,27 @@ class AndroidDatabaseRepository(
     /**
      * Converts Room Operation name to Shared Operation
      */
-    private fun convertRoomOperationByName(operationName: String): com.hexbit.rutmath.shared.model.Operation {
+    private fun convertRoomOperationByName(operationName: String): com.octbit.rutmath.shared.model.Operation {
         return when (operationName) {
-            "PLUS" -> com.hexbit.rutmath.shared.model.Operation.PLUS
-            "MINUS" -> com.hexbit.rutmath.shared.model.Operation.MINUS
-            "PLUS_MINUS" -> com.hexbit.rutmath.shared.model.Operation.PLUS_MINUS
-            "MULTIPLY" -> com.hexbit.rutmath.shared.model.Operation.MULTIPLY
-            "DIVIDE" -> com.hexbit.rutmath.shared.model.Operation.DIVIDE
-            "MULTIPLY_DIVIDE" -> com.hexbit.rutmath.shared.model.Operation.MULTIPLY_DIVIDE
-            "DIVISIBILITY" -> com.hexbit.rutmath.shared.model.Operation.DIVISIBILITY
-            "UNITS_TIME" -> com.hexbit.rutmath.shared.model.Operation.UNITS_TIME
-            "UNITS_LENGTH" -> com.hexbit.rutmath.shared.model.Operation.UNITS_LENGTH
-            "UNITS_WEIGHT" -> com.hexbit.rutmath.shared.model.Operation.UNITS_WEIGHT
-            "UNITS_SURFACE" -> com.hexbit.rutmath.shared.model.Operation.UNITS_SURFACE
-            "UNITS_ALL" -> com.hexbit.rutmath.shared.model.Operation.UNITS_ALL
-            "NEGATIVE_PLUS" -> com.hexbit.rutmath.shared.model.Operation.NEGATIVE_PLUS
-            "NEGATIVE_MINUS" -> com.hexbit.rutmath.shared.model.Operation.NEGATIVE_MINUS
-            "NEGATIVE_PLUS_MINUS" -> com.hexbit.rutmath.shared.model.Operation.NEGATIVE_PLUS_MINUS
-            "NEGATIVE_MUL" -> com.hexbit.rutmath.shared.model.Operation.NEGATIVE_MUL
-            "NEGATIVE_DIV" -> com.hexbit.rutmath.shared.model.Operation.NEGATIVE_DIV
-            "NEGATIVE_MUL_DIV" -> com.hexbit.rutmath.shared.model.Operation.NEGATIVE_MUL_DIV
-            else -> com.hexbit.rutmath.shared.model.Operation.PLUS
+            "PLUS" -> com.octbit.rutmath.shared.model.Operation.PLUS
+            "MINUS" -> com.octbit.rutmath.shared.model.Operation.MINUS
+            "PLUS_MINUS" -> com.octbit.rutmath.shared.model.Operation.PLUS_MINUS
+            "MULTIPLY" -> com.octbit.rutmath.shared.model.Operation.MULTIPLY
+            "DIVIDE" -> com.octbit.rutmath.shared.model.Operation.DIVIDE
+            "MULTIPLY_DIVIDE" -> com.octbit.rutmath.shared.model.Operation.MULTIPLY_DIVIDE
+            "DIVISIBILITY" -> com.octbit.rutmath.shared.model.Operation.DIVISIBILITY
+            "UNITS_TIME" -> com.octbit.rutmath.shared.model.Operation.UNITS_TIME
+            "UNITS_LENGTH" -> com.octbit.rutmath.shared.model.Operation.UNITS_LENGTH
+            "UNITS_WEIGHT" -> com.octbit.rutmath.shared.model.Operation.UNITS_WEIGHT
+            "UNITS_SURFACE" -> com.octbit.rutmath.shared.model.Operation.UNITS_SURFACE
+            "UNITS_ALL" -> com.octbit.rutmath.shared.model.Operation.UNITS_ALL
+            "NEGATIVE_PLUS" -> com.octbit.rutmath.shared.model.Operation.NEGATIVE_PLUS
+            "NEGATIVE_MINUS" -> com.octbit.rutmath.shared.model.Operation.NEGATIVE_MINUS
+            "NEGATIVE_PLUS_MINUS" -> com.octbit.rutmath.shared.model.Operation.NEGATIVE_PLUS_MINUS
+            "NEGATIVE_MUL" -> com.octbit.rutmath.shared.model.Operation.NEGATIVE_MUL
+            "NEGATIVE_DIV" -> com.octbit.rutmath.shared.model.Operation.NEGATIVE_DIV
+            "NEGATIVE_MUL_DIV" -> com.octbit.rutmath.shared.model.Operation.NEGATIVE_MUL_DIV
+            else -> com.octbit.rutmath.shared.model.Operation.PLUS
         }
     }
 } 

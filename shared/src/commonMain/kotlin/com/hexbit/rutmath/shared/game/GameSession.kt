@@ -1,8 +1,8 @@
-package com.hexbit.rutmath.shared.game
+package com.octbit.rutmath.shared.game
 
-import com.hexbit.rutmath.shared.model.Equation
-import com.hexbit.rutmath.shared.model.EquationUnits
-import com.hexbit.rutmath.shared.model.ExerciseType
+import com.octbit.rutmath.shared.model.Equation
+import com.octbit.rutmath.shared.model.EquationUnits
+import com.octbit.rutmath.shared.model.ExerciseType
 import kotlin.math.round
 
 /**

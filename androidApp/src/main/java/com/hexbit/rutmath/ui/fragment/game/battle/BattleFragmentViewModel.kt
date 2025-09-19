@@ -1,12 +1,12 @@
-package com.hexbit.rutmath.ui.fragment.game.battle
+package com.octbit.rutmath.ui.fragment.game.battle
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.hexbit.rutmath.data.AppDatabase
-import com.hexbit.rutmath.data.model.Equation
-import com.hexbit.rutmath.data.model.Operation
-import com.hexbit.rutmath.data.model.Score
-import com.hexbit.rutmath.util.base.DisposableViewModel
+import com.octbit.rutmath.data.AppDatabase
+import com.octbit.rutmath.data.model.Equation
+import com.octbit.rutmath.data.model.Operation
+import com.octbit.rutmath.data.model.Score
+import com.octbit.rutmath.util.base.DisposableViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlin.math.roundToInt

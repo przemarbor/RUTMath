@@ -1,11 +1,11 @@
-package com.hexbit.rutmath.ui.fragment.divisibilityList
+package com.octbit.rutmath.ui.fragment.divisibilityList
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hexbit.rutmath.data.model.ExerciseType
-import com.hexbit.rutmath.databinding.DivisibilityExerciseItemBinding
+import com.octbit.rutmath.data.model.ExerciseType
+import com.octbit.rutmath.databinding.DivisibilityExerciseItemBinding
 
 /**
  * Adapter that contains divisibility exercise list.

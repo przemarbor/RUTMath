@@ -1,9 +1,9 @@
-package com.hexbit.rutmath.shared.di
+package com.octbit.rutmath.shared.di
 
-import com.hexbit.rutmath.shared.data.DatabaseRepository
-import com.hexbit.rutmath.shared.data.IosDatabaseRepository
-import com.hexbit.rutmath.shared.localization.IosStringProvider
-import com.hexbit.rutmath.shared.localization.StringProvider
+import com.octbit.rutmath.shared.data.DatabaseRepository
+import com.octbit.rutmath.shared.data.IosDatabaseRepository
+import com.octbit.rutmath.shared.localization.IosStringProvider
+import com.octbit.rutmath.shared.localization.StringProvider
 import org.koin.dsl.module
 
 /**
