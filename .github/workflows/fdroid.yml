@@ -57,7 +57,7 @@ jobs:
           # Create or update metadata file
           mkdir -p metadata
           
-          cat > metadata/com.hexbit.rutmath.yml << 'EOF'
+          cat > metadata/com.octbit.rutmath.yml << 'EOF'
           Categories:
             - Games
             - Science & Education
