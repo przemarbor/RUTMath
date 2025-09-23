@@ -1,11 +1,20 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: "kotlin-kapt"
 
 android {
     namespace "com.octbit.rutmath"
+
+    signingConfigs {
+        release {
+            storeFile file("release.keystore") // Keystore dekodowany w workflow
+            storePassword System.getenv("SIGNING_KEYSTORE_PASSWORD")
+            keyAlias System.getenv("SIGNING_KEY_ALIAS")
+            keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+        }
+    }
+
     defaultConfig {
         compileSdk 34
         applicationId "com.octbit.rutmath"
@@ -14,42 +23,43 @@ android {
         versionCode 8
         versionName "0.2.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.debug
     }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             debuggable true
+            signingConfig signingConfigs.debug
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-    // For Kotlin projects
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         viewBinding = true
     }
-    
+
     dependenciesInfo {
-        // Disables dependency metadata when building APKs.
         includeInApk = false
-        // Disables dependency metadata when building Android App Bundles.
         includeInBundle = false
     }
-
 }
 
 dependencies {
     def nav_version = "2.5.3"
 
-    // Shared KMP module
     implementation project(':shared')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -66,20 +76,16 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
     implementation "androidx.room:room-runtime:2.6.1"
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
     implementation 'androidx.room:room-rxjava2:2.6.1'
     kapt "androidx.room:room-compiler:2.6.1"
 
-    // Updated Koin dependencies
-    implementation "io.insert-koin:koin-android:3.5.0"              // Core Koin library for Android
-    implementation "io.insert-koin:koin-androidx-navigation:3.5.0"  // Koin with Jetpack Navigation
-    implementation "io.insert-koin:koin-androidx-workmanager:3.5.0" // Koin with WorkManager (if needed)
+    implementation "io.insert-koin:koin-android:3.5.0"
+    implementation "io.insert-koin:koin-androidx-navigation:3.5.0"
+    implementation "io.insert-koin:koin-androidx-workmanager:3.5.0"
 
-    // Coroutines support
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
-
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.11'
     implementation 'com.google.android.material:material:1.0.0'

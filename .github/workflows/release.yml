@@ -1,81 +1,55 @@
-# Name of the workflow
 name: "Release"
 
-# Run on every commit tag which begins with "v" (e.g., "v0.1.4")
 on:
   push:
     tags:
-      - "v*"
-  workflow_dispatch:  # Allow manual trigger from GitHub UI
-  
+      - "v*" # np. v0.2.3
+  workflow_dispatch:
 
-
-
-
-
-
-
-
-
-
-  
-# Automatically create a GitHub Release, with release details specified (the relevant commits)
 jobs:
   release:
     name: "Release"
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-      
+
     steps:
       - name: "Checkout source code"
-        uses: "actions/checkout@v4"
-        
-      - name: "Setup Java"
-        uses: "actions/setup-java@v4"
-        with:
-          distribution: "temurin"
-          java-version: "17"
-          cache: "gradle"
+        uses: actions/checkout@v4
 
-      - name: "Setup Gradle"
-        uses: "gradle/gradle-build-action@v3"
+      - name: "Setup Java"
+        uses: actions/setup-java@v4
         with:
-          generate-job-summary: false
+          distribution: temurin
+          java-version: 17
+          cache: gradle
 
       - name: "Grant execute permission for gradlew"
-        run: "chmod +x gradlew"
+        run: chmod +x gradlew
+
+      - name: "Decode keystore"
+        run: echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 --decode > androidApp/release.keystore
 
       - name: "Build Release APK"
-        run: "./gradlew androidApp:assembleRelease --no-daemon"
+        run: ./gradlew androidApp:assembleRelease --no-daemon
 
-      - name: "Upload APK artifacts"
-        uses: "actions/upload-artifact@v4"
+      - name: "Upload APK artifact"
+        uses: actions/upload-artifact@v4
         with:
-          name: "app-release"
-          path: "androidApp/build/outputs/apk/release/androidApp-release.apk"
+          name: app-release
+          path: androidApp/build/outputs/apk/release/androidApp-release.apk
 
-      - name: "Sign APK"
-        uses: "NoCrypt/sign-android@main"
-        id: "sign_app"
-        with:
-          releaseDir: androidApp/build/outputs/apk/release
-          signingKey: ${{ secrets.SIGNING_KEYSTORE }}
-          keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
-        
       - name: "Build Release AAB"
-        run: "./gradlew androidApp:bundleRelease --no-daemon"
+        run: ./gradlew androidApp:bundleRelease --no-daemon
 
-      - name: "Upload AAB artifacts"
-        uses: "actions/upload-artifact@v4"
+      - name: "Upload AAB artifact"
+        uses: actions/upload-artifact@v4
         with:
-          name: "app-release-bundle"
-          path: "androidApp/build/outputs/bundle/release/androidApp-release.aab"
-        
+          name: app-release-bundle
+          path: androidApp/build/outputs/bundle/release/androidApp-release.aab
+
       - name: "Create GitHub Release"
-        uses: "softprops/action-gh-release@v1"
+        uses: softprops/action-gh-release@v1
         with:
           files: |
             androidApp/build/outputs/apk/release/androidApp-release.apk
